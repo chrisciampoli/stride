@@ -63,6 +63,7 @@
     "typescript": "~5.9.2"
   },
   "private": true,
+  "packageManager": "pnpm@10.30.2",
   "pnpm": {
     "patchedDependencies": {
       "@kingstinct/react-native-healthkit@13.1.4": "patches/@kingstinct__react-native-healthkit@13.1.4.patch"
