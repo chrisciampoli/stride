@@ -1,0 +1,37 @@
+import React from 'react';
+import { View, Text, Pressable } from 'react-native';
+import { Badge } from './Badge';
+
+interface FloatingRankFabProps {
+  rank: number;
+  steps: string;
+  onPress?: () => void;
+}
+
+export function FloatingRankFab({ rank, steps, onPress }: FloatingRankFabProps) {
+  return (
+    <Pressable
+      onPress={onPress}
+      className="absolute bottom-6 right-6"
+      style={{
+        shadowColor: '#E85D0A',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.4,
+        shadowRadius: 12,
+        elevation: 8,
+      }}
+    >
+      <View className="bg-primary rounded-2xl px-4 py-3 flex-row items-center">
+        <View className="bg-neutral-dark rounded-lg px-2 py-1 mr-2">
+          <Text className="text-primary text-xs font-bold">{rank}th</Text>
+        </View>
+        <View>
+          <Text className="text-[10px] text-neutral-dark/60 uppercase font-bold">
+            Your Rank
+          </Text>
+          <Text className="text-xs font-bold text-neutral-dark">{steps}</Text>
+        </View>
+      </View>
+    </Pressable>
+  );
+}

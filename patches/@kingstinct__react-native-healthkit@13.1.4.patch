@@ -1,0 +1,14 @@
+diff --git a/ios/QuantityTypeModule.swift b/ios/QuantityTypeModule.swift
+index 2b93663fd8b3b898865b8a4016d9007421f8b3bf..cf04b2527c8999d46711ebcd644c67816fa88a91 100644
+--- a/ios/QuantityTypeModule.swift
++++ b/ios/QuantityTypeModule.swift
+@@ -241,9 +241,6 @@ func getAnyMapValue(_ anyMap: AnyMap, key: String) -> Any? {
+   if anyMap.isString(key: key) {
+     return anyMap.getString(key: key)
+   }
+-  if anyMap.isBigInt(key: key) {
+-    return anyMap.getBigInt(key: key)
+-  }
+   if anyMap.isNull(key: key) {
+     return nil
+   }

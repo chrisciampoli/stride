@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fitness Chat - Alex Rivera</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#c0f425",
+                "background-light": "#f8f8f5",
+                "background-dark": "#1e2210",
+              },
+              fontFamily: {
+                "display": ["Lexend", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#181c0d] font-display">
+<div class="flex flex-col h-screen max-w-md mx-auto bg-white dark:bg-[#121409] shadow-2xl relative overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-[#121409]/80 backdrop-blur-md border-b border-primary/10 px-4 py-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="p-1 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[#181c0d] dark:text-white">arrow_back</span>
+</button>
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-primary" data-alt="Profile picture of a smiling athletic man" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCt8vQ9gZn4Ykmu-vErmEJWr6gOCUVeo6FvUZ31jAKTOr4vqxijyU8lblNKuxvoiLAFQHoL91cFAyMZ7y2Wqh8zoB6FJJKdg7jviLcOYNKU5NGQiKsr4Ze1EigP1OCdmWdvsGuHMlEZ-6Uji8pVl24Xi5bERHQJeMG9hgbl6d7CzyczHMq-RMuzw6jS0HId8nxpESch01_nzdBxvMXjDlnIGvvtkAufhmaPKYKy88sYOWhPsMZ3gAGIpk7PCceFUGoEi9BOamthaOsb')"></div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-white dark:border-[#121409] rounded-full"></div>
+</div>
+<div>
+<h2 class="text-sm font-bold leading-tight dark:text-white">Alex Rivera</h2>
+<p class="text-[10px] text-primary font-medium uppercase tracking-wider">Active 5m ago</p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors text-[#181c0d] dark:text-white">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors text-[#181c0d] dark:text-white">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Message History -->
+<main class="flex-1 overflow-y-auto p-4 space-y-4 hide-scrollbar">
+<div class="flex justify-center my-4">
+<span class="bg-primary/10 text-[#181c0d] dark:text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase">Today</span>
+</div>
+<!-- Received Message -->
+<div class="flex items-end gap-2 max-w-[85%]">
+<div class="w-8 h-8 rounded-full bg-cover bg-center shrink-0" data-alt="Alex Rivera profile small" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0ne_UHUWcqDGqNZOUNPTpHqvqLdeOK__0BEI9M2VQQpShTARETRCwKG7kG_1grAxaTEfoeZshGBtALcn9xHU5yoKWA3f4IGDWoOEqEYmoToUi9gNhiXhMVb9ftmBtkQlPZvYdNAgObgq48auGXPlaM15k7tHrnx3wktBr_IUbxNxl8sr4ja3KM5-M6y4Vo4EzRxyKGsoKspZJlU5FauNsdJIYnl9AX7HGgxttQZ7jxROPGmbawx0YVUQY9yWavTmX-_mBc-EEXBCU')"></div>
+<div class="flex flex-col gap-1">
+<div class="bg-zinc-100 dark:bg-zinc-800 p-3 rounded-xl rounded-bl-none">
+<p class="text-sm leading-relaxed dark:text-zinc-200">Just hit 10k steps! 🏃‍♂️ Where are you at?</p>
+</div>
+<span class="text-[10px] text-zinc-400 px-1">09:15 AM</span>
+</div>
+</div>
+<!-- Sent Message -->
+<div class="flex flex-col items-end gap-1 ml-auto max-w-[85%]">
+<div class="bg-primary p-3 rounded-xl rounded-br-none shadow-sm shadow-primary/20">
+<p class="text-sm leading-relaxed text-[#181c0d] font-medium">I'm right behind you! Just about to start my evening walk. 👟</p>
+</div>
+<div class="flex items-center gap-1 px-1">
+<span class="text-[10px] text-zinc-400">09:17 AM</span>
+<span class="material-symbols-outlined text-[12px] text-primary">done_all</span>
+</div>
+</div>
+<!-- Fitness Badge Shared -->
+<div class="flex items-end gap-2 max-w-[85%]">
+<div class="w-8 h-8 rounded-full bg-cover bg-center shrink-0" data-alt="Alex Rivera profile small" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlM6qI8NpYUK0oa96ocsGF7xuC6oQOqajm0Y7g7BZJeEfdmf9ohhoowp1D0c4yzmsTeGcPIHteh3eN9S5pqnYC5nzRidUEvTGVE6z-4qhF4t9ij2reHvjk8RQoeTMj9yI_pzfFb8eSm22FyS2faxRctG7Ya3vSN26p45tE57CfIzdugteWRTveCBgr0wjQoGNH2V3Uz0wqNKgrKTfbaVJapaazgaZVq0XsO6hrhigNUTR-hNZcirQ2a_ynSzocdJ5MPRKZ-FNLql61')"></div>
+<div class="flex flex-col gap-1 w-full">
+<div class="bg-zinc-100 dark:bg-zinc-800 p-3 rounded-xl rounded-bl-none border border-primary/20">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2 bg-primary/20 rounded-lg">
+<span class="material-symbols-outlined text-primary">social_leaderboard</span>
+</div>
+<div>
+<p class="text-xs font-bold dark:text-white uppercase">New PB reached!</p>
+<p class="text-[11px] text-zinc-500">Morning Run • 5.2 km</p>
+</div>
+</div>
+<p class="text-sm leading-relaxed dark:text-zinc-200">Did you see my morning run? Smashed my PB by 30 seconds! 🔥</p>
+</div>
+<span class="text-[10px] text-zinc-400 px-1">09:20 AM</span>
+</div>
+</div>
+<!-- Sent Message -->
+<div class="flex flex-col items-end gap-1 ml-auto max-w-[85%]">
+<div class="bg-primary p-3 rounded-xl rounded-br-none shadow-sm shadow-primary/20">
+<p class="text-sm leading-relaxed text-[#181c0d] font-medium">Woah, 30 seconds?! That's insane. What was your pace?</p>
+</div>
+<div class="flex items-center gap-1 px-1">
+<span class="text-[10px] text-zinc-400">09:22 AM</span>
+<span class="material-symbols-outlined text-[12px] text-primary">done_all</span>
+</div>
+</div>
+<!-- Typing Indicator -->
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-cover bg-center shrink-0 opacity-50" data-alt="Alex Rivera profile small" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbQFDfSdIxtjmYfGLDUBF4iRWU53I4MCCzRW7t4QXYPzaeFPdOzjX-e0wBvdT5PuIe60_N-a3_u9l-D4RvlCeNvy0EkV4dIThv1Wg63bPLDhKcQT7bGRVDFXZCHp6C5K99crznIoGthCgiOBRY3syM7KqK_WvdOqGaCuVL4WpIB6sNNSsJMR4_sEVIQW8OGZtZsYvX2rS35C_bj7acvLSh79IYW3UwkwkK3DfQyFHnW35ev3d7HahSLcPA66mJGAIe5SAk3AaPP3_M')"></div>
+<div class="flex gap-1 bg-zinc-100 dark:bg-zinc-800 px-3 py-2 rounded-full">
+<div class="w-1.5 h-1.5 bg-zinc-400 rounded-full animate-pulse"></div>
+<div class="w-1.5 h-1.5 bg-zinc-400 rounded-full animate-pulse delay-75"></div>
+<div class="w-1.5 h-1.5 bg-zinc-400 rounded-full animate-pulse delay-150"></div>
+</div>
+</div>
+</main>
+<!-- Message Input Field -->
+<footer class="p-4 bg-white dark:bg-[#121409] border-t border-primary/10">
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 rounded-full hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-zinc-600 dark:text-zinc-300">add</span>
+</button>
+<div class="flex-1 relative">
+<input class="w-full bg-zinc-100 dark:bg-zinc-800 border-none rounded-full py-2.5 px-5 text-sm focus:ring-2 focus:ring-primary dark:text-white placeholder:text-zinc-400" placeholder="Send some motivation..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 text-primary">
+<span class="material-symbols-outlined">sentiment_satisfied</span>
+</button>
+</div>
+<button class="w-10 h-10 flex items-center justify-center bg-primary rounded-full shadow-lg shadow-primary/30 hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[#181c0d] font-bold">send</span>
+</button>
+</div>
+<!-- Quick Fitness Shortcuts -->
+<div class="flex gap-2 mt-3 overflow-x-auto hide-scrollbar pb-1">
+<button class="flex items-center gap-1.5 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px] text-[#181c0d] dark:text-primary">directions_run</span>
+<span class="text-[10px] font-bold text-[#181c0d] dark:text-white uppercase tracking-tight">Share Activity</span>
+</button>
+<button class="flex items-center gap-1.5 bg-zinc-100 dark:bg-zinc-800 px-3 py-1.5 rounded-full whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px] text-zinc-600 dark:text-zinc-400">swords</span>
+<span class="text-[10px] font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-tight">Challenge</span>
+</button>
+<button class="flex items-center gap-1.5 bg-zinc-100 dark:bg-zinc-800 px-3 py-1.5 rounded-full whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px] text-zinc-600 dark:text-zinc-400">location_on</span>
+<span class="text-[10px] font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-tight">Meet up</span>
+</button>
+</div>
+</footer>
+</div>
+</body></html>

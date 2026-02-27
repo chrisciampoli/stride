@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Weekly 50k Leaderboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c0f425",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e2210",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#181c0d] dark:text-white min-h-screen flex flex-col">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#e2e4d9] dark:border-[#3a3f2a]">
+<div class="flex items-center justify-between p-4">
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="text-center">
+<h1 class="text-lg font-bold leading-tight tracking-tight">Weekly 50k</h1>
+<div class="flex items-center justify-center gap-1 text-xs font-medium text-[#879c49]">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>2d 4h remaining</span>
+</div>
+</div>
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined">info</span>
+</button>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Hero Progress Card -->
+<div class="p-4">
+<div class="relative overflow-hidden rounded-xl bg-[#1e2210] p-6 text-white shadow-lg">
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-primary text-sm font-medium uppercase tracking-wider">Your Progress</p>
+<h2 class="text-3xl font-bold mt-1">32,500 <span class="text-sm font-normal text-white/60">/ 50,000 steps</span></h2>
+</div>
+<div class="bg-primary/20 rounded-lg px-3 py-1 flex items-center gap-1 border border-primary/30">
+<span class="material-symbols-outlined text-primary text-sm filled-icon">emoji_events</span>
+<span class="text-primary font-bold text-sm">4th</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="h-3 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 65%;"></div>
+</div>
+<div class="flex justify-between text-xs text-white/60 font-medium">
+<span>65% Completed</span>
+<span>17,500 steps to goal</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2 bg-white/5 p-3 rounded-lg border border-white/10">
+<span class="material-symbols-outlined text-primary">trending_up</span>
+<p class="text-sm">You're only <span class="font-bold">1,200 steps</span> away from 3rd place!</p>
+</div>
+</div>
+<!-- Abstract Background Pattern -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full -ml-12 -mb-12 blur-2xl"></div>
+</div>
+</div>
+<!-- Leaderboard List -->
+<div class="px-4">
+<h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                Leaderboard
+                <span class="text-sm font-normal text-[#879c49] bg-[#f0f4e7] dark:bg-[#2a2f1a] px-2 py-0.5 rounded-full">24 participants</span>
+</h3>
+<div class="space-y-3">
+<!-- Rank 1 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#252a14] p-4 rounded-xl border border-[#e2e4d9] dark:border-[#3a3f2a] shadow-sm">
+<div class="flex flex-col items-center justify-center w-8">
+<span class="material-symbols-outlined text-[#FFD700] filled-icon">workspace_premium</span>
+<span class="text-lg font-bold">1</span>
+</div>
+<img class="w-12 h-12 rounded-full border-2 border-[#FFD700]" data-alt="Portrait of a smiling professional man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfHr9jzvhZu2Rqt8ZKxi9gSDxf11tSrSfCAx1t6iPtPXetXKUk0wk-cwrgDAvuxGCMsw9UGNc9Tl5D5I42DosjV_sD5tbQaUbs_byT1zGXlASWkMU8bSM0bAu3NEmTMoKXpQuhSSBb4cPWLsO0h0cJJlg5VHtc_P9N4KIi0j7FFkzBjzbMTWfPvG3Qtdwj6YN1sW5XjVfvqh_b68WsYKoBkEBGGmNC1wUGuxUl5ERp4KY6mhR97LTXVw5rI8JD1VeUGBkuXrjHSJ8t"/>
+<div class="flex-1 min-w-0">
+<p class="font-bold truncate">Alex Rivera</p>
+<p class="text-xs text-[#879c49] font-medium">48,210 steps</p>
+<div class="h-1.5 w-full bg-[#f0f4e7] dark:bg-white/5 rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 96%;"></div>
+</div>
+</div>
+<button class="p-2 bg-primary/10 rounded-lg hover:bg-primary transition-colors text-[#181c0d]">
+<span class="material-symbols-outlined filled-icon">campaign</span>
+</button>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#252a14] p-4 rounded-xl border border-[#e2e4d9] dark:border-[#3a3f2a] shadow-sm">
+<div class="flex flex-col items-center justify-center w-8">
+<span class="material-symbols-outlined text-[#C0C0C0] filled-icon">workspace_premium</span>
+<span class="text-lg font-bold">2</span>
+</div>
+<img class="w-12 h-12 rounded-full border-2 border-[#C0C0C0]" data-alt="Portrait of a young woman smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeEHWpRfQWp9cdLJ2qzQurjIA7WV4t0CaLLcdN8TAlZFFBR2rofaoZ7KnyTP7yccu-oyhv2ttpfBjifonJX7d8fDc-JHT-1DHSt4NMlElivHmYq3XyCrIIM38P5AWdQo_X-Qc6kQ_5b5XneTD-U-hYavs5ScU6-_USMOpAJFLoruGZ0M_osQDSJtgzGyphx9eGUdA28KSUQCnByl3oymAj77qhjFPROM6kystf1-43A-v4SRiay525MtA3kCdKMQOpx7aiu4gTCWs4"/>
+<div class="flex-1 min-w-0">
+<p class="font-bold truncate">Sarah Chen</p>
+<p class="text-xs text-[#879c49] font-medium">45,100 steps</p>
+<div class="h-1.5 w-full bg-[#f0f4e7] dark:bg-white/5 rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 90%;"></div>
+</div>
+</div>
+<button class="p-2 bg-primary/10 rounded-lg hover:bg-primary transition-colors text-[#181c0d]">
+<span class="material-symbols-outlined filled-icon">campaign</span>
+</button>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#252a14] p-4 rounded-xl border border-[#e2e4d9] dark:border-[#3a3f2a] shadow-sm">
+<div class="flex flex-col items-center justify-center w-8">
+<span class="material-symbols-outlined text-[#CD7F32] filled-icon">workspace_premium</span>
+<span class="text-lg font-bold">3</span>
+</div>
+<img class="w-12 h-12 rounded-full border-2 border-[#CD7F32]" data-alt="Portrait of a man with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGV2oojTD3ufKDOGw59OuUseuIFAw8sjBFsFgR6LRryvtZ0M0OaFxhzcPfOyrYyTCNx8sn9IyBqzQnDJNbmiVH9BQuRHKm1lqrtOoi8ptk_g5enEFU8XeebOfztyZADBPCpkDotaB9bChtSt7M-2Pg2FT6CbzX_OefwTeIt8zFbs4aXvkV8BJ9JCl7S8tvVzalNf0b8lqXhTJf6svw5WQL3-2G-5IEN6TF619tM1fo6Ybc9fjPKRx0wwKpcPYbCBLUgvJbcHeydU_c"/>
+<div class="flex-1 min-w-0">
+<p class="font-bold truncate">Marcus Thorne</p>
+<p class="text-xs text-[#879c49] font-medium">33,700 steps</p>
+<div class="h-1.5 w-full bg-[#f0f4e7] dark:bg-white/5 rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 67%;"></div>
+</div>
+</div>
+<button class="p-2 bg-primary/10 rounded-lg hover:bg-primary transition-colors text-[#181c0d]">
+<span class="material-symbols-outlined filled-icon">campaign</span>
+</button>
+</div>
+<!-- Current User Rank (Highlit) -->
+<div class="flex items-center gap-4 bg-primary p-4 rounded-xl border-2 border-primary shadow-md">
+<div class="flex flex-col items-center justify-center w-8">
+<span class="text-lg font-black text-[#181c0d]">4</span>
+</div>
+<div class="relative">
+<div class="w-12 h-12 rounded-full bg-[#181c0d] flex items-center justify-center text-primary font-bold border-2 border-white">YOU</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-primary"></div>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-black text-[#181c0d] truncate">Chris P. (You)</p>
+<p class="text-xs text-[#181c0d]/70 font-bold uppercase">32,500 steps</p>
+<div class="h-1.5 w-full bg-[#181c0d]/20 rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-[#181c0d] rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<div class="p-2 bg-[#181c0d] rounded-lg text-primary">
+<span class="material-symbols-outlined filled-icon">person</span>
+</div>
+</div>
+<!-- Rank 5 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#252a14] p-4 rounded-xl border border-[#e2e4d9] dark:border-[#3a3f2a] shadow-sm">
+<div class="flex flex-col items-center justify-center w-8">
+<span class="text-lg font-bold text-[#879c49]">5</span>
+</div>
+<img class="w-12 h-12 rounded-full" data-alt="Portrait of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJVeT8rX96KOHD0RYjrRJID3VUXskmRYPQ9ug8WRzqDoCn-Iq18jVpCa4TdWXxIjNGPzq72ydUki2A-eGk-sXGPCC0YfU9zuLXaJHt5rt2xadQpCcpW_HYND92xmpIDjdBMaGlU3p4mefatje3AjteKb1v1nW1LFP3FfPgz2IqqtNiVxeqJ1acffxVW2ePyZm9w2kV8vi8CqyiaEW7L3BUTOBcT1SWMbqiLHzlehJ-FOfkeTpTP7GFjFSH-K-rndSUHqmV-Zk3C3Aq"/>
+<div class="flex-1 min-w-0">
+<p class="font-bold truncate">David Kim</p>
+<p class="text-xs text-[#879c49] font-medium">31,200 steps</p>
+<div class="h-1.5 w-full bg-[#f0f4e7] dark:bg-white/5 rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 62%;"></div>
+</div>
+</div>
+<button class="p-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-[#181c0d] transition-colors">
+<span class="material-symbols-outlined">front_hand</span>
+</button>
+</div>
+<!-- Rank 6 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#252a14] p-4 rounded-xl border border-[#e2e4d9] dark:border-[#3a3f2a] shadow-sm">
+<div class="flex flex-col items-center justify-center w-8">
+<span class="text-lg font-bold text-[#879c49]">6</span>
+</div>
+<img class="w-12 h-12 rounded-full" data-alt="Portrait of a woman with red hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcORULBdjayMCkozxvACqA3apGWPWvtqArJbNU7WMryx9j5JM1D3vN4dqrBzlLtrRa9vb9iHf5bd5KziXaACAvX2f7cgFhOiGzozMWrH2u6WZ_1r5RSNmMjxanwtDOQ_Rtzuivi22-egeLDB9K6kJqNQNfCY9fFGENCTxMXHKLYKcqwm-3DxlDDvRYbj9VdKLlYXWWCalkimqTWHBMD39EnU8FWtiqc5uff-WEen9O3ME1Iuhj5s-IXKH9vG4D8hUJRyYv01wTyNQH"/>
+<div class="flex-1 min-w-0">
+<p class="font-bold truncate">Emma Watson</p>
+<p class="text-xs text-[#879c49] font-medium">28,900 steps</p>
+<div class="h-1.5 w-full bg-[#f0f4e7] dark:bg-white/5 rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 58%;"></div>
+</div>
+</div>
+<button class="p-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-[#181c0d] transition-colors">
+<span class="material-symbols-outlined">front_hand</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-background-light dark:bg-[#1e2210] border-t border-[#f0f4e7] dark:border-[#3a3f2a] pb-4 pt-2">
+<div class="flex justify-around items-center px-4 max-w-lg mx-auto">
+<a class="flex flex-col items-center gap-1 text-[#879c49]" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[#181c0d] dark:text-primary" href="#">
+<span class="material-symbols-outlined filled-icon">emoji_events</span>
+<span class="text-[10px] font-bold">Leaderboard</span>
+</a>
+<div class="relative -top-6">
+<button class="bg-primary text-[#181c0d] p-4 rounded-full shadow-lg shadow-primary/40 border-4 border-background-light dark:border-[#1e2210] flex items-center justify-center">
+<span class="material-symbols-outlined font-bold">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-[#879c49]" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-medium">Friends</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[#879c49]" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Floating My Rank Anchor (for scrolling context) -->
+<div class="fixed bottom-24 right-4 flex items-center gap-3 bg-[#181c0d] text-white p-3 rounded-full shadow-2xl border-2 border-primary">
+<div class="w-8 h-8 rounded-full bg-primary text-[#181c0d] flex items-center justify-center font-bold text-xs">4th</div>
+<div class="pr-2">
+<p class="text-[10px] font-bold uppercase text-primary leading-none">Your Rank</p>
+<p class="text-sm font-bold leading-none">32.5k steps</p>
+</div>
+<button class="bg-white/10 p-1.5 rounded-full">
+<span class="material-symbols-outlined text-sm">keyboard_arrow_up</span>
+</button>
+</div>
+</body></html>

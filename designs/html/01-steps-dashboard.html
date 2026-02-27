@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Step Challenge Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c0f425",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e2210",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Lexend', sans-serif; }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#181c0d] font-display">
+<!-- Mobile Container -->
+<div class="relative flex h-screen max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-hidden shadow-2xl">
+<!-- Header -->
+<div class="flex items-center justify-between p-6 pb-2">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-primary" data-alt="User profile picture showing a smiling man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA3NoGEpYDQ8lDS7AOusrm69MqXDi6KBiFbM43RODgsq8kTh7eeQm6NhF8zXXKO047o2sLrdgvnYhXTVZ-LgU6b29cHKbEgbwsJfs965fniX4IncXjadhAyrQvYkMdyUoIFxxcirRl394scPujZzZ4bTkoSA3atJdwu7LvXgS-Qyr8ocXlGThm8sFA5qgA-DiyxfaSR9xpMzvpzRCw40OFPuQb98lAw2oHp3Kc0nIcWoDz0ImFOZm70AEa27TRw4MIkumPecVAg-IVq");'></div>
+<div>
+<p class="text-xs text-[#879c49] font-medium uppercase tracking-wider">Welcome back</p>
+<h2 class="text-lg font-bold leading-tight">Alex Rivera</h2>
+</div>
+</div>
+<button class="size-10 flex items-center justify-center rounded-full bg-white dark:bg-[#2a2e1a] shadow-sm border border-[#e2e8ce] dark:border-[#3a3f25]">
+<span class="material-symbols-outlined text-[#181c0d] dark:text-white">notifications</span>
+</button>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto px-6 pt-4 pb-24">
+<!-- Main Circular Progress -->
+<div class="relative flex flex-col items-center justify-center py-8">
+<svg class="size-64 drop-shadow-xl" viewbox="0 0 100 100">
+<!-- Background Circle -->
+<circle class="text-[#e2e8ce] dark:text-[#2a2e1a] stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<!-- Progress Circle (84%) -->
+<circle class="text-primary stroke-current progress-ring-circle" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="40.2" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center mt-4">
+<span class="text-4xl font-black tracking-tight text-[#181c0d] dark:text-white">8,432</span>
+<span class="text-sm font-medium text-[#879c49]">/ 10,000 steps</span>
+</div>
+<div class="mt-6 flex gap-2 items-center bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20">
+<span class="material-symbols-outlined text-sm text-[#181c0d]">bolt</span>
+<p class="text-xs font-bold text-[#181c0d]">1,568 to reach goal</p>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-3 gap-3 mb-8">
+<div class="bg-white dark:bg-[#2a2e1a] p-3 rounded-xl border border-[#e2e8ce] dark:border-[#3a3f25] text-center">
+<span class="material-symbols-outlined text-primary mb-1">local_fire_department</span>
+<p class="text-[10px] text-[#879c49] font-medium uppercase">Calories</p>
+<p class="text-sm font-bold">342 kcal</p>
+</div>
+<div class="bg-white dark:bg-[#2a2e1a] p-3 rounded-xl border border-[#e2e8ce] dark:border-[#3a3f25] text-center">
+<span class="material-symbols-outlined text-primary mb-1">distance</span>
+<p class="text-[10px] text-[#879c49] font-medium uppercase">Miles</p>
+<p class="text-sm font-bold">4.2 mi</p>
+</div>
+<div class="bg-white dark:bg-[#2a2e1a] p-3 rounded-xl border border-[#e2e8ce] dark:border-[#3a3f25] text-center">
+<span class="material-symbols-outlined text-primary mb-1">timer</span>
+<p class="text-[10px] text-[#879c49] font-medium uppercase">Mins</p>
+<p class="text-sm font-bold">45m</p>
+</div>
+</div>
+<!-- Leaderboard Section -->
+<div class="mb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xl font-bold">Leaderboard</h3>
+<span class="text-xs font-bold text-primary bg-[#181c0d] px-2 py-1 rounded">Daily</span>
+</div>
+<div class="space-y-3">
+<!-- Rank 1 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#2a2e1a] p-4 rounded-xl border border-[#e2e8ce] dark:border-[#3a3f25]">
+<span class="text-lg font-black text-[#879c49] w-4">1</span>
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Avatar of Sarah J." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBBrDn9DUqObgJm5-swD82f3P7JxqnwZfPknkJUPe1ssGq0L7x6rrMQXtn2NoPzLF2hwVR7cDHcdYAPMHMUl77_atk1jg22-a_bDWM7S9Fi9RRC6TUu1uEPP2VKEfkywvz9PVzXletZvpQRBRK7TDYfosloZlFwUefRacQVyNYwtGLkiYUw3I3ynzOKaslf70z-YOyje_vsmRpwTGOh9FVNrF0XlSbWFNI7TDGJ_fWkQlgnXFiUWcsQq3BwbSN0pru-ChAek2fleU5A");'></div>
+<div class="flex-1">
+<p class="text-sm font-bold">Sarah Jenkins</p>
+<div class="w-full bg-[#f0f4e7] dark:bg-[#1e2210] h-1.5 rounded-full mt-1">
+<div class="bg-primary h-full rounded-full" style="width: 95%;"></div>
+</div>
+</div>
+<p class="text-sm font-bold text-[#181c0d] dark:text-white">12,402</p>
+</div>
+<!-- Rank 2 (User) -->
+<div class="flex items-center gap-4 bg-primary p-4 rounded-xl border border-primary shadow-lg shadow-primary/20">
+<span class="text-lg font-black text-[#181c0d] w-4">2</span>
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-white" data-alt="Avatar of Alex R." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6qGmpOg203cUCJHuZK3wLN-9TYGevK-ziMggH_JRq1xnkpxuMhAhz5WdaxOn50G41ps_Q-lBJlFpzQTCZ3dYyoCAK6wiEvqz5Gi8rmvvW7ymcUxBWTgX98tA8eZS6qjwiuGSxnf6-quxbC9IMAVWrk8S_De3N8P_svamuaWmIVT-TguW7pMme_POTHZD3Ql1-0_x3TqPm7SiIeefIKTJiJ_rKgak3CuveSqtnSnvOjobTW8xvfrGgl75S3hJ2Hna3iCZ9mQug4Hma");'></div>
+<div class="flex-1">
+<p class="text-sm font-bold text-[#181c0d]">You</p>
+<div class="w-full bg-white/30 h-1.5 rounded-full mt-1">
+<div class="bg-[#181c0d] h-full rounded-full" style="width: 84%;"></div>
+</div>
+</div>
+<p class="text-sm font-bold text-[#181c0d]">8,432</p>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#2a2e1a] p-4 rounded-xl border border-[#e2e8ce] dark:border-[#3a3f25]">
+<span class="text-lg font-black text-[#879c49] w-4">3</span>
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Avatar of Mike T." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8cWChJf3JJnSbOsgnhGcxVs30hu-uV40zKtZAlQW27a6qtzyfvAYuFvmK04xiYoBqTVKpHN90HQI8LAVKFSq8n3Gg7O72LGy-LbJzggQQy6qvD4N8oTWkZkXNC1-KObKiLRREafDD4qUOC_uIItMlQClDgDkjQnEsjtxbpqg6ykR94RbAjmMXFAw_GmP7WlO5U96sbgEax7yvLt8vf2ad-3raCYSzUCDSihoIGr4eLMsbgLN1pVUO8nemfeDuX7wtv0e3f7SQGhOz");'></div>
+<div class="flex-1">
+<p class="text-sm font-bold">Mike Thompson</p>
+<div class="w-full bg-[#f0f4e7] dark:bg-[#1e2210] h-1.5 rounded-full mt-1">
+<div class="bg-primary h-full rounded-full" style="width: 70%;"></div>
+</div>
+</div>
+<p class="text-sm font-bold text-[#181c0d] dark:text-white">7,120</p>
+</div>
+<!-- Rank 4 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#2a2e1a] p-4 rounded-xl border border-[#e2e8ce] dark:border-[#3a3f25]">
+<span class="text-lg font-black text-[#879c49] w-4">4</span>
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Avatar of Emily W." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCsFG8DEBBeU34KFj_d19YeDE3-5iYOtuyCAFwjWRCIBSVW9lLLc5Jf868ULCTGS9zaeIh8s2qfyl45NPaW4PIcq0Mhcx4f6rczfM1cQEXSM60cX8LNw03buqINYb3iGyzMw9S-ys4PqA7-oULscAaRePwrIploJB6o66m0fVYJfTXLLWsC1gKx3J0mOr3an3u2D2fh1SmQgdm5zqeSrPbr0rbHQVfNeFtWfVD-XM4puhYTeZ9ccsIUORjFo_nhUwp2EB9RRn4aSl5r");'></div>
+<div class="flex-1">
+<p class="text-sm font-bold">Emily Wong</p>
+<div class="w-full bg-[#f0f4e7] dark:bg-[#1e2210] h-1.5 rounded-full mt-1">
+<div class="bg-primary h-full rounded-full" style="width: 60%;"></div>
+</div>
+</div>
+<p class="text-sm font-bold text-[#181c0d] dark:text-white">6,042</p>
+</div>
+</div>
+</div>
+<!-- Join a Challenge CTA Card -->
+<div class="bg-[#181c0d] rounded-2xl p-6 text-white relative overflow-hidden">
+<div class="absolute right-[-20px] top-[-20px] size-32 bg-primary/20 rounded-full blur-3xl"></div>
+<h4 class="text-xl font-bold mb-2 relative z-10">Weekend Warrior</h4>
+<p class="text-sm text-gray-400 mb-4 relative z-10">Join 1,240 others in the 30k step weekend sprint.</p>
+<button class="w-full bg-primary py-3 rounded-xl text-[#181c0d] font-bold text-sm hover:scale-[0.98] transition-transform relative z-10">
+                    Join Challenge
+                </button>
+</div>
+</div>
+<!-- Navigation Bar -->
+<div class="absolute bottom-0 left-0 right-0 bg-white/80 dark:bg-[#1e2210]/90 backdrop-blur-md border-t border-[#f0f4e7] dark:border-[#2a2e1a] px-6 pb-6 pt-3 flex items-center justify-between">
+<a class="flex flex-col items-center gap-1 text-[#181c0d] dark:text-white" href="#">
+<span class="material-symbols-outlined font-variation-fill text-primary">home</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[#879c49] hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">trophy</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Challenges</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[#879c49] hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Profile</span>
+</a>
+</div>
+</div>
+</body></html>

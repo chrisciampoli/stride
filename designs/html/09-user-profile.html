@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Profile - Fitness Tracker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c0f425",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e2210",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#1e2210] dark:text-[#f8f8f5] min-h-screen pb-24">
+<!-- Header / Navigation -->
+<nav class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-4 flex items-center justify-between border-b border-primary/10">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-[#2a2f16] shadow-sm">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Profile</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-[#2a2f16] shadow-sm">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</nav>
+<!-- Profile Identity -->
+<header class="flex flex-col items-center mt-6 px-4">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full p-1 bg-primary shadow-lg shadow-primary/20">
+<div class="w-full h-full rounded-full overflow-hidden bg-white dark:bg-background-dark">
+<img alt="Chris P." class="w-full h-full object-cover" data-alt="Close up portrait of a smiling athletic man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9JgGU7xKlmHQwKkH-sPlaY0xUnF9-juMEaM37IrKYLFa_n_swMnoczzrcip6VnAydmPqc9z_X97R81c_S8sdyCwUDCiz9gZ3h7gQvJMgdaj_CVv-R0ncDP-vpsMbbCbGWUBMliBqp3effFK7qNfa4NMyNPAhxZioaZWINQv56uDMsErZhkaaTdr1gVjbGPEkE3-U6zq-Dru7y6XvPTvOO0REOmpE91aEIaL416IWybNFK0jAtW6sOm34UA4mcEARXBRu0_NLbBv05"/>
+</div>
+</div>
+<button class="absolute bottom-1 right-1 bg-primary text-[#1e2210] p-1.5 rounded-full border-4 border-background-light dark:border-background-dark shadow-md">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+<h2 class="mt-4 text-2xl font-bold">Chris P.</h2>
+<div class="flex items-center gap-2 mt-1 opacity-70">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="text-sm font-medium">Member since Jan 2023</span>
+</div>
+<div class="mt-1 flex items-center gap-1 text-primary font-semibold">
+<span class="material-symbols-outlined text-xs">location_on</span>
+<span class="text-xs uppercase tracking-wider">New York, NY</span>
+</div>
+</header>
+<!-- Stats Grid -->
+<section class="mt-8 px-4">
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-white dark:bg-[#2a2f16] p-4 rounded-xl flex flex-col items-center text-center shadow-sm border border-primary/5">
+<span class="text-xs font-semibold uppercase tracking-tight opacity-50 mb-2">Total Steps</span>
+<span class="text-lg font-bold text-primary leading-tight">1.2M</span>
+<span class="text-[10px] mt-1 text-emerald-500 font-bold">+5.2%</span>
+</div>
+<div class="bg-primary p-4 rounded-xl flex flex-col items-center text-center shadow-md border border-primary/5">
+<span class="text-xs font-semibold uppercase tracking-tight text-[#1e2210]/60 mb-2">Won</span>
+<span class="text-lg font-bold text-[#1e2210] leading-tight">12</span>
+<span class="text-[10px] mt-1 text-[#1e2210]/60 font-bold">Challenges</span>
+</div>
+<div class="bg-white dark:bg-[#2a2f16] p-4 rounded-xl flex flex-col items-center text-center shadow-sm border border-primary/5">
+<span class="text-xs font-semibold uppercase tracking-tight opacity-50 mb-2">Best Day</span>
+<span class="text-lg font-bold leading-tight">25.4k</span>
+<span class="text-[10px] mt-1 text-emerald-500 font-bold">New PR</span>
+</div>
+</div>
+</section>
+<!-- Badges & Achievements -->
+<section class="mt-10 px-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">Badges &amp; Achievements</h3>
+<button class="text-sm font-bold text-primary uppercase tracking-wider">See All</button>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+<div class="flex-shrink-0 flex flex-col items-center gap-2">
+<div class="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center border-2 border-primary border-dashed p-1">
+<div class="w-full h-full rounded-full bg-primary flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-3xl text-[#1e2210] active-icon">wb_sunny</span>
+</div>
+</div>
+<span class="text-xs font-bold">Early Bird</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-2">
+<div class="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center border-2 border-primary border-dashed p-1">
+<div class="w-full h-full rounded-full bg-primary flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-3xl text-[#1e2210] active-icon">directions_run</span>
+</div>
+</div>
+<span class="text-xs font-bold">Marathoner</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-2">
+<div class="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center border-2 border-primary border-dashed p-1">
+<div class="w-full h-full rounded-full bg-primary flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-3xl text-[#1e2210] active-icon">local_fire_department</span>
+</div>
+</div>
+<span class="text-xs font-bold">10k Streak</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-2">
+<div class="w-20 h-20 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center p-1 grayscale">
+<div class="w-full h-full rounded-full bg-white/20 dark:bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl opacity-30">trophy</span>
+</div>
+</div>
+<span class="text-xs font-medium opacity-40">King</span>
+</div>
+</div>
+</section>
+<!-- Account Options -->
+<section class="mt-6 px-4">
+<div class="bg-white dark:bg-[#2a2f16] rounded-xl overflow-hidden shadow-sm border border-primary/5">
+<button class="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors border-b border-primary/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<span class="font-medium">Personal Info</span>
+</div>
+<span class="material-symbols-outlined opacity-30">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors border-b border-primary/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+<span class="font-medium">Notifications</span>
+</div>
+<span class="material-symbols-outlined opacity-30">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors border-b border-primary/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">sync</span>
+</div>
+<div class="flex flex-col items-start">
+<span class="font-medium">Connected Devices</span>
+<span class="text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Synced 2m ago</span>
+</div>
+</div>
+<span class="material-symbols-outlined opacity-30">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-red-500/10 transition-colors text-red-500 dark:text-red-400">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined">logout</span>
+</div>
+<span class="font-medium">Logout</span>
+</div>
+</button>
+</div>
+</section>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl border-t border-primary/10 px-6 py-3">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-[#1e2210]/40 group-hover:text-primary transition-colors">home</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-[#1e2210]/40">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-[#1e2210]/40 group-hover:text-primary transition-colors">emoji_events</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-[#1e2210]/40">Events</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-[#1e2210]/40 group-hover:text-primary transition-colors">leaderboard</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-[#1e2210]/40">Leader</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-primary active-icon">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Profile</span>
+</a>
+</div>
+</div>
+</body></html>

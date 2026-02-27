@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stride - Notification Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c0f425",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e2210",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#181c0d] dark:text-white antialiased">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-xl overflow-x-hidden">
+<!-- Header -->
+<div class="flex items-center p-4 pt-6 justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold leading-tight tracking-tight flex-1 text-center pr-10">Notifications</h1>
+</div>
+<div class="flex-1 px-4 pb-24">
+<!-- CHALLENGE UPDATES SECTION -->
+<div class="mt-6 mb-8">
+<h3 class="text-[#879c49] text-xs font-bold uppercase tracking-widest px-1 mb-3">Challenge Updates</h3>
+<div class="space-y-1 bg-white dark:bg-black/20 rounded-xl overflow-hidden shadow-sm border border-black/5 dark:border-white/5">
+<!-- New Invites -->
+<div class="flex items-center gap-4 px-4 py-4 justify-between border-b border-black/5 dark:border-white/5">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 text-[#5e6d33] dark:text-primary shrink-0 size-10">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<div class="flex flex-col">
+<p class="text-base font-semibold leading-tight">New Invites</p>
+<p class="text-[#879c49] text-xs font-normal mt-0.5">When friends invite you to a challenge.</p>
+</div>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-[#e2e8d4] dark:bg-white/10 p-0.5 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="invisible absolute peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+<!-- Leaderboard Changes -->
+<div class="flex items-center gap-4 px-4 py-4 justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 text-[#5e6d33] dark:text-primary shrink-0 size-10">
+<span class="material-symbols-outlined">trophy</span>
+</div>
+<div class="flex flex-col">
+<p class="text-base font-semibold leading-tight">Leaderboard Changes</p>
+<p class="text-[#879c49] text-xs font-normal mt-0.5">Alerts when your rank changes.</p>
+</div>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-[#e2e8d4] dark:bg-white/10 p-0.5 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="invisible absolute peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- ACTIVITY NUDGES SECTION -->
+<div class="mb-8">
+<h3 class="text-[#879c49] text-xs font-bold uppercase tracking-widest px-1 mb-3">Activity Nudges</h3>
+<div class="space-y-1 bg-white dark:bg-black/20 rounded-xl overflow-hidden shadow-sm border border-black/5 dark:border-white/5">
+<!-- Cheers & Nudges -->
+<div class="flex items-center gap-4 px-4 py-4 justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 text-[#5e6d33] dark:text-primary shrink-0 size-10">
+<span class="material-symbols-outlined">celebration</span>
+</div>
+<div class="flex flex-col">
+<p class="text-base font-semibold leading-tight">Cheers &amp; Nudges</p>
+<p class="text-[#879c49] text-xs font-normal mt-0.5">When friends interact with your progress.</p>
+</div>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-[#e2e8d4] dark:bg-white/10 p-0.5 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="invisible absolute peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- GOAL MILESTONES SECTION -->
+<div class="mb-8">
+<h3 class="text-[#879c49] text-xs font-bold uppercase tracking-widest px-1 mb-3">Goal Milestones</h3>
+<div class="space-y-1 bg-white dark:bg-black/20 rounded-xl overflow-hidden shadow-sm border border-black/5 dark:border-white/5">
+<!-- Goal Achievements -->
+<div class="flex items-center gap-4 px-4 py-4 justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 text-[#5e6d33] dark:text-primary shrink-0 size-10">
+<span class="material-symbols-outlined">flag</span>
+</div>
+<div class="flex flex-col">
+<p class="text-base font-semibold leading-tight">Goal Achievements</p>
+<p class="text-[#879c49] text-xs font-normal mt-0.5">Celebrate hitting your step goals.</p>
+</div>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-[#e2e8d4] dark:bg-white/10 p-0.5 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="invisible absolute peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- APP ANNOUNCEMENTS -->
+<div class="mb-8">
+<h3 class="text-[#879c49] text-xs font-bold uppercase tracking-widest px-1 mb-3">General</h3>
+<div class="space-y-1 bg-white dark:bg-black/20 rounded-xl overflow-hidden shadow-sm border border-black/5 dark:border-white/5">
+<div class="flex items-center gap-4 px-4 py-4 justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 text-[#5e6d33] dark:text-primary shrink-0 size-10">
+<span class="material-symbols-outlined">campaign</span>
+</div>
+<div class="flex flex-col">
+<p class="text-base font-semibold leading-tight">App Announcements</p>
+<p class="text-[#879c49] text-xs font-normal mt-0.5">New features and community news.</p>
+</div>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-[#e2e8d4] dark:bg-white/10 p-0.5 transition-colors has-[:checked]:bg-primary">
+<input class="invisible absolute peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<p class="text-center text-[#879c49] text-xs px-8">
+                Looking for system-level settings? 
+                <a class="underline font-medium text-[#181c0d] dark:text-primary" href="#">Open System Settings</a>
+</p>
+</div>
+<!-- Bottom NavBar -->
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md border-t border-[#f0f4e7] dark:border-white/10 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md px-4 pb-6 pt-2">
+<div class="flex gap-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#879c49] hover:text-primary transition-colors" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">house</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#879c49] hover:text-primary transition-colors" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Challenges</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#879c49] hover:text-primary transition-colors" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">group</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Social</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#181c0d] dark:text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined fill-icon">person</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Profile</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>

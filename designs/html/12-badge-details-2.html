@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Badge Details - Marathoner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c0f425",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e2210",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .badge-glow {
+            box-shadow: 0 0 40px rgba(192, 244, 37, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#1a1a1a] dark:text-white antialiased">
+<!-- Main Container -->
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark overflow-x-hidden pb-24">
+<!-- Header -->
+<div class="flex items-center p-4 sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10 justify-between">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Badge Details</h2>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">more_vert</span>
+</button>
+</div>
+<!-- Badge Hero Section -->
+<div class="flex flex-col items-center px-6 pt-8 pb-4">
+<div class="relative group">
+<div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-700"></div>
+<div class="relative w-64 h-64 bg-white dark:bg-zinc-800 rounded-full flex items-center justify-center badge-glow border-4 border-primary/30">
+<img alt="Marathoner Badge" class="w-48 h-48 object-contain rounded-full" data-alt="A golden marathon finisher medal with neon green ribbon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgYhWQzK7SW4dN9bYvGb-_pbotcMzoosvZzANRdTreyJfEQS3JuFT8Mk3DNcuQsabjTBcnVXgWVNarcJLmojyCQXMvatt1T7B8QwH4Fz7qspobExRLQtDNYfrc_XNCFG2Fwl7o4FBzVLvXOB4hozhHIZ_NrRLNlVt0Z5L569vV0pqB3N_7_TroPJNt_c74ypGH_Anlu-IC2bVokiqnsFbnSzvnT8Rq8MQpk5nm6SjnKv_PRVM7Co3HS-_2zD2X5FuMi7tcQGE38kVV"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-black font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wider shadow-lg">
+                    Level 1
+                </div>
+</div>
+<h1 class="mt-8 text-4xl font-bold tracking-tight text-center">Marathoner</h1>
+<p class="mt-2 text-zinc-500 dark:text-zinc-400 font-medium text-sm">Earned on Oct 12, 2023</p>
+</div>
+<!-- Description Card -->
+<div class="px-6 py-4">
+<div class="bg-white dark:bg-zinc-900/50 p-6 rounded-xl border border-zinc-100 dark:border-zinc-800 shadow-sm">
+<div class="flex items-center gap-2 mb-3 text-primary">
+<span class="material-symbols-outlined fill-1">workspace_premium</span>
+<span class="text-xs font-bold uppercase tracking-widest">Achievement</span>
+</div>
+<p class="text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                    You walked the equivalent of a full marathon in a single week! Your dedication is unmatched. This puts you in the top 5% of active users this month.
+                </p>
+</div>
+</div>
+<!-- Action Button -->
+<div class="px-6 py-4">
+<button class="w-full bg-primary hover:bg-opacity-90 text-black font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">share</span>
+                Share Achievement
+            </button>
+</div>
+<!-- Progress to Next Level -->
+<div class="px-6 py-6 mt-4">
+<div class="flex justify-between items-end mb-4">
+<div>
+<h3 class="text-sm font-bold text-zinc-400 uppercase tracking-widest">Next Milestone</h3>
+<p class="text-lg font-bold">Ultra-Marathoner</p>
+</div>
+<p class="text-sm font-bold text-primary">12 / 26 miles</p>
+</div>
+<div class="h-3 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 46%"></div>
+</div>
+<p class="mt-3 text-xs text-zinc-500 dark:text-zinc-400 italic">Complete 14 more miles this week to unlock!</p>
+</div>
+<!-- Similar Badges -->
+<div class="mt-6">
+<div class="flex items-center justify-between px-6 mb-4">
+<h3 class="font-bold text-lg">Similar Badges</h3>
+<a class="text-primary text-sm font-bold" href="#">View All</a>
+</div>
+<div class="flex gap-4 overflow-x-auto px-6 no-scrollbar pb-8">
+<!-- Badge 1 -->
+<div class="flex-shrink-0 w-32 bg-white dark:bg-zinc-900 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800 text-center grayscale opacity-60">
+<div class="w-16 h-16 bg-zinc-100 dark:bg-zinc-800 rounded-full mx-auto mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-zinc-400">bolt</span>
+</div>
+<p class="text-xs font-bold truncate">Speed Demon</p>
+<p class="text-[10px] text-zinc-500">Locked</p>
+</div>
+<!-- Badge 2 -->
+<div class="flex-shrink-0 w-32 bg-white dark:bg-zinc-900 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800 text-center grayscale opacity-60">
+<div class="w-16 h-16 bg-zinc-100 dark:bg-zinc-800 rounded-full mx-auto mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-zinc-400">terrain</span>
+</div>
+<p class="text-xs font-bold truncate">Trail Blazer</p>
+<p class="text-[10px] text-zinc-500">Locked</p>
+</div>
+<!-- Badge 3 -->
+<div class="flex-shrink-0 w-32 bg-white dark:bg-zinc-900 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800 text-center">
+<div class="w-16 h-16 bg-primary/20 rounded-full mx-auto mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-primary">nightlight</span>
+</div>
+<p class="text-xs font-bold truncate">Night Owl</p>
+<p class="text-[10px] text-primary">Earned</p>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation (Fixed) -->
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-background-light dark:bg-background-dark border-t border-zinc-200 dark:border-zinc-800 px-6 pb-6 pt-3 flex justify-between items-center z-20">
+<a class="flex flex-col items-center gap-1 text-zinc-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-zinc-400" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="text-[10px] font-medium">Workouts</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">workspace_premium</span>
+<span class="text-[10px] font-medium">Badges</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-zinc-400" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-[10px] font-medium">Social</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-zinc-400" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</div>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</body></html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Friend Profile - Step Tracker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c0f425",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e2210",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#181c0d] dark:text-white min-h-screen">
+<!-- Main Container -->
+<div class="max-w-md mx-auto bg-background-light dark:bg-background-dark min-h-screen flex flex-col relative pb-20">
+<!-- Header Bar -->
+<header class="flex items-center justify-between p-4 sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10">
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold">Friend Profile</h1>
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-2xl">more_vert</span>
+</button>
+</header>
+<!-- Profile Hero Section -->
+<section class="flex flex-col items-center px-6 py-8">
+<div class="relative">
+<div class="w-32 h-32 rounded-full border-4 border-primary p-1">
+<img alt="Alex Rivera Profile" class="w-full h-full rounded-full object-cover" data-alt="Close up portrait of a smiling young man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtegtwXZtYQ4QERqdZU2kCCnLIRbJ7b5DeosclUQ39u_XtVsFg5EpIykux0KgcDlxFAoBtem4puoqGlaUlecTwi0f2T7yosxlDb0jWnZ-WqhdYalXXjOmt72TwSyKF0oqUSNBaobq8zev0nru6HyvpUF2Q1PUbKU3NrkN-xFbpsuPkQN6fFbZmokVv8hxxMaOEEbwnkEjPl8ltx_059XlBhkZJGvhSSzQWTJnUL5JCdsLz1cJkCossZmUt4eNn4-miaLov9W1v8nUc"/>
+</div>
+<div class="absolute bottom-1 right-1 w-6 h-6 bg-[#078818] border-4 border-background-light dark:border-background-dark rounded-full"></div>
+</div>
+<div class="mt-4 text-center">
+<h2 class="text-2xl font-bold tracking-tight">Alex Rivera</h2>
+<p class="text-primary font-medium mt-1">Chasing 10k every day! 🏃‍♂️</p>
+<p class="text-sm opacity-60 mt-1 uppercase tracking-wider font-semibold">Active Now</p>
+</div>
+</section>
+<!-- Stats Grid -->
+<section class="px-4 grid grid-cols-2 gap-4">
+<div class="bg-white dark:bg-[#2a2e1a] p-5 rounded-xl border border-primary/10 shadow-sm">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-xl">directions_run</span>
+<span class="text-xs font-bold uppercase tracking-tight">Weekly Steps</span>
+</div>
+<div class="flex items-end gap-1">
+<span class="text-2xl font-bold">74,200</span>
+</div>
+<div class="mt-2 text-[#078818] text-xs font-bold flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                    12% from last week
+                </div>
+<!-- Mini Sparkline -->
+<div class="mt-3 flex items-end gap-1 h-8">
+<div class="flex-1 bg-primary/20 rounded-t-sm h-1/2"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-3/4"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm h-2/3"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-1/2"></div>
+<div class="flex-1 bg-primary/60 rounded-t-sm h-5/6"></div>
+<div class="flex-1 bg-primary rounded-t-sm h-full"></div>
+<div class="flex-1 bg-primary/30 rounded-t-sm h-2/3"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-[#2a2e1a] p-5 rounded-xl border border-primary/10 shadow-sm">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-xl">emoji_events</span>
+<span class="text-xs font-bold uppercase tracking-tight">Global Rank</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-4xl font-bold text-primary">#3</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold bg-[#078818]/10 text-[#078818] px-1.5 py-0.5 rounded">+1</span>
+</div>
+</div>
+<p class="text-[10px] opacity-60 mt-3 font-medium uppercase">Top 1% of community</p>
+<div class="mt-4 flex -space-x-2">
+<img alt="Friend" class="w-6 h-6 rounded-full border-2 border-white dark:border-[#2a2e1a]" data-alt="Small avatar of a friend" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW7hZtgZoIwc__aBQsNyqbSqH0Q-Ti2a-r93wVALUbR_w-M9uaOytr920AEXpsaC4b4iVrvtyBNfBUqw02hKlX0n_5srKbImTDbN9H2brYlAOqJgRCQmAeoQMVbSWlkMRgtYYXVWwQnAIoZ8ZA4qtQt4SmzNAzfb0953K2Q3TTjhBTaFx7hY0LI08YBXRY_dwuEgOzn23g3H9SybAdhHH3r2iwCc8falDdD3URrJnxyZ9qn6UIkKmbIN_S1VC7DBwP8BuHAtnwO4NJ"/>
+<img alt="Friend" class="w-6 h-6 rounded-full border-2 border-white dark:border-[#2a2e1a]" data-alt="Small avatar of a friend" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWuFMDrAsAUx4HpiSjXTTVhTs1Jo-kbEctMi0axmwFgEl4_48nRPzgc8ODTeSIH5ZMF9OYQbxt95Tp3LmdhK-9PDMuDZOU9oAN_aSl_nj-40ZwiF0ngaQQjylokaLGcHQV9_9V4IQL4cfPNupy7-m4HZ11v3JFtoI_wrzJvhAvPvljglUywkPWGswQ84gA_671guFzanOcT4lkSj9dkZmX5CQ_YomOjx_2vjXBgBeh0WXJD4zDAuBO7QutPvJepyTo9TH-sxXsEgVW"/>
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center border-2 border-white dark:border-[#2a2e1a] text-[8px] font-bold text-background-dark">+42</div>
+</div>
+</div>
+</section>
+<!-- Action Row -->
+<section class="px-4 py-6 flex gap-3">
+<button class="flex-1 bg-primary text-[#181c0d] font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+<span class="material-symbols-outlined filled-icon">bolt</span>
+                Send Nudge
+            </button>
+<button class="flex-1 bg-white dark:bg-[#2a2e1a] text-[#181c0d] dark:text-white font-bold py-3 px-4 rounded-xl border border-primary/20 flex items-center justify-center gap-2 hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+                Message
+            </button>
+</section>
+<!-- Mutual Challenges List -->
+<section class="px-4 pb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">Mutual Challenges</h3>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">3 Active</span>
+</div>
+<div class="space-y-4">
+<!-- Challenge Card 1 -->
+<div class="bg-white dark:bg-[#2a2e1a] p-4 rounded-xl border border-primary/5 shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-bold text-base">Weekend Warrior</h4>
+<p class="text-xs opacity-60">Ends in 2 days</p>
+</div>
+<span class="bg-primary/20 text-[#181c0d] dark:text-primary text-[10px] font-black px-2 py-1 rounded uppercase">Competitive</span>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<img alt="Alex" class="w-8 h-8 rounded-full" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYdsjEvMqpm2PDj5VYh8JCSkGfkkOeqzaWV8v5DeRpVN4GgNaPMAtXECQu6-qY4Rk-I7SU0F1IDl9Sr7f2JV7wBuiEmpc_Hcxf42jiPZpSy0QATfc8CIQza1BG_8HUaqat-rGMPJnuRikXZq5_03kUh3iK1_xUEM7TphXEyab2Bfnp7cUOPLfihBcW6RLp10CrpB_wNOoVXNE4_yFM3TACyGZJyPg_rHsqwZfqoheLSYEDoUmqfEZOHzdw2EDy7MPK-lmdscfO8CiC"/>
+<span class="text-sm font-medium">Alex Rivera</span>
+</div>
+<span class="text-sm font-bold">12,400</span>
+</div>
+<!-- Progress Bar Container -->
+<div class="h-2 w-full bg-primary/10 rounded-full overflow-hidden flex">
+<div class="h-full bg-primary" style="width: 65%"></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<span class="text-sm font-medium">You</span>
+</div>
+<span class="text-sm font-bold">8,200</span>
+</div>
+<p class="text-[10px] text-center font-bold text-[#078818] bg-[#078818]/5 py-1 rounded">Alex is leading by 4,200 steps!</p>
+</div>
+</div>
+<!-- Challenge Card 2 -->
+<div class="bg-white dark:bg-[#2a2e1a] p-4 rounded-xl border border-primary/5 shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-bold text-base">30-Day Streak</h4>
+<p class="text-xs opacity-60">14 days remaining</p>
+</div>
+<span class="bg-primary text-[#181c0d] text-[10px] font-black px-2 py-1 rounded uppercase">On Fire</span>
+</div>
+<div class="flex items-center gap-4 py-2">
+<div class="flex-1 flex flex-col items-center p-2 bg-primary/5 rounded-lg">
+<span class="text-xs opacity-60 uppercase font-bold text-[9px]">Alex's Streak</span>
+<span class="text-lg font-bold">18 Days</span>
+</div>
+<div class="text-primary">
+<span class="material-symbols-outlined filled-icon text-2xl">local_fire_department</span>
+</div>
+<div class="flex-1 flex flex-col items-center p-2 bg-primary/5 rounded-lg">
+<span class="text-xs opacity-60 uppercase font-bold text-[9px]">Your Streak</span>
+<span class="text-lg font-bold">22 Days</span>
+</div>
+</div>
+</div>
+<!-- Challenge Card 3 -->
+<div class="bg-white dark:bg-[#2a2e1a] p-4 rounded-xl border border-primary/5 shadow-sm opacity-80">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">brightness_high</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">Morning Walk-off</h4>
+<p class="text-[10px] opacity-60">Starts tomorrow at 6:00 AM</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-xl opacity-40">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Navigation (As requested in components list) -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-background-light dark:bg-background-dark border-t border-primary/10 px-4 py-3 flex justify-between items-center z-20">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="text-[10px] font-bold">Challenges</span>
+</a>
+<a class="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined filled-icon">group</span>
+<span class="text-[10px] font-bold">Friends</span>
+</a>
+<a class="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</a>
+</nav>
+<!-- Nudge Toast (Hidden/Simulated) -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-background-dark text-white px-4 py-2 rounded-full text-xs font-bold shadow-2xl border border-primary/30 flex items-center gap-2 pointer-events-none opacity-0 translate-y-4 transition-all">
+<span class="material-symbols-outlined text-primary text-sm filled-icon">bolt</span>
+            Nudge Sent to Alex!
+        </div>
+</div>
+</body></html>

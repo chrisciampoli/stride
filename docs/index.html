@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stride — Every Step Counts</title>
+  <style>
+    :root {
+      --primary: #E85D0A;
+      --bg: #FAF8F6;
+      --dark: #1A1208;
+      --muted: #5C4A3A;
+      --border: #E8DED0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .hero h1 span { color: var(--primary); }
+    .hero .tagline {
+      font-size: 1.25rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .hero .cta {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--dark);
+      font-weight: 700;
+      text-decoration: none;
+      padding: 16px 40px;
+      border-radius: 12px;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 16px rgba(232, 93, 10, 0.3);
+      transition: transform 0.15s;
+    }
+    .hero .cta:hover { transform: translateY(-2px); }
+
+    /* Features */
+    .features {
+      padding: 60px 0;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+    }
+    .feature-card .icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* How It Works */
+    .how-it-works {
+      padding: 60px 0;
+      text-align: center;
+    }
+    .how-it-works h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .step {
+      flex: 1;
+      min-width: 180px;
+      max-width: 240px;
+    }
+    .step .num {
+      display: inline-flex;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--dark);
+      font-weight: 800;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .step p { font-size: 0.875rem; color: var(--muted); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover { text-decoration: underline; }
+    footer .links { margin-top: 12px; }
+    footer .links a { margin: 0 12px; }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1><span>Stride</span></h1>
+      <p class="tagline">Every Step Counts</p>
+      <p style="color: var(--muted); max-width: 480px; margin: 0 auto 32px; font-size: 1rem;">
+        Challenge your friends to step competitions. Track your progress with Apple Health.
+        Earn badges, climb leaderboards, and build healthy habits together.
+      </p>
+      <a href="#" class="cta">Join the Beta</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2>Everything You Need to Stay Active</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">🏆</div>
+          <h3>Challenges</h3>
+          <p>Create or join step challenges with friends and the community.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📊</div>
+          <h3>Leaderboards</h3>
+          <p>Compete daily and see where you rank among friends.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🏅</div>
+          <h3>Badges</h3>
+          <p>Earn achievements for milestones and share them with friends.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">👥</div>
+          <h3>Social</h3>
+          <p>Add friends, send nudges, and message your workout buddies.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">❤️</div>
+          <h3>Apple Health</h3>
+          <p>Automatic step tracking synced from your iPhone and Apple Watch.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔥</div>
+          <h3>Streaks</h3>
+          <p>Build daily streaks, earn freeze shields, and never break the chain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Sign Up</h3>
+          <p>Create your account and connect Apple Health.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Add Friends</h3>
+          <p>Find your friends and start competing together.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Join Challenges</h3>
+          <p>Pick a challenge and start walking. Every step counts.</p>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <h3>Earn Rewards</h3>
+          <p>Unlock badges, build streaks, and climb the leaderboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Stride. All rights reserved.</p>
+      <div class="links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

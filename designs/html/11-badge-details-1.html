@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c0f425",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e2210",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>Badge Details - Marathoner</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#181c0d] dark:text-[#f8f8f5] antialiased">
+<div class="relative flex min-h-screen w-full max-w-md mx-auto flex-col overflow-x-hidden border-x border-[#f0f4e7] dark:border-[#2d3318]">
+<!-- Header -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 justify-between sticky top-0 z-10">
+<button class="text-[#181c0d] dark:text-[#f8f8f5] flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Badge Details</h2>
+</div>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col px-4 pb-24">
+<!-- Hero Badge Section -->
+<div class="flex flex-col items-center py-8 relative overflow-hidden">
+<!-- Decorative Glow Background -->
+<div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+<div class="w-64 h-64 bg-primary rounded-full blur-[80px]"></div>
+</div>
+<!-- Badge Icon Container -->
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-tr from-primary to-[#879c49] rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+<div class="relative bg-white dark:bg-[#2d3318] p-6 rounded-xl border border-[#f0f4e7] dark:border-[#3d4520] shadow-xl">
+<div class="w-32 h-32 flex items-center justify-center bg-primary/20 rounded-full">
+<span class="material-symbols-outlined text-primary !text-7xl">military_tech</span>
+</div>
+</div>
+</div>
+<!-- Achievement Header -->
+<div class="mt-8 text-center">
+<h1 class="text-3xl font-bold tracking-tight mb-2">Marathoner</h1>
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-primary/20 text-[#879c49] dark:text-primary text-sm font-medium border border-primary/30">
+                        Earned on Oct 24, 2023
+                    </div>
+</div>
+</div>
+<!-- Description Card -->
+<div class="bg-white dark:bg-[#2d3318] p-6 rounded-xl shadow-sm border border-[#f0f4e7] dark:border-[#3d4520] mb-8">
+<div class="flex items-start gap-4">
+<div class="p-3 bg-primary rounded-lg text-[#181c0d]">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<div>
+<h3 class="font-bold text-lg mb-1">Achievement Unlocked</h3>
+<p class="text-[#879c49] dark:text-[#a3b670] leading-relaxed">
+                            You've gone the distance! You have officially covered a total of <span class="text-[#181c0d] dark:text-white font-semibold">42.2km</span> across all step challenges in the app.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Share Button -->
+<div class="px-2 mb-10">
+<button class="w-full flex items-center justify-center gap-3 bg-primary hover:bg-opacity-90 active:scale-[0.98] transition-all text-[#181c0d] font-bold py-4 rounded-xl shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">share</span>
+                    Share Achievement
+                </button>
+</div>
+<!-- Next Milestones Carousel -->
+<section class="mb-8">
+<div class="flex items-center justify-between mb-4 px-2">
+<h3 class="font-bold text-lg">Next Milestones</h3>
+<a class="text-primary text-sm font-medium hover:underline" href="#">View All</a>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar -mx-4 px-4">
+<!-- Milestone 1 -->
+<div class="flex-shrink-0 w-36 bg-white dark:bg-[#2d3318] p-4 rounded-xl border border-[#f0f4e7] dark:border-[#3d4520] grayscale opacity-60">
+<div class="w-12 h-12 bg-[#879c49]/10 rounded-full flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-[#879c49]">sprint</span>
+</div>
+<p class="text-xs font-bold truncate">Ultra-Marathoner</p>
+<p class="text-[10px] text-[#879c49]">Goal: 100km</p>
+<div class="mt-2 w-full bg-[#f0f4e7] dark:bg-[#3d4520] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#879c49] h-full w-[42%]"></div>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="flex-shrink-0 w-36 bg-white dark:bg-[#2d3318] p-4 rounded-xl border border-[#f0f4e7] dark:border-[#3d4520] grayscale opacity-60">
+<div class="w-12 h-12 bg-[#879c49]/10 rounded-full flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-[#879c49]">groups</span>
+</div>
+<p class="text-xs font-bold truncate">Team Leader</p>
+<p class="text-[10px] text-[#879c49]">Goal: 5 Wins</p>
+<div class="mt-2 w-full bg-[#f0f4e7] dark:bg-[#3d4520] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#879c49] h-full w-[60%]"></div>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="flex-shrink-0 w-36 bg-white dark:bg-[#2d3318] p-4 rounded-xl border border-[#f0f4e7] dark:border-[#3d4520] grayscale opacity-60">
+<div class="w-12 h-12 bg-[#879c49]/10 rounded-full flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-[#879c49]">local_fire_department</span>
+</div>
+<p class="text-xs font-bold truncate">Hot Streak</p>
+<p class="text-[10px] text-[#879c49]">Goal: 30 Days</p>
+<div class="mt-2 w-full bg-[#f0f4e7] dark:bg-[#3d4520] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#879c49] h-full w-[25%]"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Fixed) -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-t border-[#f0f4e7] dark:border-[#2d3318] z-50">
+<div class="flex justify-around items-center px-4 py-2">
+<a class="flex flex-col items-center gap-1 p-2 text-[#879c49]" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-[#879c49]" href="#">
+<span class="material-symbols-outlined">trophy</span>
+<span class="text-[10px] font-medium">Challenges</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-[#181c0d] dark:text-primary" href="#">
+<span class="material-symbols-outlined !fill-[1]">trophy</span>
+<span class="text-[10px] font-bold">Badges</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-[#879c49]" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Custom fill property for material symbols isn't always supported well via class, manual SVG injection or font-variation-settings preferred */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill-\[1\] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</body></html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Challenges - Step Tracker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c0f425",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e2210",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#181c0d] dark:text-white min-h-screen flex flex-col">
+<!-- Header Section -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#e2e8ce] dark:border-[#3a4120] px-4 py-4">
+<div class="flex items-center justify-between max-w-2xl mx-auto w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+<h1 class="text-xl font-bold tracking-tight">My Challenges</h1>
+</div>
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-2xl">search</span>
+</button>
+</div>
+</header>
+<main class="flex-1 max-w-2xl mx-auto w-full p-4 space-y-6 pb-24">
+<!-- Tabs -->
+<div class="flex border-b border-[#e2e8ce] dark:border-[#3a4120] gap-8">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-primary text-[#181c0d] dark:text-white pb-3 pt-2" href="#">
+<p class="text-sm font-bold leading-normal tracking-wide">Active</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-[#879c49] pb-3 pt-2" href="#">
+<p class="text-sm font-bold leading-normal tracking-wide">Completed</p>
+</a>
+</div>
+<!-- Create Challenge Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-[#181c0d] font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-transform active:scale-95">
+<span class="material-symbols-outlined">add_circle</span>
+            New Challenge
+        </button>
+<!-- Active Challenges List -->
+<div class="space-y-4">
+<!-- Challenge Card 1 -->
+<div class="bg-white dark:bg-[#2a2f16] rounded-xl p-4 shadow-sm border border-[#e2e8ce] dark:border-[#3a4120]">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl filled-icon">directions_run</span>
+</div>
+<div>
+<h3 class="text-lg font-bold">Weekly 50k</h3>
+<p class="text-xs text-[#879c49] font-medium uppercase tracking-wider">Time Left: 3 Days</p>
+</div>
+</div>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-[#2a2f16] bg-primary/30 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar profile picture small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBepJhHMXt_UUg-9etbe9ePf7oHypwilWfi1xu8pGkNu-lPxrdl1ZgIBwlDyM549X6rotWBIccKlDYnq2Xw3lNP2kPofN90QAeLshOeMGeWuBvxaIt2hqmJ_ra8On9EDHyUjZxNvmFuw6f69VgKEeTXHefTNvLjDHbhp5o9r0Zxo_MvqKXMYeOjYAKXe-4D3sbNhdxBCSpAX9tftrsT-lJVfP1SzPsE0ohF2FuUNL1I76qDpXIGxcrDNnaCMsj9QQwgU05XF16Vu0HA"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-[#2a2f16] bg-primary/30 flex items-center justify-center overflow-hidden text-[10px] font-bold">
+                            +4
+                        </div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm font-medium">
+<span>12,400 / 50,000 steps</span>
+<span class="text-primary font-bold">25%</span>
+</div>
+<div class="w-full h-3 bg-[#e2e8ce] dark:bg-[#3a4120] rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full shadow-[0_0_8px_rgba(192,244,37,0.5)]" style="width: 25%;"></div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-[#f0f4e7] dark:border-[#3a4120] flex items-center justify-between text-sm text-[#879c49]">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">group</span>
+<span>5 friends joined</span>
+</div>
+<button class="text-[#181c0d] dark:text-white font-bold flex items-center gap-1">
+                        Details <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Challenge Card 2 -->
+<div class="bg-white dark:bg-[#2a2f16] rounded-xl p-4 shadow-sm border border-[#e2e8ce] dark:border-[#3a4120]">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl filled-icon">bolt</span>
+</div>
+<div>
+<h3 class="text-lg font-bold">Weekend Warrior</h3>
+<p class="text-xs text-[#879c49] font-medium uppercase tracking-wider">Starts in 12h</p>
+</div>
+</div>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-[#2a2f16] bg-primary/30 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar profile picture small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl9zsEMJoMU1VM_kO9xZyWxmGa1N2Didu5c37Ds9yh8PXXotxTt71X7Va_esxXeqhCKzoMZT3toNCv6yf9q5xRIOZzZzRV7fNNX01c7fqezlIpVxsG5K2U2lU_RiEHtOvYJhUCNPEfczi4HAg3tdHCIXm43n69xblKrafP-TjjT3DH1aSXkuaRgYcVqDJJQEoYfo-ppYxP4fOCoH5BizYkfohZO2zJRX9i2Fz-zFecWLfplPokkm0A5f-OfBzZKlyKotb2ssTMM-uk"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-[#2a2f16] bg-primary/30 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar profile picture small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMbpeWdRL5zRRAe2C1fbf8uYCv7wLFDha536x28k4o5PmULpkIGLAZx-PCNYe3AhOSvTMwK4P4CgepbG569Vnq2UysVK9V4F5pamzGHW53PWkSArCISixzcob_rMh-ojHoSWOZIATC4fDgAsshIYcV3ymAvAZRr7X6UphjP2hMNvP2qqzp-30-ssjHYFz87UVh39L20NVbtzQAzddcgXkHUYCqetFtr_VqrNv7UvToYayskRgUURaoHPmlPhgoYgyqJYKyr3xj9md-"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-[#2a2f16] bg-primary/30 flex items-center justify-center overflow-hidden text-[10px] font-bold">
+                            +10
+                        </div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm font-medium">
+<span>0 / 15,000 steps</span>
+<span class="text-[#879c49]">0%</span>
+</div>
+<div class="w-full h-3 bg-[#e2e8ce] dark:bg-[#3a4120] rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 0%;"></div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-[#f0f4e7] dark:border-[#3a4120] flex items-center justify-between text-sm text-[#879c49]">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">group</span>
+<span>12 friends joined</span>
+</div>
+<button class="text-[#181c0d] dark:text-white font-bold flex items-center gap-1">
+                        Details <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Community Section -->
+<div class="pt-4">
+<h2 class="text-lg font-bold mb-4">Discover Community Challenges</h2>
+<div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+<!-- Community Item 1 -->
+<div class="min-w-[240px] bg-[#f0f4e7] dark:bg-[#2d3314] p-4 rounded-xl border border-transparent hover:border-primary transition-all">
+<p class="text-primary font-bold text-xs uppercase tracking-widest mb-1">Global Event</p>
+<h4 class="font-bold text-base mb-2">Marathon Month</h4>
+<div class="flex items-center gap-2 text-sm text-[#879c49]">
+<span class="material-symbols-outlined text-sm">public</span>
+<span>15.2k Participants</span>
+</div>
+<button class="mt-4 w-full bg-white dark:bg-[#1e2210] py-2 rounded-lg text-sm font-bold border border-[#e2e8ce] dark:border-[#3a4120]">Join Challenge</button>
+</div>
+<!-- Community Item 2 -->
+<div class="min-w-[240px] bg-[#f0f4e7] dark:bg-[#2d3314] p-4 rounded-xl border border-transparent hover:border-primary transition-all">
+<p class="text-primary font-bold text-xs uppercase tracking-widest mb-1">Beginner Friendly</p>
+<h4 class="font-bold text-base mb-2">Consistent 5k</h4>
+<div class="flex items-center gap-2 text-sm text-[#879c49]">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>4.8k Participants</span>
+</div>
+<button class="mt-4 w-full bg-white dark:bg-[#1e2210] py-2 rounded-lg text-sm font-bold border border-[#e2e8ce] dark:border-[#3a4120]">Join Challenge</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 border-t border-[#f0f4e7] dark:border-[#3a4120] bg-white dark:bg-[#1e2210] px-4 pb-6 pt-2 z-20">
+<div class="max-w-2xl mx-auto flex justify-between items-center">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#879c49]" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-xs font-medium tracking-wide">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#181c0d] dark:text-primary" href="#">
+<span class="material-symbols-outlined filled-icon">trophy</span>
+<p class="text-xs font-bold tracking-wide">Challenges</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#879c49]" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-xs font-medium tracking-wide">Friends</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#879c49]" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-xs font-medium tracking-wide">Profile</p>
+</a>
+</div>
+</nav>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

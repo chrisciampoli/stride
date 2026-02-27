@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Challenge - Fitness App</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#c0f425",
+                "background-light": "#f8f8f5",
+                "background-dark": "#1e2210",
+              },
+              fontFamily: {
+                "display": ["Lexend"]
+              },
+              borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#181c0d] font-display">
+<div class="flex flex-col min-h-screen max-w-md mx-auto bg-background-light dark:bg-background-dark relative pb-24">
+<!-- Top Navigation -->
+<header class="flex items-center px-4 py-6 justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold flex-1 text-center pr-10">New Challenge</h1>
+</header>
+<main class="flex-1 px-4 space-y-8">
+<!-- Challenge Name Section -->
+<section class="space-y-3">
+<label class="block">
+<span class="text-sm font-semibold ml-1 mb-2 block text-[#181c0d]/70">CHALLENGE NAME</span>
+<input class="w-full h-14 bg-white dark:bg-zinc-900 border-none rounded-xl px-4 text-lg focus:ring-2 focus:ring-primary transition-all placeholder:text-zinc-400 shadow-sm" placeholder="e.g., Summer Sprint" type="text"/>
+</label>
+</section>
+<!-- Goal Setting Section -->
+<section class="space-y-4">
+<h3 class="text-sm font-semibold ml-1 text-[#181c0d]/70 uppercase tracking-wider">Set Your Goal</h3>
+<div class="bg-white dark:bg-zinc-900 p-1.5 rounded-xl flex shadow-sm border border-zinc-100 dark:border-zinc-800">
+<button class="flex-1 py-2.5 rounded-lg bg-primary text-black font-semibold text-sm transition-all">
+                        Total Steps
+                    </button>
+<button class="flex-1 py-2.5 rounded-lg text-zinc-500 font-medium text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all">
+                        Daily Average
+                    </button>
+</div>
+<div class="relative group">
+<input class="w-full h-16 bg-white dark:bg-zinc-900 border-none rounded-xl pl-12 pr-4 text-2xl font-bold focus:ring-2 focus:ring-primary shadow-sm" placeholder="50,000" type="number"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-primary">
+                        footprint
+                    </span>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-zinc-400">STEPS</span>
+</div>
+</section>
+<!-- Duration Selection -->
+<section class="space-y-3">
+<h3 class="text-sm font-semibold ml-1 text-[#181c0d]/70 uppercase tracking-wider">Duration</h3>
+<div class="flex gap-3 overflow-x-auto hide-scrollbar py-1">
+<button class="flex-none px-6 py-3 rounded-xl bg-white dark:bg-zinc-900 border-2 border-primary text-black font-bold shadow-sm">
+                        3 Days
+                    </button>
+<button class="flex-none px-6 py-3 rounded-xl bg-white dark:bg-zinc-900 border-2 border-transparent text-zinc-500 font-medium hover:border-zinc-200 transition-all shadow-sm">
+                        1 Week
+                    </button>
+<button class="flex-none px-6 py-3 rounded-xl bg-white dark:bg-zinc-900 border-2 border-transparent text-zinc-500 font-medium hover:border-zinc-200 transition-all shadow-sm">
+                        2 Weeks
+                    </button>
+<button class="flex-none px-6 py-3 rounded-xl bg-white dark:bg-zinc-900 border-2 border-transparent text-zinc-500 font-medium hover:border-zinc-200 transition-all shadow-sm">
+                        Custom
+                    </button>
+</div>
+</section>
+<!-- Invite Friends Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-sm font-semibold ml-1 text-[#181c0d]/70 uppercase tracking-wider">Invite Friends</h3>
+<span class="text-xs font-bold text-primary bg-black px-2 py-1 rounded">3 SELECTED</span>
+</div>
+<div class="relative">
+<input class="w-full h-12 bg-white dark:bg-zinc-900 border-none rounded-xl pl-11 pr-4 text-sm focus:ring-2 focus:ring-primary shadow-sm" placeholder="Search friends by username" type="text"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400">
+                        search
+                    </span>
+</div>
+<div class="space-y-2">
+<!-- Friend Row 1 -->
+<div class="flex items-center justify-between p-3 bg-white dark:bg-zinc-900 rounded-xl border border-primary/20 shadow-sm">
+<div class="flex items-center gap-3">
+<img alt="Friend Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a smiling young man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxpen_6cQklmg9sgA3e9MGn0hpm4HWEpOpK02GwJB4i_i77HR8A-hExZYW2aRxvyH3ZevXd7ROx-RWgyrQ7kxkw5oL4kjcieNPV0OueI0AVcSOyyuD43OrAOXy-sISJEZ3AX_-Sqgyje2wEYR8WFTy1Hz1bEx0gbPvdXhzJI61qj--5ZpT8KTQ4eiFb42nQ0RrgQHz3-4A41sQmXfps8bnRvntrzKeAMAGK-hEVNLE_T9o64gwz44VVhSO2ifioeJIQdfL_9rdab18"/>
+<div>
+<p class="text-sm font-bold">Alex Rivers</p>
+<p class="text-xs text-zinc-400">@arivers_run</p>
+</div>
+</div>
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-black text-sm font-bold">check</span>
+</div>
+</div>
+<!-- Friend Row 2 -->
+<div class="flex items-center justify-between p-3 bg-white dark:bg-zinc-900 rounded-xl shadow-sm border border-transparent">
+<div class="flex items-center gap-3">
+<img alt="Friend Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a smiling young woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW08pPGeTshoUhns9m8pfqS2TPnj4LZLagGtS5DmtcmcIAUkJK0obmp17S2N2jGSs3tM4hBrYJQPKKwtUHlDR2iMZ5SfJF6LhBL6dd7xjxrOXaZ-tbe-zMORBjlFv9_Ebt7cwoxsds2lf_Wzj6YihxQ2OtVympmwApCs7Z-AcoortXxuRlRa7dLAi_ENpf7RiIYkFqBNLO5z7qi494l10XzsofdXexcq4Fyu16WErd0QVGel1cL4rGa6a2gGuwgSjY61c0jXIAxY01"/>
+<div>
+<p class="text-sm font-bold">Maya Chen</p>
+<p class="text-xs text-zinc-400">@mayawalks</p>
+</div>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-zinc-200 dark:border-zinc-700"></div>
+</div>
+<!-- Friend Row 3 -->
+<div class="flex items-center justify-between p-3 bg-white dark:bg-zinc-900 rounded-xl border border-primary/20 shadow-sm">
+<div class="flex items-center gap-3">
+<img alt="Friend Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a man with sunglasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8PTIPsO6SK1gD6fMi715bCnDq8do-cqoimmCJk_YeZuCHUSZZH10KxUaXDvD-vhtM5xNyjQbNd3Fr_rOoIo1-G4NSvRvgij16-l4VuAHR5ZqGUiORQF1a0RKnOwTdRuLLobbO1QTngJbBuagNZDnXqUczbVF4OvCFhFFlGNz98d0edOGaSYv_54mlTDptxVpWq19fzxJK_vo9uugk8YoUhiMIIMYUKeXsK6jldXCHkQk98LSaY4Cv8N0KkuU6BZMEhfdq61b-xZP1"/>
+<div>
+<p class="text-sm font-bold">Jordan Lee</p>
+<p class="text-xs text-zinc-400">@jordan_fit</p>
+</div>
+</div>
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-black text-sm font-bold">check</span>
+</div>
+</div>
+<button class="w-full py-3 text-sm font-semibold text-primary/80 hover:text-primary transition-colors">
+                        Show more friends
+                    </button>
+</div>
+</section>
+</main>
+<!-- Fixed Bottom Action -->
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-zinc-100 dark:border-zinc-800">
+<button class="w-full bg-primary hover:bg-primary/90 text-black h-14 rounded-xl font-bold text-lg shadow-[0_8px_24px_-8px_rgba(192,244,37,0.5)] active:scale-[0.98] transition-all">
+                Create Challenge
+            </button>
+</div>
+</div>
+</body></html>
