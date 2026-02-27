@@ -21,6 +21,10 @@ node_modules
 # Serena
 .serena/
 
+# Utility scripts with credentials
+fetch_screens.sh
+fetch_stitch.py
+
 # Expo
 .expo/
 
