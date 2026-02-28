@@ -14,24 +14,17 @@ export function useJoinPaidChallenge() {
   return useMutation({
     mutationFn: async ({ challengeId, challengeName }: JoinPaidChallengeInput) => {
       // Step 1: Create PaymentIntent via edge function
-      const { data: session } = await supabase.auth.getSession();
-      const token = session?.session?.access_token;
-
-      const response = await fetch(
-        `${process.env.EXPO_PUBLIC_SUPABASE_URL}/functions/v1/create-payment-intent`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ challenge_id: challengeId }),
-        },
+      const { data: result, error: fnError } = await supabase.functions.invoke(
+        'create-payment-intent',
+        { body: { challenge_id: challengeId } },
       );
 
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to create payment');
+      if (fnError) {
+        throw new Error(fnError.message || 'Failed to create payment');
+      }
+
+      if (!result?.clientSecret) {
+        throw new Error(result?.error || 'Failed to create payment');
       }
 
       // Step 2: Initialize PaymentSheet
