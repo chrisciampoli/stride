@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, Text, ScrollView, TextInput, Pressable, KeyboardAvoidingView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Plus, Send, Activity, Trophy, MapPin } from 'lucide-react-native';
+import { Send, Activity, Trophy } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useAuthStore } from '@/stores/authStore';
 import { useFriendProfile } from '@/hooks/useFriends';
@@ -118,17 +118,10 @@ export default function DirectMessageScreen() {
             label="Challenge"
             onPress={() => router.push('/(challenge)/create')}
           />
-          <QuickAction
-            icon={<MapPin size={14} color={Colors.neutralMuted} />}
-            label="Meet Up"
-          />
         </ScrollView>
 
         {/* Input Footer */}
         <View className="flex-row items-center px-4 pb-2 gap-2">
-          <Pressable className="w-10 h-10 rounded-full bg-white border border-border items-center justify-center">
-            <Plus size={20} color={Colors.neutralMuted} />
-          </Pressable>
           <View className="flex-1 bg-white border border-border rounded-full px-4 h-10 justify-center">
             <TextInput
               className="text-sm text-neutral-dark"

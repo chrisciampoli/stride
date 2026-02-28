@@ -62,7 +62,7 @@ export const ShareableBadgeCard = forwardRef<View, ShareableBadgeCardProps>(
         {/* Branding */}
         <View className="border-t border-border pt-3 w-full items-center">
           <Text className="text-xs text-muted-text font-bold tracking-wider uppercase">
-            Stride
+            Allen Footrace
           </Text>
         </View>
       </View>

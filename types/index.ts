@@ -13,7 +13,18 @@ export interface Profile {
   updated_at: string;
 }
 
-export type ChallengeStatus = 'active' | 'upcoming' | 'completed';
+export type ChallengeStatus = 'active' | 'upcoming' | 'completed' | 'tiebreaker';
+
+export type PrizeStatus = 'none' | 'collecting' | 'funded' | 'distributing' | 'distributed' | 'refunding' | 'refunded';
+
+export type PaymentStatus = 'none' | 'pending' | 'paid' | 'refunded';
+
+export type WalletTransactionType = 'prize_won' | 'entry_fee' | 'cashout' | 'refund' | 'cashout_reversal';
+
+export interface PayoutTier {
+  place: number;
+  pct: number;
+}
 export type TabName = 'index' | 'challenges' | 'friends' | 'profile';
 
 export type GoalType = 'total_steps' | 'daily_average';
@@ -33,6 +44,13 @@ export interface Challenge {
   created_by: string | null;
   is_community: boolean;
   category: string | null;
+  entry_fee_cents: number;
+  is_paid: boolean;
+  prize_pool_cents: number;
+  payout_structure: PayoutTier[];
+  min_participants: number;
+  prize_status: PrizeStatus;
+  tiebreaker_end_date: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -43,6 +61,10 @@ export interface ChallengeParticipant {
   user_id: string;
   total_steps: number;
   joined_at: string;
+  payment_intent_id: string | null;
+  payment_status: PaymentStatus;
+  paid_amount_cents: number;
+  refund_id: string | null;
   profile?: Profile;
 }
 
@@ -210,4 +232,47 @@ export interface StreakInfo {
   streak_freezes: number;
   last_streak_date: string | null;
   daily_step_goal: number;
+}
+
+// Prize Pool Types
+
+export interface Wallet {
+  id: string;
+  user_id: string;
+  balance_cents: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface WalletTransaction {
+  id: string;
+  wallet_id: string;
+  user_id: string;
+  type: WalletTransactionType;
+  amount_cents: number;
+  description: string | null;
+  reference_id: string | null;
+  idempotency_key: string | null;
+  created_at: string;
+}
+
+export interface StripeConnectAccount {
+  id: string;
+  user_id: string;
+  stripe_account_id: string;
+  payouts_enabled: boolean;
+  onboarding_complete: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PrizeDistribution {
+  id: string;
+  challenge_id: string;
+  user_id: string;
+  place: number;
+  amount_cents: number;
+  transfer_id: string | null;
+  status: 'pending' | 'completed' | 'failed';
+  created_at: string;
 }

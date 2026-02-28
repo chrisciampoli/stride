@@ -143,15 +143,7 @@ export default function EditProfileScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
-      <ScreenHeader
-        title="Edit Profile"
-        rightIcon={
-          <Text className="text-primary font-bold text-sm">
-            {isPending ? '...' : 'Save'}
-          </Text>
-        }
-        onRightPress={handleSubmit(onSubmit)}
-      />
+      <ScreenHeader title="Edit Profile" />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         className="flex-1"

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
 import { useAuthStore } from '@/stores/authStore';
+import { useToastStore } from '@/stores/toastStore';
 
 interface CreateChallengeInput {
   name: string;
@@ -9,17 +10,24 @@ interface CreateChallengeInput {
   durationDays: number;
   invitedFriends?: string[];
   isCommunity?: boolean;
+  isPaid?: boolean;
+  entryFeeCents?: number;
+  payoutStructure?: Array<{ place: number; pct: number }>;
+  minParticipants?: number;
 }
 
 export function useCreateChallenge() {
   const user = useAuthStore((s) => s.user);
   const queryClient = useQueryClient();
+  const showToast = useToastStore((s) => s.show);
 
   return useMutation({
     mutationFn: async (input: CreateChallengeInput) => {
       const startDate = new Date();
       const endDate = new Date();
       endDate.setDate(endDate.getDate() + input.durationDays);
+
+      const isPaid = input.isPaid ?? false;
 
       const { data: challenge, error } = await supabase
         .from('challenges')
@@ -30,9 +38,14 @@ export function useCreateChallenge() {
           duration_days: input.durationDays,
           start_date: startDate.toISOString(),
           end_date: endDate.toISOString(),
-          status: 'active',
+          status: isPaid ? 'upcoming' : 'active',
           is_community: input.isCommunity ?? false,
           created_by: user!.id,
+          is_paid: isPaid,
+          entry_fee_cents: isPaid ? (input.entryFeeCents ?? 500) : 0,
+          payout_structure: isPaid ? (input.payoutStructure ?? [{ place: 1, pct: 100 }]) : [],
+          min_participants: isPaid ? (input.minParticipants ?? 0) : 0,
+          prize_status: isPaid ? 'collecting' : 'none',
         })
         .select()
         .single();
@@ -71,6 +84,7 @@ export function useCreateChallenge() {
       queryClient.invalidateQueries({ queryKey: ['leaderboard', challenge.id] });
       queryClient.invalidateQueries({ queryKey: ['homeCTA'] });
       queryClient.invalidateQueries({ queryKey: ['homeLeaderboard'] });
+      showToast('Challenge created!', 'success');
     },
   });
 }

@@ -45,7 +45,7 @@ export default function SplashScreen() {
           <View className="w-14 h-14 bg-primary rounded-xl items-center justify-center mb-3">
             <Zap size={28} color={Colors.neutralDark} strokeWidth={2.5} fill={Colors.neutralDark} />
           </View>
-          <Text className="text-lg font-bold text-neutral-dark">Stride</Text>
+          <Text className="text-lg font-bold text-neutral-dark">Allen Footrace</Text>
         </View>
 
         {/* Hero text */}

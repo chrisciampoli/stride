@@ -8,25 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		327FD659E88A6F12DEF59C0A /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD17BE351AAF32A20D47A58 /* ExpoModulesProvider.swift */; };
+		37DCC1E7EAE5B5897B222121 /* libPods-Stride.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B196EBB9D3AE77BA98EA5DA9 /* libPods-Stride.a */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		4EA474CF97CDA7B04E3CB3CD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0034753A7627537023DC8519 /* PrivacyInfo.xcprivacy */; };
-		7A3C9A47AF9C59796502ED8E /* libPods-Stride.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA59B2AD9E7BFBDE323F319 /* libPods-Stride.a */; };
+		A6A3D95592B83B9CBEDD549F /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255DE138EAFA206B66CEEAD /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		D92035B07D84BBDE6976EAB5 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 24AD9686BEE19DEE4FA68295 /* PrivacyInfo.xcprivacy */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0034753A7627537023DC8519 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Stride/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Stride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stride.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Stride/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Stride/Info.plist; sourceTree = "<group>"; };
-		5CA59B2AD9E7BFBDE323F319 /* libPods-Stride.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stride.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6349D4EC16BB1CF5BA7BC084 /* Pods-Stride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stride.release.xcconfig"; path = "Target Support Files/Pods-Stride/Pods-Stride.release.xcconfig"; sourceTree = "<group>"; };
-		8FD17BE351AAF32A20D47A58 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Stride/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		9660A3A0F77C09B2BD22C747 /* Pods-Stride.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stride.debug.xcconfig"; path = "Target Support Files/Pods-Stride/Pods-Stride.debug.xcconfig"; sourceTree = "<group>"; };
+		24AD9686BEE19DEE4FA68295 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Stride/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		7EA6A4C8728EBA7B6CCF91BD /* Pods-Stride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stride.release.xcconfig"; path = "Target Support Files/Pods-Stride/Pods-Stride.release.xcconfig"; sourceTree = "<group>"; };
+		A3939FA121B0C6F27B3E24DA /* Pods-Stride.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stride.debug.xcconfig"; path = "Target Support Files/Pods-Stride/Pods-Stride.debug.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Stride/SplashScreen.storyboard; sourceTree = "<group>"; };
+		B196EBB9D3AE77BA98EA5DA9 /* libPods-Stride.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stride.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		C255DE138EAFA206B66CEEAD /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Stride/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Stride/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* Stride-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Stride-Bridging-Header.h"; path = "Stride/Stride-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A3C9A47AF9C59796502ED8E /* libPods-Stride.a in Frameworks */,
+				37DCC1E7EAE5B5897B222121 /* libPods-Stride.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,36 +53,18 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				0034753A7627537023DC8519 /* PrivacyInfo.xcprivacy */,
+				24AD9686BEE19DEE4FA68295 /* PrivacyInfo.xcprivacy */,
 			);
 			name = Stride;
-			sourceTree = "<group>";
-		};
-		1C14955CB07AFC600B33269A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9660A3A0F77C09B2BD22C747 /* Pods-Stride.debug.xcconfig */,
-				6349D4EC16BB1CF5BA7BC084 /* Pods-Stride.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5CA59B2AD9E7BFBDE323F319 /* libPods-Stride.a */,
+				B196EBB9D3AE77BA98EA5DA9 /* libPods-Stride.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		698C18AEAB1B626ACF0F8E17 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				9CB6CF4BC42251456EDBD159 /* Stride */,
-			);
-			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -99,8 +81,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				1C14955CB07AFC600B33269A /* Pods */,
-				698C18AEAB1B626ACF0F8E17 /* ExpoModulesProviders */,
+				DB5F8D3083C39EE9AB2E7B75 /* Pods */,
+				CE8B5C18448890050601DD45 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -115,10 +97,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9CB6CF4BC42251456EDBD159 /* Stride */ = {
+		848AD4668748F0758B4D8332 /* Stride */ = {
 			isa = PBXGroup;
 			children = (
-				8FD17BE351AAF32A20D47A58 /* ExpoModulesProvider.swift */,
+				C255DE138EAFA206B66CEEAD /* ExpoModulesProvider.swift */,
 			);
 			name = Stride;
 			sourceTree = "<group>";
@@ -132,6 +114,24 @@
 			path = Stride/Supporting;
 			sourceTree = "<group>";
 		};
+		CE8B5C18448890050601DD45 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				848AD4668748F0758B4D8332 /* Stride */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		DB5F8D3083C39EE9AB2E7B75 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A3939FA121B0C6F27B3E24DA /* Pods-Stride.debug.xcconfig */,
+				7EA6A4C8728EBA7B6CCF91BD /* Pods-Stride.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Stride" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				CE4DBDD6C8DE643A27A4DB43 /* [Expo] Configure project */,
+				F8909EFFBC801008B58DE0C4 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				5095BAED6F8BA3BB68FE25D0 /* [CP] Embed Pods Frameworks */,
+				35E6609219E9DC1C9EB03DE8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,6 +167,8 @@
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1250;
+						DevelopmentTeam = "3CXKW4G8F3";
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -196,7 +198,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				4EA474CF97CDA7B04E3CB3CD /* PrivacyInfo.xcprivacy in Resources */,
+				D92035B07D84BBDE6976EAB5 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +244,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5095BAED6F8BA3BB68FE25D0 /* [CP] Embed Pods Frameworks */ = {
+		35E6609219E9DC1C9EB03DE8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -271,8 +273,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Stride/Pods-Stride-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXApplication/ExpoApplication_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXNotifications/ExpoNotifications_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoDevice/ExpoDevice_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoFileSystem/ExpoFileSystem_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoSystemUI/ExpoSystemUI_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage/RNCAsyncStorage_resources.bundle",
@@ -283,8 +288,11 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoApplication_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoConstants_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoNotifications_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoDevice_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoFileSystem_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoSystemUI_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNCAsyncStorage_resources.bundle",
@@ -298,7 +306,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stride/Pods-Stride-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CE4DBDD6C8DE643A27A4DB43 /* [Expo] Configure project */ = {
+		F8909EFFBC801008B58DE0C4 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -330,7 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				327FD659E88A6F12DEF59C0A /* ExpoModulesProvider.swift in Sources */,
+				A6A3D95592B83B9CBEDD549F /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,7 +347,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9660A3A0F77C09B2BD22C747 /* Pods-Stride.debug.xcconfig */;
+			baseConfigurationReference = A3939FA121B0C6F27B3E24DA /* Pods-Stride.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -370,12 +378,15 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
+				DEVELOPMENT_TEAM = "3CXKW4G8F3";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6349D4EC16BB1CF5BA7BC084 /* Pods-Stride.release.xcconfig */;
+			baseConfigurationReference = 7EA6A4C8728EBA7B6CCF91BD /* Pods-Stride.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -400,6 +411,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
+				DEVELOPMENT_TEAM = "3CXKW4G8F3";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Release;
 		};

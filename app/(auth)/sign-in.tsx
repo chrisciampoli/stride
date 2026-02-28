@@ -7,6 +7,8 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
+import { AppleSignInButton } from '@/components/ui/AppleSignInButton';
+import { useAppleAuth } from '@/hooks/useAppleAuth';
 import { supabase } from '@/lib/supabase';
 
 const signInSchema = z.object({
@@ -19,6 +21,7 @@ type SignInForm = z.infer<typeof signInSchema>;
 export default function SignInScreen() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const appleAuth = useAppleAuth();
 
   const {
     control,
@@ -65,6 +68,14 @@ export default function SignInScreen() {
           <Text className="text-lg text-neutral-muted mb-10">
             Sign in to continue your journey
           </Text>
+
+          <AppleSignInButton onPress={appleAuth.signIn} disabled={appleAuth.isPending} />
+
+          <View className="flex-row items-center my-6">
+            <View className="flex-1 h-px bg-border" />
+            <Text className="mx-4 text-xs text-muted-text uppercase">or</Text>
+            <View className="flex-1 h-px bg-border" />
+          </View>
 
           <View className="gap-4 mb-8">
             <Controller

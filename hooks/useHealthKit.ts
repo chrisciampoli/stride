@@ -39,7 +39,7 @@ export function useConnectAppleHealth() {
         throw new Error(
           status === 'unavailable'
             ? 'HealthKit is not available on this device.'
-            : 'HealthKit permission denied. Go to Settings > Health > Stride to enable access.',
+            : 'HealthKit permission denied. Go to Settings > Health > Allen Footrace to enable access.',
         );
       }
 

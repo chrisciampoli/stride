@@ -16,7 +16,6 @@ import { StepProgressRing } from '@/components/ui/StepProgressRing';
 import { StatCard } from '@/components/ui/StatCard';
 import { LeaderboardRow } from '@/components/ui/LeaderboardRow';
 import { HeroCard } from '@/components/ui/HeroCard';
-import { Badge } from '@/components/ui/Badge';
 import { LoadingState } from '@/components/ui/LoadingState';
 import { ErrorState } from '@/components/ui/ErrorState';
 
@@ -135,7 +134,9 @@ export default function HomeScreen() {
         <View className="px-6 mb-6">
           <View className="flex-row items-center justify-between mb-3">
             <Text className="text-lg font-bold text-neutral-dark">Leaderboard</Text>
-            <Badge style="lime">Daily</Badge>
+            <Pressable onPress={() => router.push('/(tabs)/challenges')}>
+              <Text className="text-xs font-bold text-primary uppercase">See All</Text>
+            </Pressable>
           </View>
           {leaderboard.map((entry, index) => (
             <LeaderboardRow

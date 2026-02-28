@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { GoalType } from '@/types';
+import type { GoalType, PayoutTier } from '@/types';
 
 interface ChallengeFormState {
   name: string;
@@ -8,12 +8,20 @@ interface ChallengeFormState {
   durationDays: number;
   invitedFriends: string[];
   isCommunity: boolean;
+  isPaid: boolean;
+  entryFeeCents: number;
+  payoutStructure: PayoutTier[];
+  minParticipants: number;
   setName: (name: string) => void;
   setGoalType: (goalType: GoalType) => void;
   setGoalSteps: (goalSteps: number) => void;
   setDurationDays: (durationDays: number) => void;
   toggleFriend: (friendId: string) => void;
   setIsCommunity: (isCommunity: boolean) => void;
+  setIsPaid: (isPaid: boolean) => void;
+  setEntryFeeCents: (entryFeeCents: number) => void;
+  setPayoutStructure: (payoutStructure: PayoutTier[]) => void;
+  setMinParticipants: (minParticipants: number) => void;
   reset: () => void;
 }
 
@@ -24,6 +32,10 @@ const initialState = {
   durationDays: 7,
   invitedFriends: [] as string[],
   isCommunity: false,
+  isPaid: false,
+  entryFeeCents: 500, // $5 default per behavioural analysis
+  payoutStructure: [{ place: 1, pct: 100 }] as PayoutTier[], // winner-take-all default
+  minParticipants: 0,
 };
 
 export const useChallengeFormStore = create<ChallengeFormState>((set) => ({
@@ -39,5 +51,9 @@ export const useChallengeFormStore = create<ChallengeFormState>((set) => ({
         : [...state.invitedFriends, friendId],
     })),
   setIsCommunity: (isCommunity) => set({ isCommunity }),
+  setIsPaid: (isPaid) => set({ isPaid }),
+  setEntryFeeCents: (entryFeeCents) => set({ entryFeeCents }),
+  setPayoutStructure: (payoutStructure) => set({ payoutStructure }),
+  setMinParticipants: (minParticipants) => set({ minParticipants }),
   reset: () => set(initialState),
 }));

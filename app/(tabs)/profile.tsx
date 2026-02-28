@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { View, Text, ScrollView, Alert, Pressable, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Settings, User, Bell, Watch, LogOut, Trash2, Shield, FileText, TrendingUp, Trophy, Zap } from 'lucide-react-native';
+import { Settings, User, Bell, Watch, LogOut, Trash2, Shield, FileText, TrendingUp, Trophy, Zap, Wallet } from 'lucide-react-native';
 import * as WebBrowser from 'expo-web-browser';
 import { Colors } from '@/constants/colors';
 import { useAuthStore } from '@/stores/authStore';
@@ -159,6 +159,12 @@ export default function ProfileScreen() {
 
         {/* Settings List */}
         <View className="px-6 mb-8">
+          <SettingsRow
+            icon={<Wallet size={20} color={Colors.neutralDark} />}
+            label="Wallet"
+            subtitle="PRIZE EARNINGS"
+            onPress={() => router.push('/(settings)/wallet')}
+          />
           <SettingsRow
             icon={<User size={20} color={Colors.neutralDark} />}
             label="Personal Info"

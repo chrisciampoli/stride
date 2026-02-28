@@ -127,7 +127,7 @@ export default function ConnectedDevicesScreen() {
         <View className="bg-primary/10 rounded-xl p-4 mt-4 mb-8 flex-row">
           <Info size={18} color={Colors.mutedText} />
           <Text className="text-xs text-muted-text ml-3 flex-1 leading-4">
-            Connecting your devices allows Stride to track your steps, calories,
+            Connecting your devices allows Allen Footrace to track your steps, calories,
             distance, and active minutes for fitness challenges.
           </Text>
         </View>

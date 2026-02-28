@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { View, Text, ScrollView, Pressable, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -8,6 +8,7 @@ import { useActiveChallenges, useCompletedChallenges } from '@/hooks/useChalleng
 import { useFeatured } from '@/hooks/useDiscoverChallenges';
 import { ScreenHeader } from '@/components/layout/ScreenHeader';
 import { TabSelector } from '@/components/ui/TabSelector';
+import { CategoryPills } from '@/components/ui/CategoryPills';
 import { Button } from '@/components/ui/Button';
 import { ChallengeCard } from '@/components/ui/ChallengeCard';
 import { CommunityChallengeCard } from '@/components/ui/CommunityChallengeCard';
@@ -28,6 +29,7 @@ function formatTimeLeft(endDate: string): string {
 export default function ChallengesScreen() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('active');
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const { data: activeChallenges = [], isPending: activeLoading, isError: activeError, refetch: refetchActive } = useActiveChallenges();
   const { data: completedChallenges = [], isPending: completedLoading, refetch: refetchCompleted } = useCompletedChallenges();
   const { data: featured = [], error: featuredError } = useFeatured();
@@ -41,7 +43,20 @@ export default function ChallengesScreen() {
     setRefreshing(false);
   }, [refetchActive, refetchCompleted]);
 
-  const challenges = activeTab === 'active' ? activeChallenges : completedChallenges;
+  const rawChallenges = activeTab === 'active' ? activeChallenges : completedChallenges;
+
+  // Derive categories from challenges
+  const categories = useMemo(() => {
+    const cats = new Set<string>();
+    [...activeChallenges, ...completedChallenges].forEach((c) => {
+      if (c.category) cats.add(c.category);
+    });
+    return ['All', ...Array.from(cats).sort()];
+  }, [activeChallenges, completedChallenges]);
+
+  const challenges = selectedCategory === 'All'
+    ? rawChallenges
+    : rawChallenges.filter((c) => c.category === selectedCategory);
 
   if (isLoading) {
     return (
@@ -80,7 +95,7 @@ export default function ChallengesScreen() {
         }
       >
         {/* Tabs */}
-        <View className="px-6 pt-4 pb-3">
+        <View className="px-6 pt-4 pb-2">
           <TabSelector
             tabs={[
               { key: 'active', label: 'Active' },
@@ -90,6 +105,17 @@ export default function ChallengesScreen() {
             onTabChange={setActiveTab}
           />
         </View>
+
+        {/* Category Filter */}
+        {categories.length > 1 && (
+          <View className="mb-3">
+            <CategoryPills
+              categories={categories}
+              selected={selectedCategory}
+              onSelect={setSelectedCategory}
+            />
+          </View>
+        )}
 
         {/* New Challenge Button */}
         <View className="px-6 mb-4">

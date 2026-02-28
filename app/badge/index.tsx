@@ -15,9 +15,14 @@ export default function BadgesListScreen() {
   const router = useRouter();
   const { data: allBadges = [], isPending, isError, refetch } = useAllBadges();
   const { data: userBadges = [], refetch: refetchUserBadges } = useUserBadges();
+  const [filter, setFilter] = React.useState<'all' | 'earned'>('all');
 
   const earnedBadgeIds = new Set(userBadges.map((ub) => ub.badge_id));
   const earnedCount = allBadges.filter((b) => earnedBadgeIds.has(b.id)).length;
+
+  const filteredBadges = filter === 'earned'
+    ? allBadges.filter((b) => earnedBadgeIds.has(b.id))
+    : allBadges;
 
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(async () => {
@@ -107,7 +112,7 @@ export default function BadgesListScreen() {
     <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
       <ScreenHeader title="All Badges" />
       <FlatList
-        data={allBadges}
+        data={filteredBadges}
         renderItem={renderBadge}
         keyExtractor={(item) => item.id}
         numColumns={3}
@@ -115,9 +120,33 @@ export default function BadgesListScreen() {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View className="mb-4 px-1">
-            <Text className="text-sm font-semibold text-neutral-dark">
-              {earnedCount} of {allBadges.length} Earned
-            </Text>
+            <View className="flex-row items-center justify-between mb-2">
+              <Text className="text-sm font-semibold text-neutral-dark">
+                {earnedCount} of {allBadges.length} Earned
+              </Text>
+            </View>
+            <View className="flex-row gap-2">
+              <Pressable
+                onPress={() => setFilter('all')}
+                className={`px-4 py-1.5 rounded-full border ${
+                  filter === 'all' ? 'bg-primary border-primary' : 'bg-white border-border'
+                }`}
+              >
+                <Text className={`text-xs font-medium ${filter === 'all' ? 'text-neutral-dark' : 'text-muted-text'}`}>
+                  All
+                </Text>
+              </Pressable>
+              <Pressable
+                onPress={() => setFilter('earned')}
+                className={`px-4 py-1.5 rounded-full border ${
+                  filter === 'earned' ? 'bg-primary border-primary' : 'bg-white border-border'
+                }`}
+              >
+                <Text className={`text-xs font-medium ${filter === 'earned' ? 'text-neutral-dark' : 'text-muted-text'}`}>
+                  Earned ({earnedCount})
+                </Text>
+              </Pressable>
+            </View>
           </View>
         }
         refreshControl={

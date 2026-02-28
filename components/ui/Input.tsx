@@ -9,6 +9,7 @@ interface InputProps extends Omit<TextInputProps, 'style'> {
   rightLabel?: string;
   error?: string;
   size?: InputSize;
+  showCharCount?: boolean;
 }
 
 export function Input({
@@ -17,6 +18,7 @@ export function Input({
   rightLabel,
   error,
   size = 'default',
+  showCharCount,
   ...textInputProps
 }: InputProps) {
   const [focused, setFocused] = useState(false);
@@ -63,9 +65,16 @@ export function Input({
           </Text>
         )}
       </View>
-      {error && (
-        <Text className="text-red-500 text-xs mt-1 ml-1">{error}</Text>
-      )}
+      <View className="flex-row justify-between">
+        {error ? (
+          <Text className="text-red-500 text-xs mt-1 ml-1">{error}</Text>
+        ) : <View />}
+        {showCharCount && textInputProps.maxLength && (
+          <Text className="text-muted-text text-xs mt-1 mr-1">
+            {(typeof textInputProps.value === 'string' ? textInputProps.value.length : 0)}/{textInputProps.maxLength}
+          </Text>
+        )}
+      </View>
     </View>
   );
 }

@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { Avatar, type AvatarBorder } from './Avatar';
 import { ProgressBar } from './ProgressBar';
+import { formatDollars } from '@/lib/format';
 
 interface LeaderboardRowProps {
   rank: number;
@@ -10,6 +11,8 @@ interface LeaderboardRowProps {
   maxSteps: number;
   avatarUri?: string;
   isCurrentUser?: boolean;
+  prizeAmount?: number;
+  onPress?: () => void;
 }
 
 export function LeaderboardRow({
@@ -19,6 +22,8 @@ export function LeaderboardRow({
   maxSteps,
   avatarUri,
   isCurrentUser = false,
+  prizeAmount,
+  onPress,
 }: LeaderboardRowProps) {
   const getMedalColor = (): AvatarBorder => {
     if (rank === 1) return 'gold';
@@ -27,8 +32,11 @@ export function LeaderboardRow({
     return 'none';
   };
 
+  const Container = onPress ? Pressable : View;
+
   return (
-    <View
+    <Container
+      onPress={onPress}
       className={`flex-row items-center py-3 px-3 rounded-xl mb-2 ${
         isCurrentUser ? 'bg-primary' : 'bg-white'
       }`}
@@ -56,9 +64,16 @@ export function LeaderboardRow({
           inverted={isCurrentUser}
         />
       </View>
-      <Text className="text-sm font-bold text-neutral-dark">
-        {steps.toLocaleString()}
-      </Text>
-    </View>
+      <View className="items-end">
+        <Text className="text-sm font-bold text-neutral-dark">
+          {steps.toLocaleString()}
+        </Text>
+        {prizeAmount !== undefined && prizeAmount > 0 && (
+          <Text className="text-[10px] font-bold text-green-600">
+            {formatDollars(prizeAmount)}
+          </Text>
+        )}
+      </View>
+    </Container>
   );
 }

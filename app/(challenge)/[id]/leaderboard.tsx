@@ -1,13 +1,15 @@
 import React, { useCallback, useState } from 'react';
 import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useLocalSearchParams } from 'expo-router';
-import { Info } from 'lucide-react-native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Info, Clock } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useAuthStore } from '@/stores/authStore';
 import { useChallengeDetail } from '@/hooks/useChallengeDetail';
 import { useLeaderboard } from '@/hooks/useLeaderboard';
+import { usePrizePool } from '@/hooks/usePrizePool';
 import type { ChallengeParticipant, Profile } from '@/types';
+import { ordinal, formatDollars } from '@/lib/format';
 
 type LeaderboardParticipant = ChallengeParticipant & {
   profile: Pick<Profile, 'id' | 'full_name' | 'avatar_url'> | null;
@@ -16,7 +18,6 @@ import { ScreenHeader } from '@/components/layout/ScreenHeader';
 import { Card } from '@/components/ui/Card';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { LeaderboardRow } from '@/components/ui/LeaderboardRow';
-import { Badge } from '@/components/ui/Badge';
 import { FloatingRankFab } from '@/components/ui/FloatingRankFab';
 import { LoadingState } from '@/components/ui/LoadingState';
 import { ErrorState } from '@/components/ui/ErrorState';
@@ -34,9 +35,11 @@ function formatTimeLeft(endDate: string): string {
 
 export default function LeaderboardScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
+  const router = useRouter();
   const user = useAuthStore((s) => s.user);
   const { data: challenge, isPending: challengeLoading, refetch: refetchChallenge } = useChallengeDetail(id);
   const { data: participants = [], isPending: participantsLoading, isError: participantsError, refetch } = useLeaderboard(id);
+  const { data: prizePool } = usePrizePool(id);
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(async () => {
@@ -79,17 +82,44 @@ export default function LeaderboardScreen() {
 
   const maxSteps = typedParticipants.length > 0 ? typedParticipants[0].total_steps : 1;
 
+  // Calculate prize amounts per position
+  const getPrizeForRank = (rank: number): number | undefined => {
+    if (!prizePool) return undefined;
+    const tier = prizePool.payoutStructure.find((t) => t.place === rank);
+    if (!tier) return undefined;
+    return Math.floor((prizePool.prizePoolCents * 0.95) * tier.pct / 100);
+  };
+
+  const isTiebreaker = challenge?.status === 'tiebreaker';
+  const tiebreakerEnd = prizePool?.tiebreakerEndDate;
+
   return (
     <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
       <ScreenHeader
         title={challenge?.name ?? 'Challenge'}
         rightIcon={<Info size={20} color={Colors.neutralDark} />}
+        onRightPress={() => router.push(`/(challenge)/${id}/details`)}
       />
       {challenge && (
         <Text className="text-xs text-muted-text text-center -mt-1 mb-2">
-          ⏱ {formatTimeLeft(challenge.end_date)}
+          ⏱ {formatTimeLeft(isTiebreaker && tiebreakerEnd ? tiebreakerEnd : challenge.end_date)}
         </Text>
       )}
+
+      {/* Tiebreaker Banner */}
+      {isTiebreaker && (
+        <View className="mx-6 mb-3 bg-amber-50 border border-amber-300 rounded-xl p-3 flex-row items-center">
+          <Clock size={16} color="#B45309" />
+          <View className="ml-2 flex-1">
+            <Text className="text-xs font-bold text-amber-800">Tiebreaker! 🏃</Text>
+            <Text className="text-[10px] text-amber-700">
+              Top positions are tied. 1 extra day to break it!
+              {tiebreakerEnd && ` Ends ${new Date(tiebreakerEnd).toLocaleDateString()}`}
+            </Text>
+          </View>
+        </View>
+      )}
+
       <ScrollView
         className="flex-1"
         showsVerticalScrollIndicator={false}
@@ -97,6 +127,25 @@ export default function LeaderboardScreen() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={Colors.primary} />
         }
       >
+        {/* Prize Pool Banner (if paid) */}
+        {prizePool && (
+          <View className="px-6 mb-4">
+            <View className="bg-green-50 border border-green-200 rounded-xl p-3 flex-row items-center justify-between">
+              <View>
+                <Text className="text-[10px] text-green-600 uppercase font-bold">Prize Pool</Text>
+                <Text className="text-lg font-bold text-green-800">{formatDollars(prizePool.prizePoolCents)}</Text>
+              </View>
+              <View className="items-end">
+                {prizePool.payoutStructure.map((tier) => (
+                  <Text key={tier.place} className="text-[10px] text-green-700">
+                    {ordinal(tier.place)}: {formatDollars(Math.floor((prizePool.prizePoolCents * 0.95) * tier.pct / 100))}
+                  </Text>
+                ))}
+              </View>
+            </View>
+          </View>
+        )}
+
         {/* Hero Progress Card */}
         <View className="px-6 mb-4">
           <Card variant="dark" className="p-5">
@@ -106,7 +155,7 @@ export default function LeaderboardScreen() {
               </Text>
               <View className="bg-primary rounded-lg px-2.5 py-1">
                 <Text className="text-xs font-bold text-neutral-dark">
-                  {myRank > 0 ? `${myRank}th` : '--'}
+                  {myRank > 0 ? ordinal(myRank) : '--'}
                 </Text>
               </View>
             </View>
@@ -123,8 +172,7 @@ export default function LeaderboardScreen() {
             {stepsToNext > 0 && (
               <View className="mt-3 bg-primary/10 rounded-full px-3 py-2 self-start">
                 <Text className="text-xs text-primary font-medium">
-                  ⚡ You're only {stepsToNext.toLocaleString()} steps away from {myRank - 1}
-                  {myRank - 1 === 1 ? 'st' : myRank - 1 === 2 ? 'nd' : myRank - 1 === 3 ? 'rd' : 'th'} place!
+                  ⚡ You're only {stepsToNext.toLocaleString()} steps away from {ordinal(myRank - 1)} place!
                 </Text>
               </View>
             )}
@@ -148,6 +196,8 @@ export default function LeaderboardScreen() {
               maxSteps={maxSteps}
               avatarUri={p.profile?.avatar_url ?? undefined}
               isCurrentUser={p.user_id === user?.id}
+              prizeAmount={getPrizeForRank(index + 1)}
+              onPress={p.user_id !== user?.id ? () => router.push(`/(social)/friend/${p.user_id}`) : undefined}
             />
           ))}
         </View>
@@ -159,6 +209,7 @@ export default function LeaderboardScreen() {
         <FloatingRankFab
           rank={myRank}
           steps={`${(mySteps / 1000).toFixed(1)}k steps`}
+          prizeAmount={getPrizeForRank(myRank)}
         />
       )}
     </SafeAreaView>

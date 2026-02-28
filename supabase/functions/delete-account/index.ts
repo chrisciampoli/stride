@@ -48,7 +48,11 @@ Deno.serve(async (req) => {
     await supabaseAdmin.from('notifications').delete().eq('user_id', userId);
     await supabaseAdmin.from('messages').delete().or(`sender_id.eq.${userId},receiver_id.eq.${userId}`);
     await supabaseAdmin.from('daily_steps').delete().eq('user_id', userId);
+    await supabaseAdmin.from('prize_distributions').delete().eq('user_id', userId);
     await supabaseAdmin.from('challenge_participants').delete().eq('user_id', userId);
+    await supabaseAdmin.from('wallet_transactions').delete().eq('user_id', userId);
+    await supabaseAdmin.from('wallets').delete().eq('user_id', userId);
+    await supabaseAdmin.from('stripe_connect_accounts').delete().eq('user_id', userId);
     await supabaseAdmin.from('friendships').delete().or(`requester_id.eq.${userId},addressee_id.eq.${userId}`);
     await supabaseAdmin.from('user_settings').delete().eq('user_id', userId);
 
