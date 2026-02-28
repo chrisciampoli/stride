@@ -34,6 +34,19 @@ function formatTimeLeft(endDate: string): string {
   return `${days}d`;
 }
 
+function formatRegistrationTimeLeft(startDate: string): string {
+  const start = new Date(startDate);
+  const now = new Date();
+  const diff = start.getTime() - now.getTime();
+  if (diff <= 0) return 'Closed';
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  if (hours < 1) {
+    const mins = Math.floor(diff / (1000 * 60));
+    return `${mins}m`;
+  }
+  return `${hours}h`;
+}
+
 export default function ChallengeDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
@@ -57,7 +70,7 @@ export default function ChallengeDetailsScreen() {
           style: 'destructive',
           onPress: () => {
             deleteChallenge.mutate(id, {
-              onSuccess: () => router.back(),
+              onSuccess: () => router.replace('/(tabs)/challenges'),
             });
           },
         },
@@ -82,7 +95,13 @@ export default function ChallengeDetailsScreen() {
     if (challenge?.is_paid) {
       joinPaidChallenge.mutate(
         { challengeId: id, challengeName: challenge.name },
-        { onSuccess: () => router.push(`/(challenge)/${id}/leaderboard`) },
+        {
+          onSuccess: () => router.push(`/(challenge)/${id}/leaderboard`),
+          onError: (error) => {
+            if (error.message === 'Payment cancelled') return;
+            Alert.alert('Could not join', error.message || 'Something went wrong. Please try again.');
+          },
+        },
       );
     } else {
       joinChallenge.mutate(id, {
@@ -92,6 +111,10 @@ export default function ChallengeDetailsScreen() {
   };
 
   const isJoining = joinChallenge.isPending || joinPaidChallenge.isPending;
+  const registrationClosed = challenge?.is_paid && challenge?.start_date
+    ? new Date(challenge.start_date).getTime() <= Date.now()
+    : false;
+  const creatorNeedsPayment = isCreator && challenge?.is_paid && !isJoined;
 
   if (challengeLoading) {
     return (
@@ -203,6 +226,15 @@ export default function ChallengeDetailsScreen() {
           </View>
         )}
 
+        {/* Registration Banner (upcoming paid challenges) */}
+        {challenge?.is_paid && challenge.status === 'upcoming' && !registrationClosed && (
+          <View className="mx-6 mb-4 bg-blue-50 border border-blue-200 rounded-xl p-3">
+            <Text className="text-xs text-blue-800">
+              Registration is open — the challenge starts after the registration window closes. Invite friends so they can join and pay before it begins!
+            </Text>
+          </View>
+        )}
+
         {/* Stats Row */}
         <View className="flex-row px-6 gap-3 mb-4">
           <View className="flex-1 items-center bg-white border border-border rounded-xl py-3">
@@ -222,9 +254,13 @@ export default function ChallengeDetailsScreen() {
           <View className="flex-1 items-center bg-white border border-border rounded-xl py-3">
             <Clock size={16} color={Colors.neutralMuted} />
             <Text className="text-base font-bold text-neutral-dark mt-1">
-              {challenge ? formatTimeLeft(challenge.end_date) : '--'}
+              {challenge?.is_paid && challenge.status === 'upcoming'
+                ? formatRegistrationTimeLeft(challenge.start_date)
+                : challenge ? formatTimeLeft(challenge.end_date) : '--'}
             </Text>
-            <Text className="text-[10px] text-muted-text uppercase">Time Left</Text>
+            <Text className="text-[10px] text-muted-text uppercase">
+              {challenge?.is_paid && challenge.status === 'upcoming' ? 'Reg. Closes' : 'Time Left'}
+            </Text>
           </View>
         </View>
 
@@ -358,7 +394,7 @@ export default function ChallengeDetailsScreen() {
       </ScrollView>
 
       {/* Fixed Bottom CTA */}
-      {!isJoined && (
+      {!isJoined && !registrationClosed && !creatorNeedsPayment && (
         <View className="px-6 pb-6 pt-2 bg-background-light border-t border-border">
           <Button
             variant="primary"
@@ -367,15 +403,40 @@ export default function ChallengeDetailsScreen() {
             onPress={handleJoin}
             disabled={isJoining}
           >
-            {challenge?.is_paid
-              ? `Join for ${formatDollars(challenge.entry_fee_cents)}`
-              : 'Join Challenge'}
+            {isJoining
+              ? 'Processing...'
+              : challenge?.is_paid
+                ? `Join for ${formatDollars(challenge.entry_fee_cents)}`
+                : 'Join Challenge'}
           </Button>
           {challenge?.is_paid && (
             <Text className="text-[10px] text-muted-text text-center mt-2">
               Full refund if cancelled before start date
             </Text>
           )}
+        </View>
+      )}
+      {creatorNeedsPayment && !registrationClosed && (
+        <View className="px-6 pb-6 pt-2 bg-background-light border-t border-border">
+          <Button
+            variant="primary"
+            size="lg"
+            fullWidth
+            onPress={handleJoin}
+            disabled={isJoining}
+          >
+            {isJoining ? 'Processing...' : `Complete Your Payment · ${formatDollars(challenge?.entry_fee_cents ?? 0)}`}
+          </Button>
+          <Text className="text-[10px] text-muted-text text-center mt-2">
+            Pay to activate your challenge
+          </Text>
+        </View>
+      )}
+      {!isJoined && registrationClosed && !creatorNeedsPayment && (
+        <View className="px-6 pb-6 pt-2 bg-background-light border-t border-border">
+          <Text className="text-sm font-medium text-muted-text text-center py-3">
+            Registration closed
+          </Text>
         </View>
       )}
     </SafeAreaView>

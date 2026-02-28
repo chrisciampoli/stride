@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
 import { useAuthStore } from '@/stores/authStore';
-import { useToastStore } from '@/stores/toastStore';
 
 interface CreateChallengeInput {
   name: string;
@@ -19,15 +18,17 @@ interface CreateChallengeInput {
 export function useCreateChallenge() {
   const user = useAuthStore((s) => s.user);
   const queryClient = useQueryClient();
-  const showToast = useToastStore((s) => s.show);
-
   return useMutation({
     mutationFn: async (input: CreateChallengeInput) => {
-      const startDate = new Date();
-      const endDate = new Date();
-      endDate.setDate(endDate.getDate() + input.durationDays);
-
       const isPaid = input.isPaid ?? false;
+
+      // Paid challenges get a 48h registration window before starting
+      const startDate = new Date();
+      if (isPaid) {
+        startDate.setHours(startDate.getHours() + 48);
+      }
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + input.durationDays);
 
       const { data: challenge, error } = await supabase
         .from('challenges')
@@ -52,16 +53,19 @@ export function useCreateChallenge() {
 
       if (error) throw error;
 
-      // Auto-join the creator as a participant (non-fatal — challenge already exists)
-      const { error: participantError } = await supabase
-        .from('challenge_participants')
-        .upsert(
-          { challenge_id: challenge.id, user_id: user!.id, total_steps: 0 },
-          { onConflict: 'challenge_id,user_id' },
-        );
+      // Auto-join creator for free challenges only.
+      // Paid challenge creators join via payment flow (create-payment-intent).
+      if (!isPaid) {
+        const { error: participantError } = await supabase
+          .from('challenge_participants')
+          .upsert(
+            { challenge_id: challenge.id, user_id: user!.id, total_steps: 0 },
+            { onConflict: 'challenge_id,user_id' },
+          );
 
-      if (participantError) {
-        console.warn('Failed to auto-join challenge:', participantError.message);
+        if (participantError) {
+          console.warn('Failed to auto-join challenge:', participantError.message);
+        }
       }
 
       // Invite friends by creating notifications (fire-and-forget)
@@ -89,7 +93,6 @@ export function useCreateChallenge() {
       queryClient.invalidateQueries({ queryKey: ['leaderboard', challenge.id] });
       queryClient.invalidateQueries({ queryKey: ['homeCTA'] });
       queryClient.invalidateQueries({ queryKey: ['homeLeaderboard'] });
-      showToast('Challenge created!', 'success');
     },
   });
 }

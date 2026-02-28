@@ -8,6 +8,8 @@ import type { GoalType, PayoutTier } from '@/types';
 import { useChallengeFormStore } from '@/stores/challengeFormStore';
 import { useFriendsList } from '@/hooks/useFriends';
 import { useCreateChallenge } from '@/hooks/mutations/useCreateChallenge';
+import { useJoinPaidChallenge } from '@/hooks/mutations/useJoinPaidChallenge';
+import { useToastStore } from '@/stores/toastStore';
 import { formatDollars } from '@/lib/format';
 import { ScreenHeader } from '@/components/layout/ScreenHeader';
 import { Button } from '@/components/ui/Button';
@@ -40,15 +42,18 @@ export default function CreateChallengeScreen() {
   const [showReview, setShowReview] = useState(false);
   const { data: friends = [] } = useFriendsList(friendSearch || undefined);
   const createChallenge = useCreateChallenge();
+  const joinPaidChallenge = useJoinPaidChallenge();
+  const showToast = useToastStore((s) => s.show);
   const isSubmitting = useRef(false);
 
-  const canCreate = !!name && goalSteps > 0 && durationDays > 0;
+  const canCreate = !!name && goalSteps > 0 && durationDays > 0
+    && (!isPaid || entryFeeCents > 0);
 
   const handleCreate = async () => {
     if (isSubmitting.current) return;
     isSubmitting.current = true;
     try {
-      await createChallenge.mutateAsync({
+      const challenge = await createChallenge.mutateAsync({
         name,
         goalSteps,
         goalType,
@@ -58,10 +63,33 @@ export default function CreateChallengeScreen() {
         isPaid,
         entryFeeCents: isPaid ? entryFeeCents : undefined,
         payoutStructure: isPaid ? payoutStructure : undefined,
-        minParticipants: isPaid ? minParticipants : undefined,
+        minParticipants: isPaid ? Math.max(minParticipants || 2, 2) : undefined,
       });
-      reset();
-      router.back();
+
+      if (isPaid) {
+        try {
+          await joinPaidChallenge.mutateAsync({
+            challengeId: challenge.id,
+            challengeName: challenge.name,
+          });
+          showToast('Challenge created! Payment confirmed.', 'success');
+          reset();
+          router.back();
+        } catch (e) {
+          const msg = (e as Error).message;
+          if (msg === 'Payment cancelled') {
+            showToast('Complete your payment to activate the challenge', 'info');
+          } else {
+            Alert.alert('Payment Failed', msg || 'Please try again from the challenge page.');
+          }
+          reset();
+          router.replace(`/(challenge)/${challenge.id}/details`);
+        }
+      } else {
+        showToast('Challenge created!', 'success');
+        reset();
+        router.back();
+      }
     } catch {
       Alert.alert('Error', 'Could not create challenge. Please try again.');
     } finally {
@@ -285,17 +313,17 @@ export default function CreateChallengeScreen() {
                   Minimum Participants
                 </Text>
                 <Text className="text-[10px] text-muted-text mb-2">
-                  Auto-refund all entry fees if not met by start date. Set to 0 for no minimum.
+                  Minimum 2 participants required for prize pool challenges. Auto-refund if not met by start date.
                 </Text>
                 <TextInput
                   className="h-12 bg-white border border-border rounded-xl px-4 text-base text-neutral-dark"
-                  placeholder="0 (no minimum)"
+                  placeholder="2 (minimum for prize pool)"
                   placeholderTextColor={Colors.mutedText}
                   keyboardType="numeric"
                   value={minParticipants > 0 ? minParticipants.toString() : ''}
                   onChangeText={(text) => {
                     const n = parseInt(text.replace(/[^0-9]/g, ''), 10);
-                    setMinParticipants(isNaN(n) ? 0 : n);
+                    setMinParticipants(isNaN(n) ? 2 : Math.max(n, 2));
                   }}
                 />
 
@@ -406,6 +434,11 @@ export default function CreateChallengeScreen() {
                       <Text className="text-xs font-bold text-green-800">{minParticipants}</Text>
                     </View>
                   )}
+                  <View className="mt-2 pt-2 border-t border-green-200">
+                    <Text className="text-[10px] text-green-700">
+                      You'll pay {formatDollars(entryFeeCents)} after creating. 48h registration window for friends to join.
+                    </Text>
+                  </View>
                 </View>
               )}
 
@@ -418,9 +451,13 @@ export default function CreateChallengeScreen() {
                 size="lg"
                 fullWidth
                 onPress={handleCreate}
-                disabled={createChallenge.isPending}
+                disabled={createChallenge.isPending || joinPaidChallenge.isPending}
               >
-                {createChallenge.isPending ? 'Creating...' : 'Confirm & Create'}
+                {createChallenge.isPending || joinPaidChallenge.isPending
+                  ? 'Processing...'
+                  : isPaid
+                    ? `Confirm & Pay ${formatDollars(entryFeeCents)}`
+                    : 'Confirm & Create'}
               </Button>
               <Pressable onPress={() => setShowReview(false)} className="items-center mt-3">
                 <Text className="text-sm font-medium text-muted-text">Go Back & Edit</Text>
