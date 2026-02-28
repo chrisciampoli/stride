@@ -88,19 +88,40 @@ Deno.serve(async (req) => {
       .eq('id', challenge_id);
 
     // Cancel any pending PaymentIntents and delete those rows
+    // First check if any "pending" participants actually succeeded in Stripe
     const { data: pendingParticipants } = await supabaseAdmin
       .from('challenge_participants')
       .select('*')
       .eq('challenge_id', challenge_id)
       .eq('payment_status', 'pending');
 
+    const promotedToPaid: typeof pendingParticipants = [];
+
     for (const p of pendingParticipants ?? []) {
-      try {
-        if (p.payment_intent_id) {
-          await stripe.paymentIntents.cancel(p.payment_intent_id);
+      if (p.payment_intent_id) {
+        let piStatus: string | undefined;
+        try {
+          const pi = await stripe.paymentIntents.retrieve(p.payment_intent_id);
+          piStatus = pi.status;
+        } catch {
+          // PI may not exist — treat as truly pending
         }
-      } catch {
-        // PI may already be cancelled — safe to ignore
+
+        if (piStatus === 'succeeded') {
+          // Actually paid — promote to paid so they get a refund
+          await supabaseAdmin
+            .from('challenge_participants')
+            .update({ payment_status: 'paid' })
+            .eq('id', p.id);
+          promotedToPaid.push({ ...p, payment_status: 'paid' });
+          continue;
+        }
+
+        try {
+          await stripe.paymentIntents.cancel(p.payment_intent_id);
+        } catch {
+          // PI may already be cancelled — safe to ignore
+        }
       }
       await supabaseAdmin
         .from('challenge_participants')
@@ -108,7 +129,7 @@ Deno.serve(async (req) => {
         .eq('id', p.id);
     }
 
-    // Refund all paid participants
+    // Refund all paid participants (including those promoted from pending)
     const { data: paidParticipants } = await supabaseAdmin
       .from('challenge_participants')
       .select('*')
@@ -166,16 +187,18 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Update challenge status
+    // Hard-delete if all refunds succeeded, otherwise keep for retry
     if (allRefunded) {
+      // Delete all participant records (already refunded)
+      await supabaseAdmin
+        .from('challenge_participants')
+        .delete()
+        .eq('challenge_id', challenge_id);
+
+      // Delete the challenge itself
       await supabaseAdmin
         .from('challenges')
-        .update({
-          status: 'cancelled',
-          prize_status: 'refunded',
-          prize_pool_cents: 0,
-          updated_at: new Date().toISOString(),
-        })
+        .delete()
         .eq('id', challenge_id);
     } else {
       // Some refunds failed — keep refunding status so it can be retried

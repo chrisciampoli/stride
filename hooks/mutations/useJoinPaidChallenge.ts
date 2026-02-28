@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useStripe } from '@stripe/stripe-react-native';
 import { supabase } from '@/lib/supabase';
+import { getEdgeFunctionError } from '@/lib/edge-function';
+import { useAuthStore } from '@/stores/authStore';
 
 interface JoinPaidChallengeInput {
   challengeId: string;
@@ -10,6 +12,7 @@ interface JoinPaidChallengeInput {
 export function useJoinPaidChallenge() {
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
   const queryClient = useQueryClient();
+  const user = useAuthStore((s) => s.user);
 
   return useMutation({
     mutationFn: async ({ challengeId, challengeName }: JoinPaidChallengeInput) => {
@@ -20,7 +23,13 @@ export function useJoinPaidChallenge() {
       );
 
       if (fnError) {
-        throw new Error(fnError.message || 'Failed to create payment');
+        const msg = await getEdgeFunctionError(fnError);
+        throw new Error(msg);
+      }
+
+      // Server recovered an already-succeeded payment (webhook was slow)
+      if (result?.alreadyPaid) {
+        return { challengeId, paymentIntentId: result.paymentIntentId ?? '' };
       }
 
       if (!result?.clientSecret) {
@@ -68,10 +77,48 @@ export function useJoinPaidChallenge() {
           paidParticipantCount: (old.paidParticipantCount as number) + 1,
         };
       });
+
+      // Optimistic challenge update — mark participant as paid so isJoined is true immediately
+      if (user) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        queryClient.setQueryData(['challenge', challengeId], (old: any) => {
+          if (!old) return old;
+          const participants = old.challenge_participants ?? [];
+          const alreadyPaid = participants.some(
+            (p: { user_id: string; payment_status: string }) =>
+              p.user_id === user.id && p.payment_status === 'paid',
+          );
+          if (alreadyPaid) return old;
+          // Update existing pending participant or add a new one
+          const existingIdx = participants.findIndex(
+            (p: { user_id: string }) => p.user_id === user.id,
+          );
+          const updatedParticipants = [...participants];
+          if (existingIdx >= 0) {
+            updatedParticipants[existingIdx] = {
+              ...updatedParticipants[existingIdx],
+              payment_status: 'paid',
+            };
+          } else {
+            updatedParticipants.push({
+              id: `optimistic-${Date.now()}`,
+              user_id: user.id,
+              total_steps: 0,
+              payment_status: 'paid',
+              profile: null,
+            });
+          }
+          return { ...old, challenge_participants: updatedParticipants };
+        });
+      }
+
+      // Invalidate list queries that don't have optimistic updates
+      // NOTE: Do NOT invalidate 'challenge' or 'prizePool' — let the realtime
+      // subscription and 30s polling confirm the data after the webhook fires.
+      // Invalidating immediately would refetch stale DB data and overwrite
+      // the optimistic values above.
       queryClient.invalidateQueries({ queryKey: ['challenges'] });
-      queryClient.invalidateQueries({ queryKey: ['challenge', challengeId] });
       queryClient.invalidateQueries({ queryKey: ['leaderboard', challengeId] });
-      queryClient.invalidateQueries({ queryKey: ['prizePool', challengeId] });
       queryClient.invalidateQueries({ queryKey: ['homeCTA'] });
       queryClient.invalidateQueries({ queryKey: ['homeLeaderboard'] });
     },

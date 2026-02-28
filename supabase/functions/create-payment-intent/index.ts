@@ -97,8 +97,39 @@ Deno.serve(async (req) => {
         );
       }
 
-      // Stale pending record — cancel old PI and delete row so we can create a fresh one
+      // Pending record — check actual PI status in Stripe before cleanup
       if (existing.payment_status === 'pending' && existing.payment_intent_id) {
+        let piStatus: string | undefined;
+        try {
+          const pi = await stripe.paymentIntents.retrieve(existing.payment_intent_id);
+          piStatus = pi.status;
+        } catch {
+          // PI may not exist — treat as stale
+        }
+
+        if (piStatus === 'succeeded') {
+          // Payment actually went through but webhook hasn't updated DB yet — recover
+          await supabaseAdmin
+            .from('challenge_participants')
+            .update({ payment_status: 'paid' })
+            .eq('id', existing.id);
+
+          await supabaseAdmin.rpc('increment_prize_pool', {
+            p_challenge_id: challenge_id,
+            p_amount: challenge.entry_fee_cents,
+          });
+
+          return new Response(
+            JSON.stringify({
+              alreadyPaid: true,
+              paymentIntentId: existing.payment_intent_id,
+              error: 'Payment already confirmed',
+            }),
+            { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+          );
+        }
+
+        // Truly stale — cancel old PI
         try {
           await stripe.paymentIntents.cancel(existing.payment_intent_id);
         } catch {

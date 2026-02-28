@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
+import { getEdgeFunctionError } from '@/lib/edge-function';
 import type { Challenge } from '@/types';
 
 interface DeleteChallengeInput {
@@ -18,7 +19,10 @@ export function useDeleteChallenge() {
           body: { challenge_id: challengeId },
         });
 
-        if (error) throw new Error(error.message || 'Failed to cancel challenge');
+        if (error) {
+          const msg = await getEdgeFunctionError(error);
+          throw new Error(msg);
+        }
         if (data?.error) throw new Error(data.error);
 
         return { challengeId };
@@ -41,16 +45,10 @@ export function useDeleteChallenge() {
 
       return { challengeId };
     },
-    onSuccess: ({ challengeId }, { isPaid }) => {
-      if (isPaid) {
-        // Paid: challenge still exists (soft-delete), invalidate to refetch with new status
-        queryClient.invalidateQueries({ queryKey: ['challenge', challengeId] });
-        queryClient.invalidateQueries({ queryKey: ['prizePool', challengeId] });
-      } else {
-        // Free: challenge is deleted, remove stale queries
-        queryClient.removeQueries({ queryKey: ['challenge', challengeId] });
-        queryClient.removeQueries({ queryKey: ['prizePool', challengeId] });
-      }
+    onSuccess: ({ challengeId }) => {
+      // Challenge is hard-deleted (both free and paid), remove stale queries
+      queryClient.removeQueries({ queryKey: ['challenge', challengeId] });
+      queryClient.removeQueries({ queryKey: ['prizePool', challengeId] });
       queryClient.removeQueries({ queryKey: ['leaderboard', challengeId] });
       queryClient.invalidateQueries({ queryKey: ['challenges'] });
       queryClient.invalidateQueries({ queryKey: ['homeCTA'] });

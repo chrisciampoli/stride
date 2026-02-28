@@ -37,11 +37,15 @@ Deno.serve(async (req) => {
       });
 
     if (dedupError) {
-      // Already processed this event
-      return new Response(JSON.stringify({ received: true, deduplicated: true }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      if (dedupError.code === '23505') {
+        // Unique constraint violation — genuinely a duplicate event
+        return new Response(JSON.stringify({ received: true, deduplicated: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+      // Other DB errors (table missing, permissions, etc.) — log but continue processing
+      console.error('Webhook dedup insert error (continuing):', dedupError);
     }
 
     switch (event.type) {
