@@ -68,22 +68,18 @@ export function useCreateChallenge() {
         }
       }
 
-      // Invite friends by creating notifications via edge function (fire-and-forget)
+      // Invite friends by creating notification rows directly (fire-and-forget)
       if (input.invitedFriends?.length) {
         try {
-          await Promise.all(
-            input.invitedFriends.map((friendId) =>
-              supabase.functions.invoke('create-notification', {
-                body: {
-                  type: 'challenge_invite',
-                  receiver_id: friendId,
-                  sender_id: user!.id,
-                  challenge_id: challenge.id,
-                  message: `You've been invited to join "${input.name}"`,
-                },
-              }),
-            ),
-          );
+          const notifications = input.invitedFriends.map((friendId) => ({
+            user_id: friendId,
+            type: 'challenge_invite' as const,
+            title: 'Challenge Invite',
+            body: `You've been invited to join "${input.name}"`,
+            data: { sender_id: user!.id, challenge_id: challenge.id },
+          }));
+
+          await supabase.from('notifications').insert(notifications);
         } catch (e) {
           console.warn('Failed to send challenge invites:', e);
         }
