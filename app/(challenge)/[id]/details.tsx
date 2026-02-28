@@ -66,6 +66,7 @@ export default function ChallengeDetailsScreen() {
             onPress: () => {
               deleteChallenge.mutate({ challengeId: id, isPaid: true }, {
                 onSuccess: () => router.replace('/(tabs)/challenges'),
+                onError: (error) => Alert.alert('Error', error.message || 'Failed to cancel challenge'),
               });
             },
           },
@@ -83,6 +84,7 @@ export default function ChallengeDetailsScreen() {
             onPress: () => {
               deleteChallenge.mutate({ challengeId: id, isPaid: false }, {
                 onSuccess: () => router.replace('/(tabs)/challenges'),
+                onError: (error) => Alert.alert('Error', error.message || 'Failed to delete challenge'),
               });
             },
           },
@@ -137,8 +139,7 @@ export default function ChallengeDetailsScreen() {
   const registrationClosed = challenge?.is_paid && challenge?.start_date
     ? new Date(challenge.start_date).getTime() <= Date.now()
     : false;
-  const creatorHasPending = challenge?.is_paid && participants.some((p) => p.user_id === user?.id && p.payment_status === 'pending');
-  const creatorNeedsPayment = isCreator && challenge?.is_paid && !isJoined && !creatorHasPending;
+  const creatorNeedsPayment = isCreator && challenge?.is_paid && !isJoined;
 
   if (challengeLoading) {
     return (

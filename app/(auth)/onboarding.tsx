@@ -6,6 +6,8 @@ import {
   TextInput,
   ActivityIndicator,
   ScrollView,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -185,6 +187,7 @@ function SetGoalStep({
   };
 
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <View className="flex-1">
       <StepHeader
         icon={<Footprints size={32} color={Colors.primary} strokeWidth={2} />}
@@ -307,6 +310,7 @@ function SetGoalStep({
         </Pressable>
       </View>
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 

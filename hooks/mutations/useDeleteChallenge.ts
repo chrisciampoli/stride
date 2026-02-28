@@ -24,12 +24,7 @@ export function useDeleteChallenge() {
         return { challengeId };
       }
 
-      // Free challenges: keep existing hard-delete behavior
-      await supabase
-        .from('prize_distributions')
-        .delete()
-        .eq('challenge_id', challengeId);
-
+      // Free challenges: hard-delete (prize_distributions cascade via FK)
       const { error: partError } = await supabase
         .from('challenge_participants')
         .delete()

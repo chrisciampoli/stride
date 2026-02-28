@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Allen Footrace",
-    "slug": "allen-footrace",
+    "slug": "stride-app",
     "owner": "chrisciampoli",
     "version": "1.0.1",
     "orientation": "portrait",
@@ -64,7 +64,13 @@
           "color": "#E85D0A"
         }
       ],
-      "@stripe/stripe-react-native"
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "merchant.com.allenfootrace.app",
+          "enableGooglePay": true
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

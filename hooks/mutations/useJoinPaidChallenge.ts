@@ -43,9 +43,13 @@ export function useJoinPaidChallenge() {
       if (presentError) {
         if (presentError.code === 'Canceled') {
           // Clean up pending participant record — best-effort
-          supabase.functions.invoke('cancel-payment', {
-            body: { payment_intent_id: result.paymentIntentId },
-          }).catch(() => {});
+          try {
+            await supabase.functions.invoke('cancel-payment', {
+              body: { payment_intent_id: result.paymentIntentId },
+            });
+          } catch {
+            // Best-effort cleanup — create-payment-intent handles stale records on retry
+          }
           throw new Error('Payment cancelled');
         }
         throw new Error(presentError.message);

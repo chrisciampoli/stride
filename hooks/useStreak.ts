@@ -13,16 +13,16 @@ export function useCurrentStreak() {
         .from('user_settings')
         .select('current_streak, longest_streak, streak_freezes, last_streak_date, daily_step_goal')
         .eq('user_id', user!.id)
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
 
       return {
-        current_streak: data.current_streak ?? 0,
-        longest_streak: data.longest_streak ?? 0,
-        streak_freezes: data.streak_freezes ?? 0,
-        last_streak_date: data.last_streak_date,
-        daily_step_goal: data.daily_step_goal ?? 10000,
+        current_streak: data?.current_streak ?? 0,
+        longest_streak: data?.longest_streak ?? 0,
+        streak_freezes: data?.streak_freezes ?? 0,
+        last_streak_date: data?.last_streak_date ?? null,
+        daily_step_goal: data?.daily_step_goal ?? 10000,
       };
     },
     enabled: !!user,

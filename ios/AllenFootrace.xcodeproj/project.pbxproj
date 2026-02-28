@@ -8,28 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		37DCC1E7EAE5B5897B222121 /* libPods-Stride.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B196EBB9D3AE77BA98EA5DA9 /* libPods-Stride.a */; };
+		23632F2F08417F156C286A56 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AFA3B72172668E764EEF4 /* ExpoModulesProvider.swift */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		A6A3D95592B83B9CBEDD549F /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C255DE138EAFA206B66CEEAD /* ExpoModulesProvider.swift */; };
+		6BD0FFCDEF5F41BEBA5DD6F7 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1C4A7FA8544364AB0F12AB /* noop-file.swift */; };
+		B482B0CE2E9B88267D67F350 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 219CE083B6763806CE2E7982 /* PrivacyInfo.xcprivacy */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		D92035B07D84BBDE6976EAB5 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 24AD9686BEE19DEE4FA68295 /* PrivacyInfo.xcprivacy */; };
+		C248B2D31643BBDACE21922A /* libPods-AllenFootrace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC56A4BE124EF6A5BFB25F3 /* libPods-AllenFootrace.a */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		13B07F961A680F5B00A75B9A /* Stride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stride.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Stride/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Stride/Info.plist; sourceTree = "<group>"; };
-		24AD9686BEE19DEE4FA68295 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Stride/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		7EA6A4C8728EBA7B6CCF91BD /* Pods-Stride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stride.release.xcconfig"; path = "Target Support Files/Pods-Stride/Pods-Stride.release.xcconfig"; sourceTree = "<group>"; };
-		A3939FA121B0C6F27B3E24DA /* Pods-Stride.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stride.debug.xcconfig"; path = "Target Support Files/Pods-Stride/Pods-Stride.debug.xcconfig"; sourceTree = "<group>"; };
-		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Stride/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B196EBB9D3AE77BA98EA5DA9 /* libPods-Stride.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stride.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		04A86C3D542568261779C1BD /* Pods-AllenFootrace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllenFootrace.release.xcconfig"; path = "Target Support Files/Pods-AllenFootrace/Pods-AllenFootrace.release.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* AllenFootrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllenFootrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AllenFootrace/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AllenFootrace/Info.plist; sourceTree = "<group>"; };
+		219CE083B6763806CE2E7982 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = AllenFootrace/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		4C3AFA3B72172668E764EEF4 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-AllenFootrace/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = AllenFootrace/SplashScreen.storyboard; sourceTree = "<group>"; };
+		ABC56A4BE124EF6A5BFB25F3 /* libPods-AllenFootrace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AllenFootrace.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		C255DE138EAFA206B66CEEAD /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Stride/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		E6E764F0BC03BCCB59683DE0 /* Pods-AllenFootrace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllenFootrace.debug.xcconfig"; path = "Target Support Files/Pods-AllenFootrace/Pods-AllenFootrace.debug.xcconfig"; sourceTree = "<group>"; };
+		EA1C4A7FA8544364AB0F12AB /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "AllenFootrace/noop-file.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Stride/AppDelegate.swift; sourceTree = "<group>"; };
-		F11748442D0722820044C1D9 /* Stride-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Stride-Bridging-Header.h"; path = "Stride/Stride-Bridging-Header.h"; sourceTree = "<group>"; };
+		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AllenFootrace/AppDelegate.swift; sourceTree = "<group>"; };
+		F11748442D0722820044C1D9 /* AllenFootrace-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AllenFootrace-Bridging-Header.h"; path = "AllenFootrace/AllenFootrace-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,34 +39,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37DCC1E7EAE5B5897B222121 /* libPods-Stride.a in Frameworks */,
+				C248B2D31643BBDACE21922A /* libPods-AllenFootrace.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		13B07FAE1A68108700A75B9A /* Stride */ = {
+		13B07FAE1A68108700A75B9A /* AllenFootrace */ = {
 			isa = PBXGroup;
 			children = (
 				F11748412D0307B40044C1D9 /* AppDelegate.swift */,
-				F11748442D0722820044C1D9 /* Stride-Bridging-Header.h */,
+				F11748442D0722820044C1D9 /* AllenFootrace-Bridging-Header.h */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				24AD9686BEE19DEE4FA68295 /* PrivacyInfo.xcprivacy */,
+				EA1C4A7FA8544364AB0F12AB /* noop-file.swift */,
+				219CE083B6763806CE2E7982 /* PrivacyInfo.xcprivacy */,
 			);
-			name = Stride;
+			name = AllenFootrace;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				B196EBB9D3AE77BA98EA5DA9 /* libPods-Stride.a */,
+				ABC56A4BE124EF6A5BFB25F3 /* libPods-AllenFootrace.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		615F32CA73CB93CE1E659822 /* AllenFootrace */ = {
+			isa = PBXGroup;
+			children = (
+				4C3AFA3B72172668E764EEF4 /* ExpoModulesProvider.swift */,
+			);
+			name = AllenFootrace;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -77,12 +88,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* Stride */,
+				13B07FAE1A68108700A75B9A /* AllenFootrace */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				DB5F8D3083C39EE9AB2E7B75 /* Pods */,
-				CE8B5C18448890050601DD45 /* ExpoModulesProviders */,
+				DFE9F59842EAFF71E13A7D87 /* Pods */,
+				E9A08D6185BCD3291CF60FD4 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -92,17 +103,9 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* Stride.app */,
+				13B07F961A680F5B00A75B9A /* AllenFootrace.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		848AD4668748F0758B4D8332 /* Stride */ = {
-			isa = PBXGroup;
-			children = (
-				C255DE138EAFA206B66CEEAD /* ExpoModulesProvider.swift */,
-			);
-			name = Stride;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -111,50 +114,50 @@
 				BB2F792C24A3F905000567C9 /* Expo.plist */,
 			);
 			name = Supporting;
-			path = Stride/Supporting;
+			path = AllenFootrace/Supporting;
 			sourceTree = "<group>";
 		};
-		CE8B5C18448890050601DD45 /* ExpoModulesProviders */ = {
+		DFE9F59842EAFF71E13A7D87 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				848AD4668748F0758B4D8332 /* Stride */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		DB5F8D3083C39EE9AB2E7B75 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A3939FA121B0C6F27B3E24DA /* Pods-Stride.debug.xcconfig */,
-				7EA6A4C8728EBA7B6CCF91BD /* Pods-Stride.release.xcconfig */,
+				E6E764F0BC03BCCB59683DE0 /* Pods-AllenFootrace.debug.xcconfig */,
+				04A86C3D542568261779C1BD /* Pods-AllenFootrace.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E9A08D6185BCD3291CF60FD4 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				615F32CA73CB93CE1E659822 /* AllenFootrace */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13B07F861A680F5B00A75B9A /* Stride */ = {
+		13B07F861A680F5B00A75B9A /* AllenFootrace */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Stride" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AllenFootrace" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				F8909EFFBC801008B58DE0C4 /* [Expo] Configure project */,
+				D3477B4CF48A7B8ADCFEEF25 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				35E6609219E9DC1C9EB03DE8 /* [CP] Embed Pods Frameworks */,
+				DA0B4F2015ECD1A13A8DCF5E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Stride;
-			productName = Stride;
-			productReference = 13B07F961A680F5B00A75B9A /* Stride.app */;
+			name = AllenFootrace;
+			productName = AllenFootrace;
+			productReference = 13B07F961A680F5B00A75B9A /* AllenFootrace.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -167,12 +170,10 @@
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1250;
-						DevelopmentTeam = "3CXKW4G8F3";
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Stride" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "AllenFootrace" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -185,7 +186,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* Stride */,
+				13B07F861A680F5B00A75B9A /* AllenFootrace */,
 			);
 		};
 /* End PBXProject section */
@@ -198,7 +199,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				D92035B07D84BBDE6976EAB5 /* PrivacyInfo.xcprivacy in Resources */,
+				B482B0CE2E9B88267D67F350 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,33 +238,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Stride-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AllenFootrace-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		35E6609219E9DC1C9EB03DE8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Stride/Pods-Stride-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/React-Core-prebuilt/React.framework/React",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ReactNativeDependencies/ReactNativeDependencies.framework/ReactNativeDependencies",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeDependencies.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stride/Pods-Stride-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
@@ -272,7 +251,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Stride/Pods-Stride-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AllenFootrace/Pods-AllenFootrace-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXApplication/ExpoApplication_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
@@ -285,6 +264,14 @@
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/React-Core_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact/React-cxxreact_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Stripe/StripeBundle.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripeCore/StripeCoreBundle.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripeFinancialConnections/StripeFinancialConnectionsBundle.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePaymentSheet/StripePaymentSheetBundle.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePayments/StripePaymentsBundle.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePayments/Stripe3DS2.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePaymentsUI/StripePaymentsUIBundle.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripeUICore/StripeUICoreBundle.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -300,13 +287,21 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-Core_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-cxxreact_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SDWebImage.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripeBundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripeCoreBundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripeFinancialConnectionsBundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripePaymentSheetBundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripePaymentsBundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe3DS2.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripePaymentsUIBundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripeUICoreBundle.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stride/Pods-Stride-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AllenFootrace/Pods-AllenFootrace-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F8909EFFBC801008B58DE0C4 /* [Expo] Configure project */ = {
+		D3477B4CF48A7B8ADCFEEF25 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -317,18 +312,40 @@
 			inputPaths = (
 				"$(SRCROOT)/.xcode.env",
 				"$(SRCROOT)/.xcode.env.local",
-				"$(SRCROOT)/Stride/Stride.entitlements",
-				"$(SRCROOT)/Pods/Target Support Files/Pods-Stride/expo-configure-project.sh",
+				"$(SRCROOT)/AllenFootrace/AllenFootrace.entitlements",
+				"$(SRCROOT)/Pods/Target Support Files/Pods-AllenFootrace/expo-configure-project.sh",
 			);
 			name = "[Expo] Configure project";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/Pods/Target Support Files/Pods-Stride/ExpoModulesProvider.swift",
+				"$(SRCROOT)/Pods/Target Support Files/Pods-AllenFootrace/ExpoModulesProvider.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Stride/expo-configure-project.sh\"\n";
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-AllenFootrace/expo-configure-project.sh\"\n";
+		};
+		DA0B4F2015ECD1A13A8DCF5E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AllenFootrace/Pods-AllenFootrace-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/React-Core-prebuilt/React.framework/React",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ReactNativeDependencies/ReactNativeDependencies.framework/ReactNativeDependencies",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeDependencies.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AllenFootrace/Pods-AllenFootrace-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -338,7 +355,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				A6A3D95592B83B9CBEDD549F /* ExpoModulesProvider.swift in Sources */,
+				6BD0FFCDEF5F41BEBA5DD6F7 /* noop-file.swift in Sources */,
+				23632F2F08417F156C286A56 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,18 +365,18 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3939FA121B0C6F27B3E24DA /* Pods-Stride.debug.xcconfig */;
+			baseConfigurationReference = E6E764F0BC03BCCB59683DE0 /* Pods-AllenFootrace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Stride/Stride.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AllenFootrace/AllenFootrace.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"FB_SONARKIT_ENABLED=1",
 				);
-				INFOPLIST_FILE = Stride/Info.plist;
+				INFOPLIST_FILE = AllenFootrace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -372,27 +390,24 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chrisciampoli.strideapp;
-				PRODUCT_NAME = Stride;
-				SWIFT_OBJC_BRIDGING_HEADER = "Stride/Stride-Bridging-Header.h";
+				PRODUCT_NAME = AllenFootrace;
+				SWIFT_OBJC_BRIDGING_HEADER = "AllenFootrace/AllenFootrace-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
-				DEVELOPMENT_TEAM = "3CXKW4G8F3";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7EA6A4C8728EBA7B6CCF91BD /* Pods-Stride.release.xcconfig */;
+			baseConfigurationReference = 04A86C3D542568261779C1BD /* Pods-AllenFootrace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Stride/Stride.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AllenFootrace/AllenFootrace.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = Stride/Info.plist;
+				INFOPLIST_FILE = AllenFootrace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -406,14 +421,11 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chrisciampoli.strideapp;
-				PRODUCT_NAME = Stride;
-				SWIFT_OBJC_BRIDGING_HEADER = "Stride/Stride-Bridging-Header.h";
+				PRODUCT_NAME = AllenFootrace;
+				SWIFT_OBJC_BRIDGING_HEADER = "AllenFootrace/AllenFootrace-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
-				DEVELOPMENT_TEAM = "3CXKW4G8F3";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Release;
 		};
@@ -538,7 +550,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Stride" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AllenFootrace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -547,7 +559,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Stride" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "AllenFootrace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
