@@ -1,18 +1,35 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
+import type { Challenge } from '@/types';
+
+interface DeleteChallengeInput {
+  challengeId: string;
+  isPaid: boolean;
+}
 
 export function useDeleteChallenge() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (challengeId: string) => {
-      // Delete prize distributions first (FK constraint)
+    mutationFn: async ({ challengeId, isPaid }: DeleteChallengeInput) => {
+      if (isPaid) {
+        // Paid challenges: server-side cancellation with refunds
+        const { data, error } = await supabase.functions.invoke('cancel-challenge', {
+          body: { challenge_id: challengeId },
+        });
+
+        if (error) throw new Error(error.message || 'Failed to cancel challenge');
+        if (data?.error) throw new Error(data.error);
+
+        return { challengeId };
+      }
+
+      // Free challenges: keep existing hard-delete behavior
       await supabase
         .from('prize_distributions')
         .delete()
         .eq('challenge_id', challengeId);
 
-      // Delete participants (FK constraint)
       const { error: partError } = await supabase
         .from('challenge_participants')
         .delete()
@@ -26,14 +43,20 @@ export function useDeleteChallenge() {
         .eq('id', challengeId);
 
       if (error) throw error;
+
+      return { challengeId };
     },
-    onSuccess: (_data, challengeId) => {
-      // Remove queries for the deleted challenge — invalidating would re-fetch
-      // a row that no longer exists and .single() would throw
-      queryClient.removeQueries({ queryKey: ['challenge', challengeId] });
+    onSuccess: ({ challengeId }, { isPaid }) => {
+      if (isPaid) {
+        // Paid: challenge still exists (soft-delete), invalidate to refetch with new status
+        queryClient.invalidateQueries({ queryKey: ['challenge', challengeId] });
+        queryClient.invalidateQueries({ queryKey: ['prizePool', challengeId] });
+      } else {
+        // Free: challenge is deleted, remove stale queries
+        queryClient.removeQueries({ queryKey: ['challenge', challengeId] });
+        queryClient.removeQueries({ queryKey: ['prizePool', challengeId] });
+      }
       queryClient.removeQueries({ queryKey: ['leaderboard', challengeId] });
-      queryClient.removeQueries({ queryKey: ['prizePool', challengeId] });
-      // Invalidate list queries so they refetch without the deleted challenge
       queryClient.invalidateQueries({ queryKey: ['challenges'] });
       queryClient.invalidateQueries({ queryKey: ['homeCTA'] });
       queryClient.invalidateQueries({ queryKey: ['homeLeaderboard'] });

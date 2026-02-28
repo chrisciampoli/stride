@@ -58,25 +58,11 @@ Deno.serve(async (req) => {
           .update({ payment_status: 'paid' })
           .eq('payment_intent_id', pi.id);
 
-        // Update challenge prize pool
-        const { data: challenge } = await supabaseAdmin
-          .from('challenges')
-          .select('prize_pool_cents, prize_status')
-          .eq('id', challengeId)
-          .single();
-
-        if (challenge) {
-          const newPool = (challenge.prize_pool_cents || 0) + pi.amount;
-          const newStatus = challenge.prize_status === 'none' ? 'collecting' : challenge.prize_status;
-
-          await supabaseAdmin
-            .from('challenges')
-            .update({
-              prize_pool_cents: newPool,
-              prize_status: newStatus,
-            })
-            .eq('id', challengeId);
-        }
+        // Atomically increment prize pool (prevents race condition with concurrent webhooks)
+        await supabaseAdmin.rpc('increment_prize_pool', {
+          p_challenge_id: challengeId,
+          p_amount: pi.amount,
+        });
 
         // Send confirmation notification
         await supabaseAdmin.from('notifications').insert({
@@ -127,6 +113,19 @@ Deno.serve(async (req) => {
             updated_at: new Date().toISOString(),
           })
           .eq('stripe_account_id', account.id);
+
+        break;
+      }
+
+      case 'payment_intent.canceled': {
+        const pi = event.data.object as Stripe.PaymentIntent;
+
+        // Clean up any orphaned pending participant
+        await supabaseAdmin
+          .from('challenge_participants')
+          .delete()
+          .eq('payment_intent_id', pi.id)
+          .eq('payment_status', 'pending');
 
         break;
       }

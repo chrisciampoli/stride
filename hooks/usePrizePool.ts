@@ -1,4 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
 import type { PayoutTier, PrizeStatus } from '@/types';
 
@@ -13,6 +14,33 @@ interface PrizePoolDetails {
 }
 
 export function usePrizePool(challengeId: string) {
+  const queryClient = useQueryClient();
+
+  // Realtime subscription for live prize pool updates
+  useEffect(() => {
+    if (!challengeId) return;
+
+    const channel = supabase
+      .channel(`prize-pool-${challengeId}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'challenges',
+          filter: `id=eq.${challengeId}`,
+        },
+        () => {
+          queryClient.invalidateQueries({ queryKey: ['prizePool', challengeId] });
+        },
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [challengeId, queryClient]);
+
   return useQuery<PrizePoolDetails | null>({
     queryKey: ['prizePool', challengeId],
     queryFn: async () => {
@@ -43,5 +71,7 @@ export function usePrizePool(challengeId: string) {
       };
     },
     enabled: !!challengeId,
+    // Fallback polling for upcoming/collecting challenges
+    refetchInterval: 30_000,
   });
 }

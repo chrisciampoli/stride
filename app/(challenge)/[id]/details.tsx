@@ -11,9 +11,10 @@ import { useJoinPaidChallenge } from '@/hooks/mutations/useJoinPaidChallenge';
 import { useDeleteChallenge } from '@/hooks/mutations/useDeleteChallenge';
 import { usePrizePool } from '@/hooks/usePrizePool';
 import { formatDollars } from '@/lib/format';
-import type { Challenge, ChallengeParticipant, Profile } from '@/types';
+import type { Challenge, ChallengeParticipant, PaymentStatus, Profile } from '@/types';
 
 type DetailParticipant = Pick<ChallengeParticipant, 'id' | 'user_id' | 'total_steps'> & {
+  payment_status?: PaymentStatus;
   profile: Pick<Profile, 'id' | 'full_name' | 'avatar_url'> | null;
 };
 import { ScreenHeader } from '@/components/layout/ScreenHeader';
@@ -60,22 +61,41 @@ export default function ChallengeDetailsScreen() {
   const isCreator = challenge?.created_by === user?.id;
 
   const handleDelete = () => {
-    Alert.alert(
-      'Delete Challenge',
-      'This will permanently delete this challenge for all participants. This cannot be undone.',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: () => {
-            deleteChallenge.mutate(id, {
-              onSuccess: () => router.replace('/(tabs)/challenges'),
-            });
+    if (challenge?.is_paid) {
+      Alert.alert(
+        'Cancel Challenge?',
+        `This challenge has ${paidParticipantCount} paid participant${paidParticipantCount !== 1 ? 's' : ''}. All entry fees will be refunded. This cannot be undone.`,
+        [
+          { text: 'Keep Challenge', style: 'cancel' },
+          {
+            text: 'Cancel & Refund All',
+            style: 'destructive',
+            onPress: () => {
+              deleteChallenge.mutate({ challengeId: id, isPaid: true }, {
+                onSuccess: () => router.replace('/(tabs)/challenges'),
+              });
+            },
           },
-        },
-      ],
-    );
+        ],
+      );
+    } else {
+      Alert.alert(
+        'Delete Challenge',
+        'This will permanently delete this challenge for all participants. This cannot be undone.',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          {
+            text: 'Delete',
+            style: 'destructive',
+            onPress: () => {
+              deleteChallenge.mutate({ challengeId: id, isPaid: false }, {
+                onSuccess: () => router.replace('/(tabs)/challenges'),
+              });
+            },
+          },
+        ],
+      );
+    }
   };
 
   const onRefresh = useCallback(async () => {
@@ -85,7 +105,17 @@ export default function ChallengeDetailsScreen() {
   }, [refetch]);
 
   const participants = (challenge as (Challenge & { challenge_participants: DetailParticipant[] }) | undefined)?.challenge_participants ?? [];
-  const isJoined = participants.some((p) => p.user_id === user?.id);
+  const isJoined = challenge?.is_paid
+    ? participants.some((p) => p.user_id === user?.id && p.payment_status === 'paid')
+    : participants.some((p) => p.user_id === user?.id);
+  // For display: exclude pending participants from paid challenges
+  const displayParticipants = challenge?.is_paid
+    ? participants.filter((p) => p.payment_status === 'paid')
+    : participants;
+  const isCancelled = challenge?.status === 'cancelled';
+  const paidParticipantCount = challenge?.is_paid
+    ? participants.filter((p) => p.payment_status === 'paid').length
+    : 0;
   const myParticipation = participants.find((p) => p.user_id === user?.id);
   const mySteps = myParticipation?.total_steps ?? 0;
   const goalSteps = challenge?.goal_steps ?? 0;
@@ -114,7 +144,8 @@ export default function ChallengeDetailsScreen() {
   const registrationClosed = challenge?.is_paid && challenge?.start_date
     ? new Date(challenge.start_date).getTime() <= Date.now()
     : false;
-  const creatorNeedsPayment = isCreator && challenge?.is_paid && !isJoined;
+  const creatorHasPending = challenge?.is_paid && participants.some((p) => p.user_id === user?.id && p.payment_status === 'pending');
+  const creatorNeedsPayment = isCreator && challenge?.is_paid && !isJoined && !creatorHasPending;
 
   if (challengeLoading) {
     return (
@@ -139,11 +170,15 @@ export default function ChallengeDetailsScreen() {
       <ScreenHeader
         title={challenge?.name ?? 'Challenge'}
         rightIcon={
-          isCreator
+          isCreator && !isCancelled && prizePool?.prizeStatus !== 'distributed' && prizePool?.prizeStatus !== 'distributing'
             ? <Trash2 size={20} color={Colors.neutralDark} />
             : <Share2 size={20} color={Colors.neutralDark} />
         }
-        onRightPress={isCreator ? handleDelete : undefined}
+        onRightPress={
+          isCreator && !isCancelled && prizePool?.prizeStatus !== 'distributed' && prizePool?.prizeStatus !== 'distributing'
+            ? handleDelete
+            : undefined
+        }
       />
       <ScrollView
         className="flex-1"
@@ -160,8 +195,11 @@ export default function ChallengeDetailsScreen() {
                 <Badge style="lime">{challenge.category}</Badge>
               </View>
             )}
-            {challenge?.is_paid && (
+            {challenge?.is_paid && !isCancelled && (
               <Badge style="lime">💰 Prize Pool</Badge>
+            )}
+            {isCancelled && (
+              <Badge style="lime">Cancelled</Badge>
             )}
           </View>
           <Text className="text-white text-xl font-bold mb-1">
@@ -176,7 +214,7 @@ export default function ChallengeDetailsScreen() {
         </View>
 
         {/* Prize Pool Card (paid challenges only) */}
-        {prizePool && (
+        {prizePool && prizePool.prizeStatus !== 'refunded' && (
           <View className="px-6 mb-4">
             <Card className="bg-green-50 border-green-200">
               <View className="flex-row items-center mb-3">
@@ -247,7 +285,7 @@ export default function ChallengeDetailsScreen() {
           <View className="flex-1 items-center bg-white border border-border rounded-xl py-3">
             <Users size={16} color={Colors.neutralMuted} />
             <Text className="text-base font-bold text-neutral-dark mt-1">
-              {participants.length.toLocaleString()}+
+              {displayParticipants.length.toLocaleString()}+
             </Text>
             <Text className="text-[10px] text-muted-text uppercase">Joiners</Text>
           </View>
@@ -378,13 +416,13 @@ export default function ChallengeDetailsScreen() {
           </Text>
           <View className="flex-row items-center">
             <AvatarGroup
-              uris={participants.slice(0, 5).map((p) => p.profile?.avatar_url ?? null)}
+              uris={displayParticipants.slice(0, 5).map((p) => p.profile?.avatar_url ?? null)}
               size="sm"
               max={4}
             />
             <Text className="text-xs text-muted-text ml-2">
-              {participants.length > 0
-                ? `${participants.length} friends already joined`
+              {displayParticipants.length > 0
+                ? `${displayParticipants.length} friends already joined`
                 : 'Be the first to join!'}
             </Text>
           </View>
@@ -394,7 +432,14 @@ export default function ChallengeDetailsScreen() {
       </ScrollView>
 
       {/* Fixed Bottom CTA */}
-      {!isJoined && !registrationClosed && !creatorNeedsPayment && (
+      {isCancelled && (
+        <View className="px-6 pb-6 pt-2 bg-background-light border-t border-border">
+          <Text className="text-sm font-medium text-muted-text text-center py-3">
+            This challenge has been cancelled
+          </Text>
+        </View>
+      )}
+      {!isCancelled && !isJoined && !registrationClosed && !creatorNeedsPayment && (
         <View className="px-6 pb-6 pt-2 bg-background-light border-t border-border">
           <Button
             variant="primary"
@@ -416,7 +461,7 @@ export default function ChallengeDetailsScreen() {
           )}
         </View>
       )}
-      {creatorNeedsPayment && !registrationClosed && (
+      {!isCancelled && creatorNeedsPayment && !registrationClosed && (
         <View className="px-6 pb-6 pt-2 bg-background-light border-t border-border">
           <Button
             variant="primary"
@@ -432,7 +477,7 @@ export default function ChallengeDetailsScreen() {
           </Text>
         </View>
       )}
-      {!isJoined && registrationClosed && !creatorNeedsPayment && (
+      {!isCancelled && !isJoined && registrationClosed && !creatorNeedsPayment && (
         <View className="px-6 pb-6 pt-2 bg-background-light border-t border-border">
           <Text className="text-sm font-medium text-muted-text text-center py-3">
             Registration closed

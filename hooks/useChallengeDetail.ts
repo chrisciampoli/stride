@@ -8,7 +8,7 @@ export function useChallengeDetail(id: string) {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('challenges')
-        .select('*, challenge_participants(id, user_id, total_steps, profile:profiles(id, full_name, avatar_url))')
+        .select('*, challenge_participants(id, user_id, total_steps, payment_status, profile:profiles(id, full_name, avatar_url))')
         .eq('id', id)
         .single();
 

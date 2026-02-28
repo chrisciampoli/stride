@@ -13,7 +13,7 @@ export interface Profile {
   updated_at: string;
 }
 
-export type ChallengeStatus = 'active' | 'upcoming' | 'completed' | 'tiebreaker';
+export type ChallengeStatus = 'active' | 'upcoming' | 'completed' | 'tiebreaker' | 'cancelled';
 
 export type PrizeStatus = 'none' | 'collecting' | 'funded' | 'distributing' | 'distributed' | 'refunding' | 'refunded';
 

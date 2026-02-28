@@ -81,19 +81,36 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Check user isn't already a participant
+    // Check for existing participant record
     const { data: existing } = await supabaseAdmin
       .from('challenge_participants')
-      .select('id')
+      .select('id, payment_status, payment_intent_id')
       .eq('challenge_id', challenge_id)
       .eq('user_id', user.id)
       .maybeSingle();
 
     if (existing) {
-      return new Response(
-        JSON.stringify({ error: 'You have already joined this challenge' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
-      );
+      if (existing.payment_status === 'paid') {
+        return new Response(
+          JSON.stringify({ error: 'You have already joined this challenge' }),
+          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+        );
+      }
+
+      // Stale pending record — cancel old PI and delete row so we can create a fresh one
+      if (existing.payment_status === 'pending' && existing.payment_intent_id) {
+        try {
+          await stripe.paymentIntents.cancel(existing.payment_intent_id);
+        } catch {
+          // Old PI may already be cancelled — safe to ignore
+        }
+      }
+
+      // Delete stale row (pending or refunded) to allow re-creation
+      await supabaseAdmin
+        .from('challenge_participants')
+        .delete()
+        .eq('id', existing.id);
     }
 
     // Create PaymentIntent — amount determined server-side (security)

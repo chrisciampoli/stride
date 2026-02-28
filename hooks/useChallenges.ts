@@ -50,7 +50,7 @@ export function useActiveChallenges() {
 
   return useQuery({
     queryKey: ['challenges', 'active', user?.id],
-    queryFn: () => fetchChallengesWithCounts(user!.id, ['active', 'upcoming'], 'start_date', true),
+    queryFn: () => fetchChallengesWithCounts(user!.id, ['active', 'upcoming', 'cancelled'], 'start_date', true),
     enabled: !!user,
   });
 }

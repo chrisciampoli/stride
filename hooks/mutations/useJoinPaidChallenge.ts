@@ -41,14 +41,29 @@ export function useJoinPaidChallenge() {
       const { error: presentError } = await presentPaymentSheet();
 
       if (presentError) {
-        // User cancelled or payment failed — the webhook will handle cleanup
-        throw new Error(presentError.code === 'Canceled' ? 'Payment cancelled' : presentError.message);
+        if (presentError.code === 'Canceled') {
+          // Clean up pending participant record — best-effort
+          supabase.functions.invoke('cancel-payment', {
+            body: { payment_intent_id: result.paymentIntentId },
+          }).catch(() => {});
+          throw new Error('Payment cancelled');
+        }
+        throw new Error(presentError.message);
       }
 
       // Payment succeeded — webhook will confirm and update participant status
       return { challengeId, paymentIntentId: result.paymentIntentId };
     },
     onSuccess: ({ challengeId }) => {
+      // Optimistic prize pool update
+      queryClient.setQueryData(['prizePool', challengeId], (old: Record<string, unknown> | null | undefined) => {
+        if (!old) return old;
+        return {
+          ...old,
+          prizePoolCents: (old.prizePoolCents as number) + (old.entryFeeCents as number),
+          paidParticipantCount: (old.paidParticipantCount as number) + 1,
+        };
+      });
       queryClient.invalidateQueries({ queryKey: ['challenges'] });
       queryClient.invalidateQueries({ queryKey: ['challenge', challengeId] });
       queryClient.invalidateQueries({ queryKey: ['leaderboard', challengeId] });
