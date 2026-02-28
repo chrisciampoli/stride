@@ -26,7 +26,7 @@ export function ScreenHeader({
       {showBack ? (
         <Pressable
           onPress={onBack ?? (() => router.back())}
-          className="w-10 h-10 rounded-full bg-white items-center justify-center"
+          className="w-11 h-11 rounded-full bg-white items-center justify-center"
           style={{
             shadowColor: '#000',
             shadowOffset: { width: 0, height: 1 },
@@ -38,7 +38,7 @@ export function ScreenHeader({
           <ChevronLeft size={20} color={Colors.neutralDark} strokeWidth={2} />
         </Pressable>
       ) : (
-        <View className="w-10 h-10" />
+        <View className="w-11 h-11" />
       )}
 
       <Text className="flex-1 text-center text-lg font-bold text-neutral-dark">
@@ -48,7 +48,7 @@ export function ScreenHeader({
       {rightIcon ? (
         <Pressable
           onPress={onRightPress}
-          className="w-10 h-10 rounded-full bg-white items-center justify-center"
+          className="w-11 h-11 rounded-full bg-white items-center justify-center"
           style={{
             shadowColor: '#000',
             shadowOffset: { width: 0, height: 1 },
@@ -60,7 +60,7 @@ export function ScreenHeader({
           {rightIcon}
         </Pressable>
       ) : (
-        <View className="w-10 h-10" />
+        <View className="w-11 h-11" />
       )}
     </View>
   );

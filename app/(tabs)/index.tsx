@@ -10,13 +10,15 @@ import { useHomeLeaderboard } from '@/hooks/useHomeLeaderboard';
 import { useHomeCTA } from '@/hooks/useHomeCTA';
 import { useUnreadNotificationCount } from '@/hooks/useNotifications';
 import { useCurrentStreak } from '@/hooks/useStreak';
+import { useWeeklyDailySteps } from '@/hooks/useWeeklyDailySteps';
 import { Avatar } from '@/components/ui/Avatar';
 import { StreakBadge } from '@/components/ui/StreakBadge';
 import { StepProgressRing } from '@/components/ui/StepProgressRing';
 import { StatCard } from '@/components/ui/StatCard';
 import { LeaderboardRow } from '@/components/ui/LeaderboardRow';
 import { HeroCard } from '@/components/ui/HeroCard';
-import { LoadingState } from '@/components/ui/LoadingState';
+import { WeeklyChart } from '@/components/ui/WeeklyChart';
+import { SkeletonCard, SkeletonRow, SkeletonPulse } from '@/components/ui/SkeletonLoader';
 import { ErrorState } from '@/components/ui/ErrorState';
 
 export default function HomeScreen() {
@@ -27,22 +29,37 @@ export default function HomeScreen() {
   const { data: cta } = useHomeCTA();
   const { data: unreadCount = 0 } = useUnreadNotificationCount();
   const { data: streak } = useCurrentStreak();
+  const { data: weeklyDailySteps, refetch: refetchWeeklyDaily } = useWeeklyDailySteps();
 
   const isLoading = statsLoading && leaderboardLoading;
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
-    await Promise.all([refetchStats(), refetchLeaderboard()]);
+    await Promise.all([refetchStats(), refetchLeaderboard(), refetchWeeklyDaily()]);
     setRefreshing(false);
-  }, [refetchStats, refetchLeaderboard]);
+  }, [refetchStats, refetchLeaderboard, refetchWeeklyDaily]);
 
   const firstName = profile?.full_name?.split(' ')[0] ?? 'there';
 
   if (isLoading) {
     return (
       <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
-        <LoadingState message="Loading your dashboard..." />
+        <View className="px-6 pt-16">
+          {/* Stats grid skeleton */}
+          <View className="flex-row gap-3 mb-6">
+            {[0, 1, 2].map((i) => (
+              <View key={i} className="flex-1">
+                <SkeletonCard />
+              </View>
+            ))}
+          </View>
+          {/* Leaderboard skeleton */}
+          <SkeletonPulse width="40%" height={16} className="mb-3" />
+          {[0, 1, 2, 3, 4].map((i) => (
+            <SkeletonRow key={i} />
+          ))}
+        </View>
       </SafeAreaView>
     );
   }
@@ -129,6 +146,16 @@ export default function HomeScreen() {
             label="Mins"
           />
         </View>
+
+        {/* Weekly Step Chart */}
+        {weeklyDailySteps && weeklyDailySteps.length > 0 && (
+          <View className="px-6 mb-6">
+            <WeeklyChart
+              data={weeklyDailySteps}
+              goal={stats?.goal ?? 10000}
+            />
+          </View>
+        )}
 
         {/* Leaderboard */}
         <View className="px-6 mb-6">

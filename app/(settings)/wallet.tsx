@@ -13,6 +13,7 @@ import { ScreenHeader } from '@/components/layout/ScreenHeader';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { LoadingState } from '@/components/ui/LoadingState';
+import { ErrorState } from '@/components/ui/ErrorState';
 import type { WalletTransactionType } from '@/types';
 
 const TX_LABELS: Record<WalletTransactionType, string> = {
@@ -32,8 +33,8 @@ const TX_ICONS: Record<WalletTransactionType, typeof ArrowUpRight> = {
 };
 
 export default function WalletScreen() {
-  const { data: wallet, isPending: walletLoading, refetch: refetchWallet } = useWallet();
-  const { data: transactions = [], isPending: txLoading, refetch: refetchTx } = useWalletTransactions();
+  const { data: wallet, isPending: walletLoading, isError: walletError, refetch: refetchWallet } = useWallet();
+  const { data: transactions = [], isPending: txLoading, isError: txError, refetch: refetchTx } = useWalletTransactions();
   const { data: connectAccount } = useStripeConnectAccount();
   const cashout = useCashout();
   const connectOnboarding = useConnectOnboarding();
@@ -96,6 +97,18 @@ export default function WalletScreen() {
       <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
         <ScreenHeader title="Wallet" />
         <LoadingState />
+      </SafeAreaView>
+    );
+  }
+
+  if (walletError || txError) {
+    return (
+      <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
+        <ScreenHeader title="Wallet" />
+        <ErrorState
+          message="Could not load wallet data"
+          onRetry={() => { refetchWallet(); refetchTx(); }}
+        />
       </SafeAreaView>
     );
   }

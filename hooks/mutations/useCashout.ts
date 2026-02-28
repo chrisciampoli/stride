@@ -6,27 +6,15 @@ export function useCashout() {
 
   return useMutation({
     mutationFn: async (amountCents: number) => {
-      const { data: session } = await supabase.auth.getSession();
-      const token = session?.session?.access_token;
+      const { data, error } = await supabase.functions.invoke('process-cashout', {
+        body: { amount_cents: amountCents },
+      });
 
-      const response = await fetch(
-        `${process.env.EXPO_PUBLIC_SUPABASE_URL}/functions/v1/process-cashout`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ amount_cents: amountCents }),
-        },
-      );
-
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.error || 'Cashout failed');
+      if (error) {
+        throw new Error(error.message || 'Cashout failed');
       }
 
-      return result;
+      return data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['wallet'] });

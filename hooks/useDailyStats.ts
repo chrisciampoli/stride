@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
 import { useAuthStore } from '@/stores/authStore';
+import { useNotificationSettings } from '@/hooks/useSettings';
 import type { DailyStats } from '@/types';
 
 export function useDailyStats() {
   const user = useAuthStore((s) => s.user);
+  const { data: settings } = useNotificationSettings();
   const now = new Date();
   const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 
@@ -22,7 +24,7 @@ export function useDailyStats() {
 
       return {
         steps: data?.steps ?? 0,
-        goal: 10000,
+        goal: settings?.daily_step_goal ?? 10000,
         calories: data?.calories ?? 0,
         miles: data?.distance_miles ? Number(data.distance_miles) : 0,
         activeMinutes: data?.active_minutes ?? 0,

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, ScrollView, TextInput, Pressable, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, ScrollView, TextInput, Pressable, KeyboardAvoidingView, Platform, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Send, Activity, Trophy } from 'lucide-react-native';
@@ -11,13 +11,14 @@ import { useDailyStats } from '@/hooks/useDailyStats';
 import { Avatar } from '@/components/ui/Avatar';
 import { MessageBubble } from '@/components/chat/MessageBubble';
 import { QuickAction } from '@/components/chat/QuickAction';
+import { SkeletonRow } from '@/components/ui/SkeletonLoader';
 
 export default function DirectMessageScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const user = useAuthStore((s) => s.user);
-  const { data: friend } = useFriendProfile(id);
-  const { data: messages = [] } = useConversation(id);
+  const { data: friend, isPending: friendLoading } = useFriendProfile(id);
+  const { data: messages = [], isPending: messagesLoading, isError: messagesError, refetch: refetchMessages } = useConversation(id);
   const sendMessage = useSendMessage();
   const { data: todayStats } = useDailyStats();
   const [text, setText] = useState('');
@@ -38,24 +39,61 @@ export default function DirectMessageScreen() {
     });
   };
 
+  if (friendLoading || messagesLoading) {
+    return (
+      <SafeAreaView className="flex-1 bg-background-light" edges={['top', 'bottom']}>
+        <View className="flex-row items-center px-4 py-3 border-b border-border bg-white">
+          <Pressable onPress={() => router.back()} className="w-11 h-11 items-center justify-center mr-1">
+            <Text className="text-2xl">{'\u2190'}</Text>
+          </Pressable>
+          <ActivityIndicator size="small" color={Colors.primary} />
+          <Text className="ml-3 text-base font-bold text-neutral-dark">Loading...</Text>
+        </View>
+        <View className="flex-1 px-4 pt-4">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <SkeletonRow key={i} />
+          ))}
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  if (messagesError) {
+    return (
+      <SafeAreaView className="flex-1 bg-background-light" edges={['top', 'bottom']}>
+        <View className="flex-row items-center px-4 py-3 border-b border-border bg-white">
+          <Pressable onPress={() => router.back()} className="w-11 h-11 items-center justify-center mr-1">
+            <Text className="text-2xl">{'\u2190'}</Text>
+          </Pressable>
+          <Text className="text-base font-bold text-neutral-dark">Messages</Text>
+        </View>
+        <View className="flex-1 items-center justify-center px-6">
+          <Text className="text-[#1A1208] text-lg font-semibold mb-2">Something went wrong</Text>
+          <Text className="text-[#A07850] text-center mb-4">Could not load messages. Please try again.</Text>
+          <TouchableOpacity onPress={() => refetchMessages()} className="bg-[#E85D0A] px-6 py-3 rounded-xl">
+            <Text className="text-white font-semibold">Try Again</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-background-light" edges={['top', 'bottom']}>
       {/* Header */}
       <View className="flex-row items-center px-4 py-3 border-b border-border bg-white">
-        <Pressable onPress={() => router.back()} className="mr-3">
+        <Pressable onPress={() => router.back()} className="w-11 h-11 items-center justify-center mr-1">
           <Text className="text-2xl">←</Text>
         </Pressable>
         <Avatar
           uri={friend?.avatar_url}
           initials={friend?.full_name?.charAt(0) ?? '?'}
           size="md"
-          showOnline
         />
         <View className="flex-1 ml-3">
           <Text className="text-base font-bold text-neutral-dark">
             {friend?.full_name ?? 'Friend'}
           </Text>
-          <Text className="text-xs text-primary font-medium">ACTIVE NOW</Text>
         </View>
       </View>
 

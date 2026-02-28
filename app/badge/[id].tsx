@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, Pressable } from 'react-native';
+import { View, Text, ScrollView, Pressable, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Award, Zap } from 'lucide-react-native';
@@ -12,11 +12,12 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { ProgressBar } from '@/components/ui/ProgressBar';
+import { SkeletonProfile, SkeletonCard } from '@/components/ui/SkeletonLoader';
 
 export default function BadgeDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
-  const { data: badge } = useBadgeDetail(id);
+  const { data: badge, isPending: badgeLoading, isError: badgeError, refetch: refetchBadge } = useBadgeDetail(id);
   const { data: userBadge } = useUserBadgeForBadge(id);
   const { data: allBadges = [] } = useAllBadges();
   const { data: userBadges = [] } = useUserBadges();
@@ -24,6 +25,34 @@ export default function BadgeDetailsScreen() {
   const { viewRef, share } = useShareBadge();
   const earnedBadgeIds = new Set(userBadges.map((ub) => ub.badge_id));
   const unearnedBadges = allBadges.filter((b) => b.id !== id && !earnedBadgeIds.has(b.id)).slice(0, 3);
+
+  if (badgeLoading) {
+    return (
+      <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
+        <ScreenHeader title="Badge Details" />
+        <SkeletonProfile />
+        <View className="px-6">
+          <SkeletonCard />
+          <SkeletonCard />
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  if (badgeError) {
+    return (
+      <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
+        <ScreenHeader title="Badge Details" />
+        <View className="flex-1 items-center justify-center px-6">
+          <Text className="text-[#1A1208] text-lg font-semibold mb-2">Something went wrong</Text>
+          <Text className="text-[#A07850] text-center mb-4">Could not load badge details. Please try again.</Text>
+          <TouchableOpacity onPress={() => refetchBadge()} className="bg-[#E85D0A] px-6 py-3 rounded-xl">
+            <Text className="text-white font-semibold">Try Again</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>

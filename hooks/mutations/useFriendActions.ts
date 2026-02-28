@@ -19,13 +19,13 @@ export function useSendFriendRequest() {
 
       if (error) throw error;
 
-      // Create notification for the addressee
-      await supabase.from('notifications').insert({
-        user_id: addresseeId,
-        type: 'friend_request',
-        title: 'Friend Request',
-        body: 'You have a new friend request!',
-        data: { requester_id: user!.id },
+      // Create notification for the addressee via edge function
+      await supabase.functions.invoke('create-notification', {
+        body: {
+          type: 'friend_request',
+          receiver_id: addresseeId,
+          sender_id: user!.id,
+        },
       });
 
       return data;

@@ -7,30 +7,18 @@ export function useConnectOnboarding() {
 
   return useMutation({
     mutationFn: async () => {
-      const { data: session } = await supabase.auth.getSession();
-      const token = session?.session?.access_token;
+      const { data, error } = await supabase.functions.invoke('connect-onboarding', {
+        body: {},
+      });
 
-      const response = await fetch(
-        `${process.env.EXPO_PUBLIC_SUPABASE_URL}/functions/v1/connect-onboarding`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({}),
-        },
-      );
-
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to start onboarding');
+      if (error) {
+        throw new Error(error.message || 'Failed to start onboarding');
       }
 
       // Open Stripe onboarding in browser
-      await WebBrowser.openBrowserAsync(result.url);
+      await WebBrowser.openBrowserAsync(data.url);
 
-      return result;
+      return data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['stripeConnectAccount'] });

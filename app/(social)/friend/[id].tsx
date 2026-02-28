@@ -76,7 +76,6 @@ export default function FriendProfileScreen() {
             initials={friend?.full_name?.charAt(0) ?? '?'}
             size="xl"
             border="primary"
-            showOnline
           />
           <Text className="text-xl font-bold text-neutral-dark mt-3">
             {friend?.full_name ?? 'Friend'}
@@ -84,9 +83,6 @@ export default function FriendProfileScreen() {
           {friend?.bio && (
             <Text className="text-sm text-muted-text mt-1 italic">"{friend.bio}"</Text>
           )}
-          <Text className="text-xs text-primary font-semibold mt-1 uppercase">
-            ● Active Now
-          </Text>
         </View>
 
         {/* Stats Grid */}

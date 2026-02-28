@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { View, Text, ScrollView, Pressable, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { ChevronRight, UserPlus, Check, X } from 'lucide-react-native';
+import { ChevronRight, UserPlus, Check, X, MessageCircle } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useFriendsList, usePendingRequests, useOutgoingRequests } from '@/hooks/useFriends';
 import { useAcceptFriendRequest, useRejectFriendRequest } from '@/hooks/mutations/useFriendActions';
@@ -13,7 +13,7 @@ import { useSearchUsers } from '@/hooks/useSearchUsers';
 import { ScreenHeader } from '@/components/layout/ScreenHeader';
 import { SearchBar } from '@/components/ui/SearchBar';
 import { Avatar } from '@/components/ui/Avatar';
-import { LoadingState } from '@/components/ui/LoadingState';
+import { SkeletonRow } from '@/components/ui/SkeletonLoader';
 import { ErrorState } from '@/components/ui/ErrorState';
 import type { Profile } from '@/types';
 
@@ -170,7 +170,11 @@ export default function FriendsScreen() {
     return (
       <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
         <ScreenHeader title="Friends" showBack={false} />
-        <LoadingState message="Loading friends..." />
+        <View className="px-6 pt-4">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <SkeletonRow key={i} />
+          ))}
+        </View>
       </SafeAreaView>
     );
   }
@@ -200,13 +204,28 @@ export default function FriendsScreen() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={Colors.primary} />
         }
       >
-        {/* Search */}
-        <View className="px-6 pt-4 pb-3">
-          <SearchBar
-            placeholder="Search friends..."
-            value={search}
-            onChangeText={setSearch}
-          />
+        {/* Messages + Search */}
+        <View className="px-6 pt-4 pb-3 flex-row items-center gap-2">
+          <View className="flex-1">
+            <SearchBar
+              placeholder="Search friends..."
+              value={search}
+              onChangeText={setSearch}
+            />
+          </View>
+          <Pressable
+            onPress={() => router.push('/(social)/inbox')}
+            className="w-11 h-11 rounded-full bg-white items-center justify-center"
+            style={{
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 1 },
+              shadowOpacity: 0.05,
+              shadowRadius: 2,
+              elevation: 1,
+            }}
+          >
+            <MessageCircle size={20} color={Colors.neutralDark} />
+          </Pressable>
         </View>
 
         {/* Pending Requests */}
@@ -233,13 +252,13 @@ export default function FriendsScreen() {
                 </View>
                 <Pressable
                   onPress={() => acceptRequest.mutate(req.friendship_id)}
-                  className="w-8 h-8 rounded-full bg-primary items-center justify-center mr-2"
+                  className="w-10 h-10 rounded-full bg-primary items-center justify-center mr-2"
                 >
                   <Check size={16} color={Colors.neutralDark} />
                 </Pressable>
                 <Pressable
                   onPress={() => rejectRequest.mutate(req.friendship_id)}
-                  className="w-8 h-8 rounded-full bg-white border border-border items-center justify-center"
+                  className="w-10 h-10 rounded-full bg-white border border-border items-center justify-center"
                 >
                   <X size={16} color={Colors.neutralMuted} />
                 </Pressable>

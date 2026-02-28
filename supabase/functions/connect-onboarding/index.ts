@@ -97,8 +97,8 @@ Deno.serve(async (req) => {
 
     const accountLink = await stripe.accountLinks.create({
       account: stripeAccountId,
-      refresh_url: return_url || 'allenfootrace://settings/wallet?refresh=true',
-      return_url: return_url || 'allenfootrace://settings/wallet?success=true',
+      refresh_url: return_url || 'strideapp://settings/wallet?refresh=true',
+      return_url: return_url || 'strideapp://settings/wallet?success=true',
       type: 'account_onboarding',
     });
 

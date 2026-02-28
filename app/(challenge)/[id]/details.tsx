@@ -10,7 +10,8 @@ import { useJoinChallenge } from '@/hooks/mutations/useJoinChallenge';
 import { useJoinPaidChallenge } from '@/hooks/mutations/useJoinPaidChallenge';
 import { useDeleteChallenge } from '@/hooks/mutations/useDeleteChallenge';
 import { usePrizePool } from '@/hooks/usePrizePool';
-import { formatDollars } from '@/lib/format';
+import { useShareChallenge } from '@/hooks/useShareChallenge';
+import { formatDollars, formatTimeLeft } from '@/lib/format';
 import type { Challenge, ChallengeParticipant, PaymentStatus, Profile } from '@/types';
 
 type DetailParticipant = Pick<ChallengeParticipant, 'id' | 'user_id' | 'total_steps'> & {
@@ -25,15 +26,6 @@ import { AvatarGroup } from '@/components/ui/AvatarGroup';
 import { Badge } from '@/components/ui/Badge';
 import { LoadingState } from '@/components/ui/LoadingState';
 import { ErrorState } from '@/components/ui/ErrorState';
-
-function formatTimeLeft(endDate: string): string {
-  const end = new Date(endDate);
-  const now = new Date();
-  const diff = end.getTime() - now.getTime();
-  if (diff <= 0) return 'Ended';
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  return `${days}d`;
-}
 
 function formatRegistrationTimeLeft(startDate: string): string {
   const start = new Date(startDate);
@@ -57,6 +49,7 @@ export default function ChallengeDetailsScreen() {
   const joinPaidChallenge = useJoinPaidChallenge();
   const deleteChallenge = useDeleteChallenge();
   const { data: prizePool } = usePrizePool(id);
+  const { shareChallenge } = useShareChallenge();
   const [refreshing, setRefreshing] = useState(false);
   const isCreator = challenge?.created_by === user?.id;
 
@@ -177,7 +170,9 @@ export default function ChallengeDetailsScreen() {
         onRightPress={
           isCreator && !isCancelled && prizePool?.prizeStatus !== 'distributed' && prizePool?.prizeStatus !== 'distributing'
             ? handleDelete
-            : undefined
+            : challenge
+              ? () => shareChallenge(challenge)
+              : undefined
         }
       />
       <ScrollView
@@ -278,9 +273,9 @@ export default function ChallengeDetailsScreen() {
           <View className="flex-1 items-center bg-white border border-border rounded-xl py-3">
             <MapPin size={16} color={Colors.neutralMuted} />
             <Text className="text-base font-bold text-neutral-dark mt-1">
-              {(goalSteps / 1000).toFixed(0)}km
+              {goalSteps.toLocaleString()}
             </Text>
-            <Text className="text-[10px] text-muted-text uppercase">Distance</Text>
+            <Text className="text-[10px] text-muted-text uppercase">Steps</Text>
           </View>
           <View className="flex-1 items-center bg-white border border-border rounded-xl py-3">
             <Users size={16} color={Colors.neutralMuted} />

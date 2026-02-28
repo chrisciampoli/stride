@@ -18,13 +18,13 @@ export function useSendNudge() {
 
       if (msgError) throw msgError;
 
-      // Create notification
-      const { error: notifError } = await supabase.from('notifications').insert({
-        user_id: targetUserId,
-        type: 'nudge',
-        title: 'You got nudged!',
-        body: 'Someone nudged you to keep moving!',
-        data: { sender_id: user!.id },
+      // Create notification via edge function
+      const { error: notifError } = await supabase.functions.invoke('create-notification', {
+        body: {
+          type: 'nudge',
+          receiver_id: targetUserId,
+          sender_id: user!.id,
+        },
       });
 
       if (notifError) throw notifError;

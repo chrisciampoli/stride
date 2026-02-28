@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Search, Plus } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
+import { formatTimeLeft } from '@/lib/format';
 import { useActiveChallenges, useCompletedChallenges } from '@/hooks/useChallenges';
 import { useFeatured } from '@/hooks/useDiscoverChallenges';
 import { ScreenHeader } from '@/components/layout/ScreenHeader';
@@ -12,19 +13,8 @@ import { CategoryPills } from '@/components/ui/CategoryPills';
 import { Button } from '@/components/ui/Button';
 import { ChallengeCard } from '@/components/ui/ChallengeCard';
 import { CommunityChallengeCard } from '@/components/ui/CommunityChallengeCard';
-import { LoadingState } from '@/components/ui/LoadingState';
+import { SkeletonCard } from '@/components/ui/SkeletonLoader';
 import { ErrorState } from '@/components/ui/ErrorState';
-
-function formatTimeLeft(endDate: string): string {
-  const end = new Date(endDate);
-  const now = new Date();
-  const diff = end.getTime() - now.getTime();
-  if (diff <= 0) return 'Ended';
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  if (days > 0) return `${days} days`;
-  return `${hours}h`;
-}
 
 export default function ChallengesScreen() {
   const router = useRouter();
@@ -62,7 +52,11 @@ export default function ChallengesScreen() {
     return (
       <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
         <ScreenHeader title="My Challenges" showBack={false} />
-        <LoadingState message="Loading challenges..." />
+        <View className="px-6 pt-4">
+          {[0, 1, 2, 3].map((i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </View>
       </SafeAreaView>
     );
   }

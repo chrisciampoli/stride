@@ -7,6 +7,7 @@ import { Colors } from '@/constants/colors';
 import { useFeatured, useTrending } from '@/hooks/useDiscoverChallenges';
 import { useJoinChallenge } from '@/hooks/mutations/useJoinChallenge';
 import { useUnreadNotificationCount } from '@/hooks/useNotifications';
+import { ScreenHeader } from '@/components/layout/ScreenHeader';
 import { SearchBar } from '@/components/ui/SearchBar';
 import { FeaturedChallengeCard } from '@/components/ui/FeaturedChallengeCard';
 import { CategoryPills } from '@/components/ui/CategoryPills';
@@ -63,21 +64,20 @@ export default function DiscoverScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
-      {/* Header */}
-      <View className="flex-row items-center justify-between px-6 pt-4 pb-2">
-        <Text className="text-2xl font-bold text-neutral-dark">Discover</Text>
-        <Pressable
-          onPress={() => router.push('/(social)/notifications')}
-          className="w-10 h-10 rounded-full bg-white items-center justify-center border border-border"
-        >
-          <Bell size={20} color={Colors.neutralDark} />
-          {unreadCount > 0 && (
-            <View className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 items-center justify-center">
-              <Text className="text-[9px] text-white font-bold">{unreadCount > 9 ? '9+' : unreadCount}</Text>
-            </View>
-          )}
-        </Pressable>
-      </View>
+      <ScreenHeader
+        title="Discover"
+        rightIcon={
+          <View>
+            <Bell size={20} color={Colors.neutralDark} />
+            {unreadCount > 0 && (
+              <View className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 items-center justify-center">
+                <Text className="text-[9px] text-white font-bold">{unreadCount > 9 ? '9+' : unreadCount}</Text>
+              </View>
+            )}
+          </View>
+        }
+        onRightPress={() => router.push('/(social)/notifications')}
+      />
 
       <ScrollView
         className="flex-1"
@@ -147,7 +147,13 @@ export default function DiscoverScreen() {
                     </View>
                   </View>
                   <Pressable
-                    onPress={() => joinChallenge.mutate(challenge.id)}
+                    onPress={() => {
+                      if (challenge.is_paid) {
+                        router.push(`/(challenge)/${challenge.id}/details`);
+                      } else {
+                        joinChallenge.mutate(challenge.id);
+                      }
+                    }}
                     disabled={isJoining}
                     className={`border border-primary rounded-full px-4 py-1.5 ${isJoining ? 'bg-primary/10 opacity-60' : 'bg-white'}`}
                   >

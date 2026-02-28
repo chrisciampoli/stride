@@ -159,6 +159,7 @@ export interface UserSettings {
   streak_freezes: number;
   last_streak_date: string | null;
   daily_step_goal: number;
+  onboarding_completed: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -264,6 +265,16 @@ export interface StripeConnectAccount {
   onboarding_complete: boolean;
   created_at: string;
   updated_at: string;
+}
+
+export interface Conversation {
+  friendId: string;
+  friendName: string;
+  friendAvatarUrl: string | null;
+  lastMessage: string;
+  lastMessageAt: string;
+  lastMessageType: MessageType;
+  isLastMessageSent: boolean;
 }
 
 export interface PrizeDistribution {

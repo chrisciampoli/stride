@@ -70,6 +70,7 @@ export function getRouteForNotification(
     case 'challenge_started':
       return data.challenge_id ? `/(challenge)/${data.challenge_id}/details` : null;
     case 'challenge_completed':
+      return data.challenge_id ? `/(challenge)/${data.challenge_id}/results` : null;
     case 'rank_change':
       return data.challenge_id ? `/(challenge)/${data.challenge_id}/leaderboard` : null;
     case 'friend_request':

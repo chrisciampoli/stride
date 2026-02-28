@@ -1,15 +1,16 @@
 import React, { useCallback, useState } from 'react';
-import { View, Text, ScrollView, RefreshControl } from 'react-native';
+import { View, Text, ScrollView, RefreshControl, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Info, Clock } from 'lucide-react-native';
+import { Info, Clock, Share2 } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useAuthStore } from '@/stores/authStore';
 import { useChallengeDetail } from '@/hooks/useChallengeDetail';
 import { useLeaderboard } from '@/hooks/useLeaderboard';
 import { usePrizePool } from '@/hooks/usePrizePool';
+import { useShareChallenge } from '@/hooks/useShareChallenge';
 import type { ChallengeParticipant, Profile } from '@/types';
-import { ordinal, formatDollars } from '@/lib/format';
+import { ordinal, formatDollars, formatTimeLeft } from '@/lib/format';
 
 type LeaderboardParticipant = ChallengeParticipant & {
   profile: Pick<Profile, 'id' | 'full_name' | 'avatar_url'> | null;
@@ -22,17 +23,6 @@ import { FloatingRankFab } from '@/components/ui/FloatingRankFab';
 import { LoadingState } from '@/components/ui/LoadingState';
 import { ErrorState } from '@/components/ui/ErrorState';
 
-function formatTimeLeft(endDate: string): string {
-  const end = new Date(endDate);
-  const now = new Date();
-  const diff = end.getTime() - now.getTime();
-  if (diff <= 0) return 'Ended';
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  if (days > 0) return `${days}d ${hours}h remaining`;
-  return `${hours}h remaining`;
-}
-
 export default function LeaderboardScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
@@ -40,6 +30,7 @@ export default function LeaderboardScreen() {
   const { data: challenge, isPending: challengeLoading, refetch: refetchChallenge } = useChallengeDetail(id);
   const { data: participants = [], isPending: participantsLoading, isError: participantsError, refetch } = useLeaderboard(id);
   const { data: prizePool } = usePrizePool(id);
+  const { shareRank } = useShareChallenge();
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(async () => {
@@ -201,6 +192,28 @@ export default function LeaderboardScreen() {
             />
           ))}
         </View>
+
+        {/* Share My Rank */}
+        {myRank > 0 && challenge && (
+          <View className="px-6 mb-4">
+            <Pressable
+              onPress={() => shareRank(challenge, myRank, mySteps)}
+              className="flex-row items-center justify-center bg-primary rounded-xl py-3.5"
+              style={{
+                shadowColor: '#E85D0A',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.3,
+                shadowRadius: 8,
+                elevation: 4,
+              }}
+            >
+              <Share2 size={18} color={Colors.neutralDark} />
+              <Text className="text-sm font-bold text-neutral-dark uppercase tracking-wider ml-2">
+                Share My Rank
+              </Text>
+            </Pressable>
+          </View>
+        )}
 
         <View className="h-24" />
       </ScrollView>

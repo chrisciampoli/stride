@@ -8,13 +8,14 @@ import { Colors } from '@/constants/colors';
 import { useAuthStore } from '@/stores/authStore';
 import { useUserStats } from '@/hooks/useProfile';
 import { useUserBadges, useAllBadges } from '@/hooks/useBadges';
+import { useNotificationSettings } from '@/hooks/useSettings';
 import { supabase } from '@/lib/supabase';
 import { ScreenHeader } from '@/components/layout/ScreenHeader';
 import { Avatar } from '@/components/ui/Avatar';
 import { StatCard } from '@/components/ui/StatCard';
 import { BadgeIcon } from '@/components/ui/BadgeIcon';
 import { SettingsRow } from '@/components/ui/SettingsRow';
-import { LoadingState } from '@/components/ui/LoadingState';
+import { SkeletonProfile, SkeletonCard, SkeletonRow } from '@/components/ui/SkeletonLoader';
 import { ErrorState } from '@/components/ui/ErrorState';
 
 function formatSteps(n: number): string {
@@ -23,12 +24,26 @@ function formatSteps(n: number): string {
   return n.toString();
 }
 
+function formatSyncTime(lastSynced: string | null | undefined): string {
+  if (!lastSynced) return 'SYNCED';
+  const diff = Date.now() - new Date(lastSynced).getTime();
+  if (diff < 0) return 'SYNCED';
+  const minutes = Math.floor(diff / 60000);
+  if (minutes < 1) return 'SYNCED JUST NOW';
+  if (minutes < 60) return `SYNCED ${minutes}M AGO`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `SYNCED ${hours}H AGO`;
+  const days = Math.floor(hours / 24);
+  return `SYNCED ${days}D AGO`;
+}
+
 export default function ProfileScreen() {
   const router = useRouter();
   const profile = useAuthStore((s) => s.profile);
   const { data: stats, isPending: statsLoading, isError: statsError, refetch: refetchStats } = useUserStats();
   const { data: userBadges = [], refetch: refetchUserBadges } = useUserBadges();
   const { data: allBadges = [] } = useAllBadges();
+  const { data: settings } = useNotificationSettings();
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(async () => {
@@ -60,7 +75,19 @@ export default function ProfileScreen() {
     return (
       <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
         <ScreenHeader title="Profile" showBack={false} />
-        <LoadingState message="Loading profile..." />
+        <SkeletonProfile />
+        <View className="px-6">
+          <View className="flex-row gap-3 mb-6">
+            {[0, 1, 2].map((i) => (
+              <View key={i} className="flex-1">
+                <SkeletonCard />
+              </View>
+            ))}
+          </View>
+          {[0, 1, 2].map((i) => (
+            <SkeletonRow key={i} />
+          ))}
+        </View>
       </SafeAreaView>
     );
   }
@@ -178,7 +205,7 @@ export default function ProfileScreen() {
           <SettingsRow
             icon={<Watch size={20} color={Colors.neutralDark} />}
             label="Connected Devices"
-            subtitle="SYNCED 2M AGO"
+            subtitle={formatSyncTime(settings?.device_last_synced_at)}
             onPress={() => router.push('/(settings)/connected-devices')}
           />
           <SettingsRow

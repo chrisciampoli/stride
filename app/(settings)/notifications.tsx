@@ -7,14 +7,28 @@ import { useNotificationSettings, useUpdateSettings } from '@/hooks/useSettings'
 import type { UserSettings } from '@/types';
 import { ScreenHeader } from '@/components/layout/ScreenHeader';
 import { ToggleRow } from '@/components/ui/ToggleRow';
+import { SkeletonRow } from '@/components/ui/SkeletonLoader';
 
 export default function NotificationSettingsScreen() {
-  const { data: settings } = useNotificationSettings();
+  const { data: settings, isPending: settingsLoading } = useNotificationSettings();
   const updateSettings = useUpdateSettings();
 
   const toggle = (key: keyof UserSettings, value: boolean) => {
     updateSettings.mutate({ [key]: value } as Partial<UserSettings>);
   };
+
+  if (settingsLoading) {
+    return (
+      <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
+        <ScreenHeader title="Notifications" />
+        <View className="px-6 pt-6">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <SkeletonRow key={i} />
+          ))}
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-background-light" edges={['top']}>
