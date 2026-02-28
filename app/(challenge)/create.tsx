@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { View, Text, ScrollView, TextInput, KeyboardAvoidingView, Platform, Alert, Switch, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -40,10 +40,13 @@ export default function CreateChallengeScreen() {
   const [showReview, setShowReview] = useState(false);
   const { data: friends = [] } = useFriendsList(friendSearch || undefined);
   const createChallenge = useCreateChallenge();
+  const isSubmitting = useRef(false);
 
   const canCreate = !!name && goalSteps > 0 && durationDays > 0;
 
   const handleCreate = async () => {
+    if (isSubmitting.current) return;
+    isSubmitting.current = true;
     try {
       await createChallenge.mutateAsync({
         name,
@@ -61,6 +64,8 @@ export default function CreateChallengeScreen() {
       router.back();
     } catch {
       Alert.alert('Error', 'Could not create challenge. Please try again.');
+    } finally {
+      isSubmitting.current = false;
     }
   };
 

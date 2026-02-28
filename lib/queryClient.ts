@@ -1,5 +1,4 @@
 import { QueryClient, QueryCache, MutationCache } from '@tanstack/react-query';
-import { Alert } from 'react-native';
 
 function handleError(error: Error, context: string) {
   if (__DEV__) {
@@ -7,16 +6,12 @@ function handleError(error: Error, context: string) {
   }
 }
 
-function handleMutationError(error: Error) {
-  Alert.alert('Error', error.message || 'Something went wrong. Please try again.');
-}
-
 export const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error) => handleError(error, 'Query'),
   }),
   mutationCache: new MutationCache({
-    onError: (error) => handleMutationError(error),
+    onError: (error) => handleError(error, 'Mutation'),
   }),
   defaultOptions: {
     queries: {
@@ -25,7 +20,7 @@ export const queryClient = new QueryClient({
       retry: 2,
     },
     mutations: {
-      retry: 1,
+      retry: false,
     },
   },
 });

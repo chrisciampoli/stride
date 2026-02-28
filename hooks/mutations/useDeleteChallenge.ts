@@ -28,10 +28,13 @@ export function useDeleteChallenge() {
       if (error) throw error;
     },
     onSuccess: (_data, challengeId) => {
+      // Remove queries for the deleted challenge — invalidating would re-fetch
+      // a row that no longer exists and .single() would throw
+      queryClient.removeQueries({ queryKey: ['challenge', challengeId] });
+      queryClient.removeQueries({ queryKey: ['leaderboard', challengeId] });
+      queryClient.removeQueries({ queryKey: ['prizePool', challengeId] });
+      // Invalidate list queries so they refetch without the deleted challenge
       queryClient.invalidateQueries({ queryKey: ['challenges'] });
-      queryClient.invalidateQueries({ queryKey: ['challenge', challengeId] });
-      queryClient.invalidateQueries({ queryKey: ['leaderboard', challengeId] });
-      queryClient.invalidateQueries({ queryKey: ['prizePool', challengeId] });
       queryClient.invalidateQueries({ queryKey: ['homeCTA'] });
       queryClient.invalidateQueries({ queryKey: ['homeLeaderboard'] });
     },

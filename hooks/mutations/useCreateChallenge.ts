@@ -52,28 +52,33 @@ export function useCreateChallenge() {
 
       if (error) throw error;
 
-      // Auto-join the creator as a participant
+      // Auto-join the creator as a participant (non-fatal — challenge already exists)
       const { error: participantError } = await supabase
         .from('challenge_participants')
-        .insert({
-          challenge_id: challenge.id,
-          user_id: user!.id,
-          total_steps: 0,
-        });
+        .upsert(
+          { challenge_id: challenge.id, user_id: user!.id, total_steps: 0 },
+          { onConflict: 'challenge_id,user_id' },
+        );
 
-      if (participantError) throw participantError;
+      if (participantError) {
+        console.warn('Failed to auto-join challenge:', participantError.message);
+      }
 
-      // Invite friends by creating notifications
+      // Invite friends by creating notifications (fire-and-forget)
       if (input.invitedFriends?.length) {
-        const notifications = input.invitedFriends.map((friendId) => ({
-          user_id: friendId,
-          type: 'challenge_invite' as const,
-          title: 'Challenge Invite',
-          body: `You've been invited to join "${input.name}"`,
-          data: { challenge_id: challenge.id },
-        }));
+        try {
+          const notifications = input.invitedFriends.map((friendId) => ({
+            user_id: friendId,
+            type: 'challenge_invite' as const,
+            title: 'Challenge Invite',
+            body: `You've been invited to join "${input.name}"`,
+            data: { challenge_id: challenge.id },
+          }));
 
-        await supabase.from('notifications').insert(notifications);
+          await supabase.from('notifications').insert(notifications);
+        } catch (e) {
+          console.warn('Failed to send challenge invites:', e);
+        }
       }
 
       return challenge;
